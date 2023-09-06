@@ -35,7 +35,8 @@ body {
 }
 
 .message {
-    background-color: #f2f2f2;
+    background-color: #CE2D2A;
+    color: #fff;
     padding: 10px;
     margin: 10px 0;
     border-radius: 5px;
@@ -47,8 +48,8 @@ body {
 }
 
 .user-message .message {
-    background-color: #007bff;
-    color: #fff;
+    background-color: #f2f2f2;
+    color: #000;
     margin-left: 15%;
 }
 
@@ -69,7 +70,7 @@ body {
     border-radius: 5px;
     margin-left: 5px;
     padding: 5px 10px;
-    background-color: #007bff;
+    background-color: #CE2D2A;
     color: #fff;
     border: none;
 
