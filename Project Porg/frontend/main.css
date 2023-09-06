@@ -16,6 +16,7 @@ body {
 
 .header{
     grid-area: 1 / 1 / 2 / 4;
+    margin-bottom: 10vh;
 }
 
 .chat{
@@ -23,7 +24,7 @@ body {
 }
 
 .chat-container {
-    height: 80vh;
+    height: 65vh;
     width: 400px;
     border: 1px solid #ccc;
     margin: auto;
