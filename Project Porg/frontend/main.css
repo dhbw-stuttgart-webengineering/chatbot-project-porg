@@ -3,6 +3,25 @@ body {
 
 }
 
+.grid-container{
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr 1fr; 
+    grid-template-rows: 0.5fr 1.5fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+    ". . ."
+    ". . ."; 
+    
+}
+
+.header{
+    grid-area: 1 / 1 / 2 / 4;
+}
+
+.chat{
+    grid-area: 2 / 2 / 3 / 3;
+}
+
 .chat-container {
     height: 85vh;
     width: 400px;
