@@ -7,7 +7,7 @@ function sendMessage() {
         const userMessage = document.createElement('div');
         userMessage.className = 'message';
         userMessage.textContent = userInput;
-        userMessageContainer.appendChild(userMessage);huhu
+        userMessageContainer.appendChild(userMessage);
         document.querySelector('.user-message').appendChild(userMessageContainer);
         document.getElementById('user-input').value = '';
     }
