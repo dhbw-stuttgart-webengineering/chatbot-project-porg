@@ -7,28 +7,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Chatfenster</title>
     </head>
-
-
     <body>
-        <div class="header">
-            <div class="logo">
-                <img src="https://www.dhbw-stuttgart.de/typo3conf/ext/dhbw_sitepackage/Resources/Public/Images/logo.svg" alt="Logo">
+        <div class="chat-container">
+            <div class="message">Hallo, ich bin dein treuer Porg! Wie kann ich dir heute helfen?</div>
+            <div class="user-message">
+                <div class="message">Hey Porg!</div>
             </div>
+            <!-- Weitere Nachrichten werden hier eingefügt -->
         </div>
-        <div class="chat"
-            <div class = "grid-container">
-                <div class="chat-container">
-                    <div class="message">Hallo, ich bin dein treuer Porg! Wie kann ich dir heute helfen?</div>
-                    <div class="user-message">
-                        <div class="message">Hey Porg!</div>
-                    </div>
-                    <!-- Weitere Nachrichten werden hier eingefügt -->
-                </div>
-                <div class="input-container">
-                    <input type="text" id="user-input" placeholder="Bitte geben sie hier ihre Frage ein">
-                    <button onclick="sendMessage()">Senden</button>
-                </div>
-            </div>
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Bitte geben sie hier ihre Frage ein">
+            <button onclick="sendMessage()">Senden</button>
         </div>
     </body>
 </html>
