@@ -18,6 +18,7 @@ function sendMessage() {
 
 function receiveMessage(message) {
     if (message.trim() !== '') {
+        message = lookForLinks(message);
         const botMessageContainer = document.createElement('div');
         botMessageContainer.className = message;
         const botMessage = document.createElement('div');
@@ -30,4 +31,11 @@ function receiveMessage(message) {
         document.getElementById("sendMessage").disabled = false;
         document.getElementById("sendMessage").style.backgroundColor= '#e2011b';
     }
+}
+
+function lookForLinks(message) {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return message.replace(urlRegex, function(url) {
+        return '<a href="' + url + '" target="_blank">' + url + '</a>';
+    })
 }
