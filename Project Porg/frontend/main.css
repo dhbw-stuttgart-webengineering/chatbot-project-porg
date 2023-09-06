@@ -10,7 +10,8 @@ body {
     gap: 0px 0px; 
     grid-template-areas: 
     ". . ."
-    ". . .";
+    ". . ."; 
+    
 }
 
 .header{
