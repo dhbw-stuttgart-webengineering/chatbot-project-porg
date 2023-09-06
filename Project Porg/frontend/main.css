@@ -15,8 +15,8 @@ body {
 
 .header{
     grid-area: 1 / 1 / 2 / 4;
-    align-items: center;
 }
+
 .chat{
     grid-area: 2 / 2 / 3 / 3;
 }
