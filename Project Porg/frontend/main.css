@@ -35,7 +35,7 @@ body {
 }
 
 .message {
-    background-color: #CE2D2A;
+    background-color: #e2011b;
     color: #fff;
     padding: 10px;
     margin: 10px 0;
@@ -48,7 +48,7 @@ body {
 }
 
 .user-message .message {
-    background-color: #f2f2f2;
+    background-color: #7d878d;
     color: #000;
     margin-left: 15%;
 }
@@ -61,7 +61,7 @@ body {
 
 .input-container input {
     padding: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #7d878d;
     border-radius: 5px;
     width: 300px;
 }
@@ -70,7 +70,7 @@ body {
     border-radius: 5px;
     margin-left: 5px;
     padding: 5px 10px;
-    background-color: #CE2D2A;
+    background-color: #e2011b;
     color: #fff;
     border: none;
 
