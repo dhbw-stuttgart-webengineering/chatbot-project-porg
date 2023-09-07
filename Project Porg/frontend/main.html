@@ -16,16 +16,17 @@
         <div class = "grid-container">
             <div class="chat">
                 <div class="chat-container">
-                    <div class="message">Hallo, ich bin dein treuer Porg! Wie kann ich dir heute helfen?</div>
-                    <div class="user-message">
-
+                    <div class="messages">
+                        <div class="message">Hallo, ich bin dein treuer Porg! Wie kann ich dir heute helfen?</div>
                     </div>
-                    <!-- Weitere Nachrichten werden hier eingefügt -->
+                    <div id="porg-container">
+                        <img src="files/porg.png" alt="Porg" class="porg" height="75px">
+                    </div>
                 </div>
                 <div class="input-container">
-                    <button title="neuer Chat" id="clearChat" onclick="clearChat()">🗑️</button>
-                    <label for="user-input"></label><input type="text" id="user-input" placeholder="Bitte geben sie hier ihre Frage ein">
-                    <button title="Absenden" id="sendMessage" onclick="sendMessage()"><img alt="Senden" src="https://cdn-icons-png.flaticon.com/512/1014/1014790.png" width="17px"> </button>
+                    <button id="clearChat" onclick="clearChat()">🗑️</button>
+                    <input type="text" id="user-input" placeholder="Bitte geben sie hier ihre Frage ein">
+                    <button id="sendMessage" onclick="sendMessage()">Senden</button>
                 </div>
             </div>
             <div class="link-container">
