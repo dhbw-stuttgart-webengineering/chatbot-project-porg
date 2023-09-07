@@ -33,7 +33,14 @@ body {
     flex-direction: column;
     display: flex;
     justify-content: space-between;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
+.chat-container::-webkit-scrollbar {
+    display: none;
+  }
+  
 
 .message {
     background-color: #e2011b;
