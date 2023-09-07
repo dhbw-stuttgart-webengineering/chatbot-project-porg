@@ -121,6 +121,6 @@ body {
     /* Stick to chat-container */
     position: absolute;
     bottom: 0;
-    margin-left: -5vh;
+    margin-left: -3vh;
     z-index: 1;
 }
