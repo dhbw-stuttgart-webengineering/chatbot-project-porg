@@ -57,7 +57,7 @@ function lookForLinks(message) {
 
 function askGPT(message){
     const Http = new XMLHttpRequest();
-    const url='http://127.0.0.1:5000/chat';
+    const url='http://127.0.0.1:5050/chat';
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/json");
     Http.setRequestHeader("Access-Control-Allow-Origin", "*");
