@@ -118,9 +118,8 @@ body {
 }
 
 #porg-container {
-    /* Stick to chat-container */
     position: absolute;
-    bottom: 0;
-    margin-left: -3vh;
+    bottom: 30px;
+    margin-left: -40px;
     z-index: 1;
 }
