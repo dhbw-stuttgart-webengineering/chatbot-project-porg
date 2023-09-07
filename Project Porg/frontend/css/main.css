@@ -7,7 +7,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; 
     grid-template-rows: 0.25fr 1.5fr; 
-    gap: 0px 0px; 
+    gap: 0 0;
     grid-template-areas: 
     ". . ."
     ". . ."; 
@@ -22,10 +22,22 @@ body {
     grid-area: 2 / 2 / 3 / 3;
 }
 
+.link-container {
+    grid-area: 3 / 3 / 1 / auto;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-radius: 5px;
+    border: 1px solid #7d878d;
+}
+.link-list {
+    margin-left: 10%;
+    list-style: none;
+}
+
 .chat-container {
     height: 65vh;
     width: 400px;
-    border: 1px solid #ccc;
+    border: 1px solid #7d878d;
     margin: auto;
     border-radius: 5px;
     padding: 10px;
