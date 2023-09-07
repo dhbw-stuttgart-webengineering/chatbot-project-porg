@@ -1,4 +1,19 @@
 console.log("hello world!");
+function receiveMessage(message) {
+    if (message.trim() !== '') {
+        const botMessageContainer = document.createElement('div');
+        const botMessage = document.createElement('div');
+        botMessage.className = 'message';
+        botMessage.textContent = message;
+        botMessage.innerHTML = lookForLinks(botMessage.innerHTML);
+        botMessageContainer.appendChild(botMessage);
+        document.querySelector('.messages').appendChild(botMessageContainer);
+        message.value = '';
+        botMessageContainer.scrollIntoView();
+        document.getElementById("sendMessage").disabled = false;
+        document.getElementById("sendMessage").style.backgroundColor= '#e2011b';
+    }
+}
 function sendMessage() {
     const userInput = document.getElementById('user-input').value;
     if (userInput.trim() !== '') {
@@ -14,22 +29,6 @@ function sendMessage() {
         document.getElementById('sendMessage').disabled = true;
         document.getElementById("sendMessage").style.backgroundColor= '#7d878d';
         askGPT(userInput);
-    }
-}
-
-function receiveMessage(message) {
-    if (message.trim() !== '') {
-        const botMessageContainer = document.createElement('div');
-        const botMessage = document.createElement('div');
-        botMessage.className = 'message';
-        botMessage.textContent = message;
-        botMessage.innerHTML = lookForLinks(botMessage.innerHTML);
-        botMessageContainer.appendChild(botMessage);
-        document.querySelector('.messages').appendChild(botMessageContainer);
-        message.value = '';
-        botMessageContainer.scrollIntoView();
-        document.getElementById("sendMessage").disabled = false;
-        document.getElementById("sendMessage").style.backgroundColor= '#e2011b';
     }
 }
 function clearChat() {
@@ -55,10 +54,17 @@ function lookForLinks(message) {
     message = message.replace(urlRegex, a.outerHTML);
     return message;
 }
-
+function addLinktoList(beschreibung, link){
+    const linkLi = document.createElement('li');
+    const linkA = document.createElement('a');
+    linkA.textContent = beschreibung;
+    linkA.href = link;
+    linkLi.appendChild(linkA);
+    document.getElementById("father").append(linkLi);
+}
 function askGPT(message){
     const Http = new XMLHttpRequest();
-    const url='http://127.0.0.1:5000/chat';
+    const url='http://127.0.0.1:5050/chat';
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/json");
     Http.setRequestHeader("Access-Control-Allow-Origin", "*");
