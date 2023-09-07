@@ -44,6 +44,8 @@ function clearChat() {
     botMessage.textContent = "Hallo, ich bin dein treuer Porg! Wie kann ich dir heute helfen?";
     botMessageContainer.appendChild(botMessage);
     document.querySelector('.chat-container').append(botMessageContainer);
+    document.getElementById("sendMessage").disabled = false;
+    document.getElementById("sendMessage").style.backgroundColor= '#e2011b';
     botMessageContainer.scrollIntoView();
 }
 function lookForLinks(message) {
