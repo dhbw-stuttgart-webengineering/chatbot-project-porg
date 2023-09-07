@@ -5,7 +5,12 @@ function receiveMessage(message) {
         const botMessage = document.createElement('div');
         botMessage.className = 'message';
         botMessage.textContent = message;
-        botMessage.innerHTML = lookForLinks(botMessage.innerHTML);
+        if(message.includes("Quelle:") && message.includes("https://")){
+            botMessage.innerHTML = message.split("Quelle:")[0];
+            botMessage.innerHTML += "<br>";
+            quelle = lookForLinks(message.split("Quelle:")[1]);
+            botMessage.innerHTML += quelle;
+        }
         botMessageContainer.appendChild(botMessage);
         document.querySelector('.messages').appendChild(botMessageContainer);
         message.value = '';
@@ -48,11 +53,11 @@ function lookForLinks(message) {
         return message;
     }
     const a = document.createElement('a');
+    a.style.fontSize = "12px";
     a.href = message.match(urlRegex)[0];
     a.target = '_blank';
-    a.textContent = message.match(urlRegex)[0];
-    message = message.replace(urlRegex, a.outerHTML);
-    return message;
+    a.textContent = "Quelle zu diesen Informationen"
+    return a.outerHTML;
 }
 function addLinktoList(beschreibung, link){
     const linkLi = document.createElement('li');
