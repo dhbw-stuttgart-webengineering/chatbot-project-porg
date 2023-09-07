@@ -5,7 +5,7 @@ import chatgpt
 import pinecone
 
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = f"{os.getenv('OPENAI_API_KEY')}" + f"{os.getenv('OPENAI_API_KEY_2')}"
 chatbot = chatgpt.ChatGPT()
 pinecone.init(api_key=os.getenv("PINECONE_API_KEY") or "", environment=os.getenv("PINECONE_ENV") or "")
 
@@ -29,16 +29,19 @@ def chat(query):
     res = chatbot.chat(f"Dein Wissen:\n{context}\nFrage:{query}\nAntwort:")
     return res
 
-# flask api chat
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 app = Flask(__name__)
+CORS(app, resources={r"/chat": {"origins": "*"}})
 
 @app.route("/chat", methods=["POST"])
 def chat_api():
     data = request.json
     query = data["query"]
-    res = chat(query)
-    return jsonify({"response": res})
+    result = chat(query)
+    response = jsonify({"response": result})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
