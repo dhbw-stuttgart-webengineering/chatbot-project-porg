@@ -5,8 +5,8 @@ body {
 
 .grid-container{
     display: grid;
-    grid-template-columns: 0.9fr 1.1fr 1fr; 
-    grid-template-rows: 0.5fr 1.5fr; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    grid-template-rows: 0.25fr 1.5fr; 
     gap: 0px 0px; 
     grid-template-areas: 
     ". . ."
@@ -16,7 +16,6 @@ body {
 
 .header{
     grid-area: 1 / 1 / 2 / 4;
-    margin-bottom: 1vh;
 }
 
 .chat{

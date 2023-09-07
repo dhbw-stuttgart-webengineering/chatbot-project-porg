@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="css/main.css">
         <script src="hello.js"></script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,14 +18,14 @@
                 <div class="chat-container">
                     <div class="message">Hallo, ich bin dein treuer Porg! Wie kann ich dir heute helfen?</div>
                     <div class="user-message">
-                        <div class="message">Hey Porg!</div>
+
                     </div>
                     <!-- Weitere Nachrichten werden hier eingefügt -->
                 </div>
                 <div class="input-container">
                     <button id="clearChat" onclick="clearChat()">🗑️</button>
                     <input type="text" id="user-input" placeholder="Bitte geben sie hier ihre Frage ein">
-                    <button id="sendMessage" onclick="sendMessage()">Senden</button>
+                    <button id="sendMessage" onclick="sendMessage();receiveMessage('Ich antworte nur damit du wieder schreiben kannst.')">Senden</button>
                 </div>
             </div>
         </div>
