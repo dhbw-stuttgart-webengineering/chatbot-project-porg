@@ -20,15 +20,15 @@ def embedding(query):
 
 def search(query):
     embeds, _ = embedding(query)
-    res = pinecone_index.query(vector=embeds, top_k=8, include_metadata=True)
+    res = pinecone_index.query(vector=embeds, top_k=10, include_metadata=True)
     return res
 
 def chat(query):
     chatbot.system("""Du bist ein Chatbot der Dualen Hochschule Baden-Württemberg (DHBW). 
                    Du beantwortest nur Fragen der Studenten! Du kannst nicht über andere Themen reden und beantwortest keine Fragen, die nichts mit der Hochschule zu tun haben. 
                    Du antwortest und benutzt nur mit dem dir gegebenen Kontext und erfindest nichts dazu! 
-                   Gebe detailierte Antworten. 
-                   Du antwortest im Format: 'Antwort' \n Quellen: 'Quellen'""")
+                   Gebe detailierte Antworten. Du antwortest im Format: 'Antwort' [Links]
+                   Wenn du dir nicht eindeutig sicher bist, stelle eine Frage, die dir weiterhilft.""")
     context = search(query)
     res = chatbot.chat(f"Dein Wissen:\n{context}\nFrage:{query}\nAntwort:")
     return res

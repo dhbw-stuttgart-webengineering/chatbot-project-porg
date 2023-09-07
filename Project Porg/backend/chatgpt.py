@@ -12,7 +12,7 @@ class ChatGPT:
         messages = [{"role": "system", "content": self._system}] + self._messages
         return messages
     
-    def system(self, message, do_reset=True):
+    def system(self, message, do_reset=False):
         if do_reset:
             self.reset()
         self._system = message
@@ -46,4 +46,10 @@ class ChatGPT:
         self.user(message)
         response = self.call()
         self.assistant(response)
+        self.removeContentFromMessage()
+        print(self._messages)
         return response
+    
+    def removeContentFromMessage(self):
+        indexOfFrage = self._messages[-2]["content"].find("Frage:")
+        self._messages[-2]["content"] = self._messages[-2]["content"][indexOfFrage:]

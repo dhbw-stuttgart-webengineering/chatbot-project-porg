@@ -44,6 +44,9 @@ function clearChat() {
 }
 function lookForLinks(message) {
     const urlRegex = /(https?:\/\/[^\s]+)/g;
+    if (!message.match(urlRegex)) {
+        return message;
+    }
     const a = document.createElement('a');
     a.href = message.match(urlRegex)[0];
     a.target = '_blank';
