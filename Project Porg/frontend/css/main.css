@@ -20,6 +20,7 @@ body {
 
 .chat{
     grid-area: 2 / 2 / 3 / 3;
+    position: relative;
 }
 
 .link-container {
@@ -114,4 +115,10 @@ body {
     background-color: #ff0400;
     color: #fff;
     border: none;
+}
+
+#porg-container {
+    position: absolute;
+    bottom: 0;
+    left: 10px;
 }
