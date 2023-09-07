@@ -3,18 +3,21 @@ function receiveMessage(message) {
     if (message.trim() !== '') {
         const botMessageContainer = document.createElement('div');
         const botMessage = document.createElement('div');
+        let messageNumber = document.getElementsByClassName('message').length;
         botMessage.className = 'message';
-        botMessage.textContent = message;
+        botMessage.id = 'bot-message-' + messageNumber;
+        let text = message.split("Quelle:");
         if(message.includes("Quelle:")){
-            botMessage.innerHTML = message.split("Quelle:")[0];
+            text = message.split("Quelle:")[0];
             if(message.includes("https://")){
-                botMessage.innerHTML += "<br>";
-                quelle = lookForLinks(message.split("Quelle:")[1]);
-                botMessage.innerHTML += quelle;
+                text += "<br>";
+                let quelle = lookForLinks(message.split("Quelle:")[1]);
+                text += quelle;
             }
         }
         botMessageContainer.appendChild(botMessage);
         document.querySelector('.messages').appendChild(botMessageContainer);
+        typeWriter(text, 'bot-message-' + messageNumber);
         message.value = '';
         botMessageContainer.scrollIntoView();
         document.getElementById("sendMessage").disabled = false;
@@ -56,7 +59,11 @@ function lookForLinks(message) {
     }
     const a = document.createElement('a');
     a.style.fontSize = "12px";
-    a.href = message.match(urlRegex)[0];
+    let url = message.match(urlRegex)[0];
+    if (url.match(/[^\w\d]$/)) {
+        url = url.slice(0, url.length - 1);
+    }
+    a.href = url;
     a.target = '_blank';
     a.textContent = "Quelle zu diesen Informationen"
     return a.outerHTML;
@@ -94,5 +101,25 @@ function askGPT(message){
             console.log(response);
             receiveMessage(response.response);
         }
+    }
+}
+
+function typeWriter(txt, id) {
+    let i = 0;
+    const txtArray = txt.toString().split("");
+    if (i < txt.length) {
+        let speed = Math.floor(Math.random() * 10) + 10;
+        document.getElementById(id).innerHTML += txtArray[i];
+        let talk = Math.floor(Math.random() * 2);
+        if (talk === 1) {
+            document.getElementById("porg").setAttribute("src", "files/Porg_Speaking.png")
+        } else {
+            document.getElementById("porg").setAttribute("src", "files/Porg.png")
+        }
+        txtArray.shift();
+        i++;
+        setTimeout(typeWriter, speed, txtArray.join(""), id);
+    } else {
+        document.getElementById("porg").setAttribute("src", "files/Porg.png")
     }
 }
