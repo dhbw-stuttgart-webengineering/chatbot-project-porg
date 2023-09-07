@@ -8,7 +8,7 @@ function sendMessage() {
         userMessage.className = 'message';
         userMessage.textContent = userInput;
         userMessageContainer.appendChild(userMessage);
-        document.querySelector('.chat-container').appendChild(userMessageContainer);
+        document.querySelector('.messages').appendChild(userMessageContainer);
         document.getElementById('user-input').value = '';
         userMessageContainer.scrollIntoView();
         document.getElementById('sendMessage').disabled = true;
@@ -26,7 +26,7 @@ function receiveMessage(message) {
         botMessage.className = 'message';
         botMessage.textContent = message;
         botMessageContainer.appendChild(botMessage);
-        document.querySelector('.chat-container').append(botMessageContainer);
+        document.querySelector('.messages').append(botMessageContainer);
         message.value = '';
         botMessageContainer.scrollIntoView();
         document.getElementById("sendMessage").disabled = false;
