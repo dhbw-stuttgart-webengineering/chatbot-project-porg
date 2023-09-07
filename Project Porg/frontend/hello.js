@@ -64,8 +64,20 @@ function addLinktoList(beschreibung, link){
     const linkA = document.createElement('a');
     linkA.textContent = beschreibung;
     linkA.href = link;
+    linkA.className = 'removeTag';
+    linkLi.className ='removeTag';
     linkLi.appendChild(linkA);
     document.getElementById("father").append(linkLi);
+}
+function removeLinksfromList() {
+    let speicher = document.getElementsByClassName('link-list');
+    while (speicher[0].firstChild) {
+        speicher[0].removeChild(speicher[0].firstChild);
+    }
+    const linkLi = document.createElement('li');
+    linkLi.textContent = 'hier kommt eine link liste hin';
+    linkLi.id= 'father';
+    document.getElementById("ol").append(linkLi);
 }
 function askGPT(message){
     const Http = new XMLHttpRequest();

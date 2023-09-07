@@ -8,12 +8,12 @@
         <title>Chatfenster</title>
     </head>
     <body>
-        <div class = "grid-container">
-            <div class="header">
-                <div class="logo">
-                    <img src="https://www.dhbw-stuttgart.de/typo3conf/ext/dhbw_sitepackage/Resources/Public/Images/logo.svg" alt="Logo">
-                </div>
+        <div class="header">
+            <div class="logo">
+                <img src="https://www.dhbw-stuttgart.de/typo3conf/ext/dhbw_sitepackage/Resources/Public/Images/logo.svg" alt="Logo">
             </div>
+        </div>
+        <div class = "grid-container">
             <div class="chat">
                 <div class="chat-container">
                     <div class="messages">
@@ -27,14 +27,22 @@
                         </div>
                     </div>
                     <div id="porg-container">
-                        <img src="files/porg.png" alt="Porg" class="porg" height="95vh">
+                        <img src="files/porg.png" alt="Porg" class="porg" height="75px">
                     </div>
                 </div>
                 <div class="input-container">
-                    <button title="neuer Chat" id="clearChat" onclick="clearChat()">🗑️</button>
+                    <button id="clearChat" onclick="clearChat()">🗑️</button>
                     <input type="text" id="user-input" placeholder="Bitte geben sie hier ihre Frage ein">
-                    <button title="Absenden" id="sendMessage" onclick="sendMessage()"><img alt="Senden" src="https://cdn-icons-png.flaticon.com/512/1014/1014790.png" width="17px"> </button>
+                    <button id="sendMessage" onclick="sendMessage()">Senden</button>
                 </div>
+            </div>
+            <div class="link-container">
+                <button title="Funktiontester" onclick="addLinktoList('Link zu T1000', 'https://www.dhbw-stuttgart.de/studierendenportal/informatik/studienbetrieb/praxisphasen-berichte/t1000-praxis-i/')">Funktiontester</button>
+                <button title="Funktionstester2" onclick="removeLinksfromList()">️</button>
+                <ol class="link-list" id="ol">
+                    <li id="father">hier kommt eine Link Liste hin</li>
+
+                </ol>
             </div>
         </div>
     </body>
