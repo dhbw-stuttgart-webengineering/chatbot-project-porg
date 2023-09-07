@@ -5,11 +5,13 @@ function receiveMessage(message) {
         const botMessage = document.createElement('div');
         botMessage.className = 'message';
         botMessage.textContent = message;
-        if(message.includes("Quelle:") && message.includes("https://")){
+        if(message.includes("Quelle:")){
             botMessage.innerHTML = message.split("Quelle:")[0];
-            botMessage.innerHTML += "<br>";
-            quelle = lookForLinks(message.split("Quelle:")[1]);
-            botMessage.innerHTML += quelle;
+            if(message.includes("https://")){
+                botMessage.innerHTML += "<br>";
+                quelle = lookForLinks(message.split("Quelle:")[1]);
+                botMessage.innerHTML += quelle;
+            }
         }
         botMessageContainer.appendChild(botMessage);
         document.querySelector('.messages').appendChild(botMessageContainer);
