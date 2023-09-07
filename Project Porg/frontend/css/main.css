@@ -49,6 +49,16 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+.chat-container a{
+    color: #ff7d7d;
+    text-decoration: none;
+    font-size: 5px;
+}
+.chat-container a:hover{
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 5px;
+}
 .chat-container::-webkit-scrollbar {
     display: none;
   }
