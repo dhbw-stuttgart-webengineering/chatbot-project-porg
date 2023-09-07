@@ -6,18 +6,18 @@ function receiveMessage(message) {
         let messageNumber = document.getElementsByClassName('message').length;
         botMessage.className = 'message';
         botMessage.id = 'bot-message-' + messageNumber;
+        botMessageContainer.id = 'bot-message-container-' + messageNumber;
         let text = message.split("Quelle:");
+        let quelle = "<br>";
         if(message.includes("Quelle:")){
             text = message.split("Quelle:")[0];
             if(message.includes("https://")){
-                text += "<br>";
-                let quelle = lookForLinks(message.split("Quelle:")[1]);
-                text += quelle;
+                quelle += lookForLinks(message.split("Quelle:")[1]);
             }
         }
         botMessageContainer.appendChild(botMessage);
         document.querySelector('.messages').appendChild(botMessageContainer);
-        typeWriter(text, 'bot-message-' + messageNumber);
+        typeWriter(text, messageNumber, quelle);
         message.value = '';
         botMessageContainer.scrollIntoView();
         document.getElementById("sendMessage").disabled = false;
@@ -104,12 +104,13 @@ function askGPT(message){
     }
 }
 
-function typeWriter(txt, id) {
+function typeWriter(txt, messageNumber, quelle) {
     let i = 0;
     const txtArray = txt.toString().split("");
     if (i < txt.length) {
         let speed = Math.floor(Math.random() * 10) + 10;
-        document.getElementById(id).innerHTML += txtArray[i];
+        document.getElementById("bot-message-" + messageNumber).innerHTML += txtArray[i];
+        document.getElementById('bot-message-container-' + messageNumber).scrollIntoView();
         let talk = Math.floor(Math.random() * 2);
         if (talk === 1) {
             document.getElementById("porg").setAttribute("src", "files/Porg_Speaking.png")
@@ -118,8 +119,9 @@ function typeWriter(txt, id) {
         }
         txtArray.shift();
         i++;
-        setTimeout(typeWriter, speed, txtArray.join(""), id);
+        setTimeout(typeWriter, speed, txtArray.join(""), messageNumber, quelle);
     } else {
         document.getElementById("porg").setAttribute("src", "files/Porg.png")
+        document.getElementById('bot-message-' + messageNumber).innerHTML += quelle;
     }
 }
