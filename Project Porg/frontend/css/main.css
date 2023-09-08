@@ -17,7 +17,7 @@
 .grid-container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; 
-    grid-template-rows: 0.65fr 1.5fr; 
+    grid-template-rows: 0.45fr 1.5fr; 
     gap: 0 0;
     grid-template-areas: 
     ". . ."
@@ -76,6 +76,23 @@
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    
+}
+#fog{
+    /*Add a fog from the middle to the bottom of the container*/
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgb(255, 255, 255) 100%);
+    background-size: 100% 25%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    z-index: 3;
+    height: 70vh;
+    width: 420px;
+    border-radius: 5px;
+    margin-left: -9px;
+    margin-right: -9px;
+    margin-top: -32px;
+    position: absolute;
+    
 }
 .chat-container a{
     color: #ff7d7d;
@@ -145,9 +162,9 @@
 
 #porg-container {
     position: absolute;
-    bottom: 30px;
+    bottom: 32px;
     margin-left: -40px;
-    z-index: 1;
+    z-index: 4;
 }
 h2{
     text-align: center;
