@@ -6,6 +6,7 @@ class ChatGPT:
         self.model = model
         self.history = []
         self._messages = []
+        self.lastQuestion = ""
 
     @property
     def messages(self):
@@ -42,17 +43,19 @@ class ChatGPT:
     def chat(self, message, replace_last=False):
         if replace_last:
             self._messages = self._messages[:-2]
-        message += """\nNebeninformationen: Gebe immer die Quelle mit! Du bist ein Chatbot der Dualen Hochschule Baden-Württemberg (DHBW). Dein Name ist Porg. 
-        Du kannst nicht über andere Themen reden und beantwortest keine Fragen, die nichts mit der Hochschule zu tun haben. 
-        Du antwortest nur mit dem dir gegebenen Kontext und erfindest nichts dazu!
-        Verweise in deiner Antwort nicht auf Quellen, sondern gib die Antwort direkt an.
-        Antworte im Format: <Antwort> Quelle: <Quellen>"""
         self.user(message)
         response = self.call()
         self.assistant(response)
         self.removeContentFromMessage()
         return response
     
+    def getSemanticSearchQuestion(self, query):
+        self.system("")
+        message = self.lastQuestion + "\n\n" + query + "\n\nStelle die Frage mit dem davorigen Kontext neu! Erfinde nichts in die Frage! Wenn die Frage nichts mit dem Kontext zu tun hat, stelle einfach die Frage neu! Schreibe nichts anderes als die Frage!"
+        response = self.chat(message)
+        self.lastQuestion = response
+        return response
+    
     def removeContentFromMessage(self):
-        indexOfFrage = self._messages[-2]["content"].find("Frage:")
-        self._messages[-2]["content"] = self._messages[-2]["content"][indexOfFrage:]
+        indexOfFrage = self._messages[-2]["content"].find("\n\n")
+        self._messages[-2]["content"] = self._messages[-2]["content"][indexOfFrage+2:]

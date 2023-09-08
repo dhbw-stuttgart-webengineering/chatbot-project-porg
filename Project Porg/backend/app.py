@@ -8,6 +8,7 @@ import datetime
 load_dotenv()
 openai.api_key = f"{os.getenv('OPENAI_API_KEY')}" + f"{os.getenv('OPENAI_API_KEY_2')}"
 chatbot = chatgpt.ChatGPT()
+semanticbot = chatgpt.ChatGPT()
 pinecone.init(api_key=os.getenv("PINECONE_API_KEY") or "", environment=os.getenv("PINECONE_ENV") or "")
 
 pinecone_index = pinecone.Index("projectporg")
@@ -25,9 +26,14 @@ def search(query):
     return res
 
 def chat(query):
-    chatbot.system("Heutiges Datum: " + datetime.datetime.now().strftime("%d.%m.%Y"))
-    context = search(query)
-    res = chatbot.chat(f"Dein Wissen:\n{context}\nFrage:{query}\nAntwort:")
+    semanticSearchQuestion = semanticbot.getSemanticSearchQuestion(query)
+    chatbot.system("""Nebeninformationen: Gebe immer die Quelle mit! Du bist ein Chatbot der Dualen Hochschule Baden-Württemberg (DHBW). Dein Name ist Porg. 
+    Du kannst nicht über andere Themen reden und beantwortest keine Fragen, die nichts mit der Hochschule zu tun haben. 
+    Du antwortest nur mit dem dir gegebenen Kontext und erfindest nichts dazu!
+    Verweise in deiner Antwort nicht auf Quellen, sondern gib die Antwort direkt an.
+    Antworte im Format: <Antwort> Quelle: <Quellen>""")
+    context = search(semanticSearchQuestion)
+    res = chatbot.chat(f"Dein Wissen:\n{context}\n\n{semanticSearchQuestion}", replace_last=True)
     return res
 
 from flask import Flask, request, jsonify

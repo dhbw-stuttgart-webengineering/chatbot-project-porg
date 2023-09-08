@@ -1,5 +1,13 @@
 console.log("hello world!");
+talking = false;
+window.addEventListener('keyup', function (event) {
+    if (event.key === 'Enter' && !talking) {
+        sendMessage();
+    }
+});
+
 function receiveMessage(message) {
+    message = message.replace("Antwort: ", "");
     if (message.trim() !== '') {
         const botMessageContainer = document.createElement('div');
         const botMessage = document.createElement('div');
@@ -16,24 +24,27 @@ function receiveMessage(message) {
             }
         }
         botMessageContainer.appendChild(botMessage);
-        document.querySelector('.messages').appendChild(botMessageContainer);
+        document.querySelector('.messages').insertBefore(botMessageContainer, document.querySelector('#selector'));
         typeWriter(text, messageNumber, quelle);
         message.value = '';
-        botMessageContainer.scrollIntoView();
+        document.getElementById("selector").scrollIntoView();
         document.getElementById("sendMessage").disabled = false;
         document.getElementById("sendMessage").style.backgroundColor= '#e2011b';
+        talking = false;
     }
 }
+
 function sendMessage() {
     const userInput = document.getElementById('user-input').value;
     if (userInput.trim() !== '') {
+        talking = true;
         const userMessageContainer = document.createElement('div');
         userMessageContainer.className = 'user-message';
         const userMessage = document.createElement('div');
         userMessage.className = 'message';
         userMessage.textContent = userInput;
         userMessageContainer.appendChild(userMessage);
-        document.querySelector('.messages').appendChild(userMessageContainer);
+        document.querySelector('.messages').insertBefore(userMessageContainer, document.querySelector('#selector'));
         document.getElementById('user-input').value = '';
         userMessageContainer.scrollIntoView();
         document.getElementById('sendMessage').disabled = true;
@@ -49,7 +60,10 @@ function clearChat() {
     const botMessage = document.createElement('div');
     botMessage.className = 'message';
     botMessage.textContent = "Hallo, ich bin dein treuer Porg! Wie kann ich dir heute helfen?";
+    const selector = document.createElement('div');
+    selector.id = 'selector';
     document.querySelector('.messages').append(botMessage);
+    document.querySelector('.messages').append(selector);
     botMessage.scrollIntoView();
 }
 function lookForLinks(message) {
@@ -110,7 +124,7 @@ function typeWriter(txt, messageNumber, quelle) {
     if (i < txt.length) {
         let speed = Math.floor(Math.random() * 10) + 10;
         document.getElementById("bot-message-" + messageNumber).innerHTML += txtArray[i];
-        document.getElementById('bot-message-container-' + messageNumber).scrollIntoView();
+        document.getElementById("selector").scrollIntoView();
         let talk = Math.floor(Math.random() * 2);
         if (talk === 1) {
             document.getElementById("porg").setAttribute("src", "files/Porg_Speaking.png")

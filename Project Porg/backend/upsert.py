@@ -3,8 +3,11 @@ import pinecone
 import sys
 import os
 import pandas
+from dotenv import load_dotenv
 
+load_dotenv()
 pinecone.init(api_key=os.getenv("PINECONE_API_KEY") or "", environment=os.getenv("PINECONE_ENV") or "")
+openai.api_key = f"{os.getenv('OPENAI_API_KEY')}" + f"{os.getenv('OPENAI_API_KEY_2')}"
 
 pinecone_index = pinecone.Index("projectporg")
 
@@ -33,5 +36,5 @@ def upsert(df):
         sys.exit(1)
 
 if __name__ == "__main__":
-    df = readCSV("DataSet.csv")
+    df = readCSV(os.path.join(os.path.dirname(__file__), "..", "..", "DataSet.csv"))
     upsert(df)
