@@ -1,34 +1,61 @@
+/* Custom font */
+@import url(https://db.onlinewebfonts.com/c/aa93cb662eed3dbceaf9144b30dbea90?family=Generis+Sans+W01+Regular);
+@font-face {
+    font-family: "Generis Sans W01 Regular";
+    src: url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.eot");
+    src: url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.svg#Generis Sans W01 Regular")format("svg");
+}
 body {
     font-family: Arial, sans-serif;
-
 }
 
+/* Grid */
 .grid-container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; 
-    grid-template-rows: 0.25fr 1.5fr; 
+    grid-template-rows: 0.45fr 1.5fr; 
     gap: 0 0;
     grid-template-areas: 
     ". . ."
     ". . ."; 
     
 }
-
 .header{
     grid-area: 1 / 1 / 2 / 4;
 }
-
 .chat{
     grid-area: 2 / 2 / 3 / 3;
     position: relative;
 }
-
-.link-container {
-    grid-area: 3 / 3 / 1 / auto;
+.settings-container {
+    grid-area: 3 / 1 / 2 / 2;
     margin-left: 50px;
     margin-right: 50px;
     border-radius: 5px;
     border: 1px solid #7d878d;
+    height: 70vh;
+    width: 400px;
+    border: 1px solid #7d878d;
+    border-radius: 5px;
+    padding: 10px;
+
+}
+.link-container {
+    grid-area: 3 / 3 / 2 / 4;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-radius: 5px;
+    border: 1px solid #7d878d;
+    height: 70vh;
+    width: 400px;
+    border: 1px solid #7d878d;
+    border-radius: 5px;
+    padding: 10px;
+
 }
 .link-list {
     margin-left: 10%;
@@ -49,6 +76,24 @@ body {
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    
+}
+#fog{
+    /*Add a fog from the middle to the bottom of the container*/
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgb(255, 255, 255) 100%);
+    background-size: 100% 25%;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    z-index: 3;
+    height: 70vh;
+    width: 420px;
+    border-radius: 5px;
+    margin-left: -9px;
+    margin-right: -9px;
+    margin-top: -32px;
+    position: absolute;
+    /*make click through*/
+    pointer-events: none;
 }
 .chat-container a{
     color: #ff7d7d;
@@ -85,7 +130,6 @@ body {
     margin-left: 15%;
 }
 
-
 .input-container {
     display: flex;
     justify-content: center;
@@ -119,9 +163,17 @@ body {
 
 #porg-container {
     position: absolute;
-    bottom: 30px;
+    bottom: 32px;
     margin-left: -40px;
-    z-index: 1;
+    z-index: 4;
+}
+h2{
+    text-align: center;
+    font-size: 2.25em;
+    letter-spacing: 0.1em;
+    font-weight: 100;
+    color: #5E6970;
+    margin-top: -3px
 }
 
 #selector{
