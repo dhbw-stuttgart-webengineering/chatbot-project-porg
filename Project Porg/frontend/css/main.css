@@ -92,7 +92,8 @@
     margin-right: -9px;
     margin-top: -32px;
     position: absolute;
-    
+    /*make click through*/
+    pointer-events: none;
 }
 .chat-container a{
     color: #ff7d7d;
