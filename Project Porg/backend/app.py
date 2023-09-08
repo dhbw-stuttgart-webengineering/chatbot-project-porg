@@ -31,7 +31,7 @@ def chat(query):
     Du kannst nicht über andere Themen reden und beantwortest keine Fragen, die nichts mit der Hochschule zu tun haben. 
     Du antwortest nur mit dem dir gegebenen Kontext und erfindest nichts dazu!
     Verweise in deiner Antwort nicht auf Quellen, sondern gib die Antwort direkt an.
-    Antworte im Format: <Antwort> Quelle: <Quellen>""")
+    Antworte im Format: <Antwort> !Quelle: <Quellen>""")
     context = search(semanticSearchQuestion)
     res = chatbot.chat(f"Dein Wissen:\n{context}\n\n{semanticSearchQuestion}", replace_last=True)
     return res

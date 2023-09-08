@@ -30,15 +30,16 @@ body {
 .chat{
     grid-area: 2 / 2 / 3 / 3;
     position: relative;
+    width: 100%;
+    margin: auto;
 }
 .settings-container {
     grid-area: 3 / 1 / 2 / 2;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin: auto;
     border-radius: 5px;
     border: 1px solid #7d878d;
     height: 70vh;
-    width: 400px;
+    width: 80%;
     border: 1px solid #7d878d;
     border-radius: 5px;
     padding: 10px;
@@ -46,12 +47,11 @@ body {
 }
 .link-container {
     grid-area: 3 / 3 / 2 / 4;
-    margin-left: 50px;
-    margin-right: 50px;
+    margin: auto;
     border-radius: 5px;
     border: 1px solid #7d878d;
     height: 70vh;
-    width: 400px;
+    width: 80%;
     border: 1px solid #7d878d;
     border-radius: 5px;
     padding: 10px;
@@ -64,7 +64,6 @@ body {
 
 .chat-container {
     height: 65vh;
-    width: 400px;
     border: 1px solid #7d878d;
     margin: auto;
     border-radius: 5px;

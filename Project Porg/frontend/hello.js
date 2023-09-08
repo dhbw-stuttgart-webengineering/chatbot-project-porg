@@ -15,12 +15,12 @@ function receiveMessage(message) {
         botMessage.className = 'message';
         botMessage.id = 'bot-message-' + messageNumber;
         botMessageContainer.id = 'bot-message-container-' + messageNumber;
-        let text = message.split("Quelle:");
+        let text = message.split("!Quelle:");
         let quelle = "<br>";
-        if(message.includes("Quelle:")){
-            text = message.split("Quelle:")[0];
+        if(message.includes("!Quelle:")){
+            text = message.split("!Quelle:")[0];
             if(message.includes("https://")){
-                quelle += lookForLinks(message.split("Quelle:")[1]);
+                quelle += lookForLinks(message.split("!Quelle:")[1]);
             }
         }
         botMessageContainer.appendChild(botMessage);
