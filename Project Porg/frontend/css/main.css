@@ -13,7 +13,7 @@
     font-family: 'Generis Sans W01 Regular';
 }
 
-
+/* Grid */
 .grid-container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; 
@@ -24,22 +24,24 @@
     ". . ."; 
     
 }
-
 .header{
     grid-area: 1 / 1 / 2 / 4;
 }
-
 .chat{
     grid-area: 2 / 2 / 3 / 3;
     position: relative;
 }
-
 .link-container {
-    grid-area: 3 / 3 / 1 / auto;
+    grid-area: 3 / 3 / 2 / 4;
     margin-left: 50px;
     margin-right: 50px;
     border-radius: 5px;
     border: 1px solid #7d878d;
+    height: 70vh;
+    width: 400px;
+    border: 1px solid #7d878d;
+    border-radius: 5px;
+    padding: 10px;
 }
 .link-list {
     margin-left: 10%;
@@ -96,7 +98,6 @@
     margin-left: 15%;
 }
 
-
 .input-container {
     display: flex;
     justify-content: center;
@@ -133,4 +134,11 @@
     bottom: 30px;
     margin-left: -40px;
     z-index: 1;
+}
+h2{
+    text-align: center;
+    font-size: 2.25em;
+    letter-spacing: 0.1em;
+    font-weight: 100;
+    color: #5E6970;
 }
