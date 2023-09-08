@@ -31,6 +31,7 @@ body {
     grid-area: 2 / 2 / 3 / 3;
     position: relative;
     width: 100%;
+    max-width: 30vw;
     margin: auto;
 }
 .settings-container {
@@ -85,7 +86,7 @@ body {
     background-position: bottom;
     z-index: 3;
     height: 70vh;
-    width: 420px;
+    width: 99%;
     border-radius: 5px;
     margin-left: -9px;
     margin-right: -9px;
