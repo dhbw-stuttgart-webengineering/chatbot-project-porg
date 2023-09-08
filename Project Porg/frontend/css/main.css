@@ -42,6 +42,7 @@
     border: 1px solid #7d878d;
     border-radius: 5px;
     padding: 10px;
+
 }
 .link-list {
     margin-left: 10%;
@@ -141,4 +142,5 @@ h2{
     letter-spacing: 0.1em;
     font-weight: 100;
     color: #5E6970;
+    margin-top: -3px
 }
