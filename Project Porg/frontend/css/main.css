@@ -1,7 +1,18 @@
-body {
-    font-family: Arial, sans-serif;
-
+/* Custom font */
+@import url(https://db.onlinewebfonts.com/c/aa93cb662eed3dbceaf9144b30dbea90?family=Generis+Sans+W01+Regular);
+@font-face {
+    font-family: "Generis Sans W01 Regular";
+    src: url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.eot");
+    src: url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.svg#Generis Sans W01 Regular")format("svg");
 }
+* {
+    font-family: 'Generis Sans W01 Regular';
+}
+
 
 .grid-container{
     display: grid;
