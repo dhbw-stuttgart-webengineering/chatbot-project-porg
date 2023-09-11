@@ -215,7 +215,7 @@ h2{
     }
 
     .alert.abled {
-        animation: fadeIn 0.5s forwards, fadeOut 0.5s 2.5s forwards;
+        animation: fadeIn 0.5s forwards, fadeOut 0.5s 5s forwards;
     }
 
     .alert.disabled {
