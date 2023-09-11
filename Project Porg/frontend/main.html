@@ -20,11 +20,10 @@
             </div>
             <div class="settings-container">
                 <h2>Einstellungen</h2>
-                <p>Hier werden verschiedenste Einstellungs-Optionen angezeigt</p>
             </div>
             <div class="chat">
                 <div class="chat-container">
-                    <button id="reportBug" onclick="closeChat()">!</button>
+                    <button title="Chat melden" id="reportBug" onclick="closeChat()">!</button>
                     <div class="messages">
                         <div class="message">
                             <div class="text">
@@ -36,21 +35,23 @@
                         </div>
                         <div id="selector"></div>
                     </div>
-                    <div id="fog"></div>
+                    <div id="fo,g"></div>
                     <div id="porg-container">
                         <img src="files/porg.png" alt="Porg" class="porg" id="porg" height="175px">
                     </div>
                 </div>
                 <div class="input-container">
-                    <button id="clearChat" onclick="clearChat()">🗑️</button>
+                    <button id="clearChat" title="Chat löschen" onclick="clearChat()">🗑️</button>
                     <input type="text" id="user-input" placeholder="Bitte geben sie hier ihre Frage ein">
-                    <button id="sendMessage" onclick="sendMessage()">Senden</button>
+                    <button id="sendMessage" title="Nachricht absenden" onclick="sendMessage()">Senden</button>
                 </div>
             </div>
             <div class="link-container">
                 <h2>Übersicht</h2>
+                <button onclick="addLinktoList('ghds', 'cwowfo.com')">X</button>
                 <ol class="link-list" id="ol">
                     <li id="father"></li>
+                    <li><a href="sources.html" id="LinkImpressum">Impressum</a></li>
                 </ol>
             </div>
         </div>
