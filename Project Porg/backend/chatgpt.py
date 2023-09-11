@@ -51,8 +51,9 @@ class ChatGPT:
     
     def getSemanticSearchQuestion(self, query):
         self.system("")
-        message = self.lastQuestion + "\n\n" + query + "\n\nStelle die Frage mit dem davorigen Kontext neu! Erfinde nichts in die Frage! Wenn die Frage nichts mit dem Kontext zu tun hat, stelle einfach die Frage neu! Schreibe nichts anderes als die Frage!"
+        message = "Davoriger Kontext:" + self.lastQuestion + "\n\n" + "Neuer Kontext:" + query + "\n\nStelle die Frage mit dem davorigen Kontext neu, wenn der neue Kontext den alten Kontext ergänzt! Erfinde nichts in die Frage! Wenn die Frage nichts mit dem Kontext zu tun hat, wiederhole einfach den neuen Kontext! Schreibe nichts anderes als eine Frage. Der neue Kontext hat Vorrang!"
         response = self.chat(message)
+        print(response)
         self.lastQuestion = response
         return response
     
