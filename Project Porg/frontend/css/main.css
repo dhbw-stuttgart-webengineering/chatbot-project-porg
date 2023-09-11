@@ -76,7 +76,6 @@ body {
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    
 }
 #fog{
     /*Add a fog from the middle to the bottom of the container*/
@@ -89,7 +88,7 @@ body {
     width: 99%;
     border-radius: 5px;
     margin-left: -10px;
-    margin-top: -3.1vh;
+    bottom: 38.25px;
     position: absolute;
     /*make click through*/
     pointer-events: none;
@@ -152,7 +151,7 @@ body {
     padding: 5px;
     border: 1px solid #7d878d;
     border-radius: 5px;
-    width: 300px;
+    width: 8vw;
 }
 
 #sendMessage {
