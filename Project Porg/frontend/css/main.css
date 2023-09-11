@@ -115,6 +115,7 @@ body {
     border: 1px solid #7d878d;
     color: #000;
     padding: 5px 10px;
+    display: none;
 }
 #reportBug:hover{
     background-color: #ff0000;
