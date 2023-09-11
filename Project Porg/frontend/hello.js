@@ -1,5 +1,5 @@
 console.log("hello world!");
-talking = false;
+let talking = false;
 window.addEventListener('keyup', function (event) {
     if (event.key === 'Enter' && !talking) {
         sendMessage();
@@ -143,13 +143,22 @@ function typeWriter(txt, messageNumber, quelle) {
     }
 }
 
-function sendMailWithPHP() {
+function sendMail(){
     const Http = new XMLHttpRequest();
-    const url='mail.php';
+    const url='http://127.0.0.1:5050/mail';
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/json");
     Http.setRequestHeader("Access-Control-Allow-Origin", "*");
-    Http.send(JSON.stringify({"query": "mail"}));
+    const messages = document.getElementsByClassName('message');
+    let text = "";
+    for(const element of messages){
+        if (element.id.includes("bot-message")) {
+            text += "Bot: " + element.textContent.trim() + "\n\n";
+        } else {
+            text += "User: " + element.textContent.trim() + "\n\n";
+        }
+    }
+    Http.send(JSON.stringify({"query": text}));
     Http.onreadystatechange = (e) => {
         if (Http.readyState === 4 && Http.status === 200) {
             const response = JSON.parse(Http.responseText);
