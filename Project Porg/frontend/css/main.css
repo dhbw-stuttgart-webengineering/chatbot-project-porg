@@ -77,6 +77,7 @@ body {
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    font-size: 0.75em;
 }
 #fog{
     /*Add a fog from the middle to the bottom of the container*/
@@ -115,6 +116,7 @@ body {
     border: 1px solid #7d878d;
     color: #000;
     padding: 5px 10px;
+    display: none;
 }
 #reportBug:hover{
     background-color: #ff0000;

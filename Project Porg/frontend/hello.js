@@ -29,6 +29,7 @@ function receiveMessage(message) {
         document.getElementById("selector").scrollIntoView();
         document.getElementById("sendMessage").disabled = false;
         document.getElementById("sendMessage").style.backgroundColor= '#e2011b';
+        document.getElementById('reportBug').style.display = 'block';
         talking = false;
     }
 }
@@ -64,6 +65,8 @@ function clearChat() {
     document.querySelector('.messages').append(botMessage);
     document.querySelector('.messages').append(selector);
     botMessage.scrollIntoView();
+    //remove reportBug
+    document.getElementById('reportBug').style.display = 'none';
 }
 function lookForLinks(message) {
     const urlRegex = /(https?:\/\/[^\s]+)/g;
