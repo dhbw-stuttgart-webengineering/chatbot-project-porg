@@ -18,14 +18,14 @@ function receiveMessage(message) {
         let text = message.split("Quelle:");
         let quelle = "<br>";
         if(message.includes("Quelle:")){
-            text = message.split("Quelle:")[0];
+            text = message.split("Quelle:")[0].trim();
             if(message.includes("https://")){
                 quelle += lookForLinks(message.split("Quelle:")[1]);
             }
         }
         botMessageContainer.appendChild(botMessage);
         document.querySelector('.messages').insertBefore(botMessageContainer, document.querySelector('#selector'));
-        typeWriter(text.trim(), messageNumber, quelle);
+        typeWriter(text, messageNumber, quelle);
         message.value = '';
         document.getElementById("selector").scrollIntoView();
         document.getElementById("sendMessage").disabled = false;
@@ -139,5 +139,20 @@ function typeWriter(txt, messageNumber, quelle) {
     } else {
         document.getElementById("porg").setAttribute("src", "files/Porg.png")
         document.getElementById('bot-message-' + messageNumber).innerHTML += quelle;
+    }
+}
+
+function sendMailWithPHP() {
+    const Http = new XMLHttpRequest();
+    const url='mail.php';
+    Http.open("POST", url);
+    Http.setRequestHeader("Content-Type", "application/json");
+    Http.setRequestHeader("Access-Control-Allow-Origin", "*");
+    Http.send(JSON.stringify({"query": "mail"}));
+    Http.onreadystatechange = (e) => {
+        if (Http.readyState === 4 && Http.status === 200) {
+            const response = JSON.parse(Http.responseText);
+            console.log(response);
+        }
     }
 }
