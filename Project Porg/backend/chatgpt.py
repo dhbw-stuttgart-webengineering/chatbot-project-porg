@@ -6,7 +6,7 @@ class ChatGPT:
         self.model = model
         self.history = []
         self._messages = []
-        self.lastQuestion = ""
+        self.lastQuestion = "Noch kein Kontext vorhanden!"
 
     @property
     def messages(self):
@@ -31,7 +31,7 @@ class ChatGPT:
         completion = openai.ChatCompletion.create(
             model=self.model,
             messages=messages,
-            temperature=0.4
+            temperature=0.2
         )
         self.history.append((messages, completion))
         return completion
@@ -50,9 +50,9 @@ class ChatGPT:
         return response
     
     def getSemanticSearchQuestion(self, query):
-        self.system("")
-        message = "Davoriger Kontext:" + self.lastQuestion + "\n\n" + "Neuer Kontext:" + query + "\n\nStelle die Frage mit dem davorigen Kontext neu, wenn der neue Kontext den alten Kontext ergänzt! Erfinde nichts in die Frage! Wenn die Frage nichts mit dem Kontext zu tun hat, wiederhole einfach den neuen Kontext! Schreibe nichts anderes als eine Frage. Der neue Kontext hat Vorrang!"
-        response = self.chat(message)
+        self.system("Erfinde nichts dazu! Ergänze den davorigen Kontext, wenn der neue Kontext den alten Kontext ergänzt! Wenn der neue Kontext nichts mit dem alten Kontext zu tun hat, wiederhole einfach den neuen Kontext! Schreibe nichts anderes als eine Frage. Der neue Kontext hat Vorrang!")
+        message = "Davoriger Kontext:" + self.lastQuestion + "\n\n" + "Neuer Kontext:" + query
+        response = self.chat(message, replace_last=True)
         print(response)
         self.lastQuestion = response
         return response

@@ -15,17 +15,17 @@ function receiveMessage(message) {
         botMessage.className = 'message';
         botMessage.id = 'bot-message-' + messageNumber;
         botMessageContainer.id = 'bot-message-container-' + messageNumber;
-        let text = message.split("!Quelle:");
+        let text = message.split("Quelle:");
         let quelle = "<br>";
-        if(message.includes("!Quelle:")){
-            text = message.split("!Quelle:")[0];
+        if(message.includes("Quelle:")){
+            text = message.split("Quelle:")[0];
             if(message.includes("https://")){
-                quelle += lookForLinks(message.split("!Quelle:")[1]);
+                quelle += lookForLinks(message.split("Quelle:")[1]);
             }
         }
         botMessageContainer.appendChild(botMessage);
         document.querySelector('.messages').insertBefore(botMessageContainer, document.querySelector('#selector'));
-        typeWriter(text, messageNumber, quelle);
+        typeWriter(text.trim(), messageNumber, quelle);
         message.value = '';
         document.getElementById("selector").scrollIntoView();
         document.getElementById("sendMessage").disabled = false;
@@ -123,6 +123,9 @@ function typeWriter(txt, messageNumber, quelle) {
     const txtArray = txt.toString().split("");
     if (i < txt.length) {
         let speed = Math.floor(Math.random() * 10) + 10;
+        if (txtArray[i] === "\n") {
+            txtArray[i] = "<br>";
+        }
         document.getElementById("bot-message-" + messageNumber).innerHTML += txtArray[i];
         document.getElementById("selector").scrollIntoView();
         let talk = Math.floor(Math.random() * 2);
