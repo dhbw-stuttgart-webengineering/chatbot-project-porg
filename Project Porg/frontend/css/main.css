@@ -11,6 +11,7 @@
 }
 body {
     font-family: Arial, sans-serif;
+    font-size: calc(0.5em + 1vw);
 }
 
 /* Grid */
@@ -180,7 +181,7 @@ body {
 }
 h2{
     text-align: center;
-    font-size: 2.25em;
+    font-size: 1.5em;
     letter-spacing: 0.1em;
     font-weight: 100;
     color: #5E6970;
