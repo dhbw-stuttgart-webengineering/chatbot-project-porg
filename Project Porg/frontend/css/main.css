@@ -11,6 +11,7 @@
 }
 body {
     font-family: Arial, sans-serif;
+    font-size: calc(0.5em + 1vw);
 }
 
 /* Grid */
@@ -76,7 +77,6 @@ body {
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    
 }
 #fog{
     /*Add a fog from the middle to the bottom of the container*/
@@ -88,9 +88,8 @@ body {
     height: 70vh;
     width: 99%;
     border-radius: 5px;
-    margin-left: -9px;
-    margin-right: -9px;
-    margin-top: -31px;
+    margin-left: -10px;
+    bottom: 38.25px;
     position: absolute;
     /*make click through*/
     pointer-events: none;
@@ -153,7 +152,7 @@ body {
     padding: 5px;
     border: 1px solid #7d878d;
     border-radius: 5px;
-    width: 300px;
+    width: 8vw;
 }
 
 #sendMessage {
@@ -182,7 +181,7 @@ body {
 }
 h2{
     text-align: center;
-    font-size: 2.25em;
+    font-size: 1.5em;
     letter-spacing: 0.1em;
     font-weight: 100;
     color: #5E6970;
