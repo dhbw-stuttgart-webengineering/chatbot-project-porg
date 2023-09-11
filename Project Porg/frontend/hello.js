@@ -98,7 +98,6 @@ function removeLinksfromList() {
         speicher[0].removeChild(speicher[0].firstChild);
     }
     const linkLi = document.createElement('li');
-    linkLi.textContent = 'hier kommt eine link liste hin';
     linkLi.id= 'father';
     document.getElementById("ol").append(linkLi);
 }
