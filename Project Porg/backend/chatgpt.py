@@ -6,7 +6,6 @@ class ChatGPT:
         self.model = model
         self.history = []
         self._messages = []
-        self.lastQuestion = "Noch kein Kontext vorhanden!"
 
     @property
     def messages(self):
@@ -49,14 +48,12 @@ class ChatGPT:
         self.removeContentFromMessage()
         return response
     
-    def getSemanticSearchQuestion(self, query):
-        self.system("Erfinde nichts dazu! Ergänze den davorigen Kontext, wenn der neue Kontext den alten Kontext ergänzt! Wenn der neue Kontext nichts mit dem alten Kontext zu tun hat, wiederhole einfach den neuen Kontext! Schreibe nichts anderes als eine Frage. Der neue Kontext hat Vorrang!")
-        message = "Davoriger Kontext:" + self.lastQuestion + "\n\n" + "Neuer Kontext:" + query
-        response = self.chat(message, replace_last=True)
-        print(response)
-        self.lastQuestion = response
-        return response
+    def getMessages(self):
+        return self._messages
     
+    def setMessages(self, messages):
+        self._messages = messages
+        
     def removeContentFromMessage(self):
         indexOfFrage = self._messages[-2]["content"].find("\n\n")
         self._messages[-2]["content"] = self._messages[-2]["content"][indexOfFrage+2:]
