@@ -1,4 +1,3 @@
-console.log("hello world!");
 let talking = false;
 window.addEventListener('keyup', function (event) {
     if (event.key === 'Enter' && !talking) {

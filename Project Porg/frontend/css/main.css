@@ -105,6 +105,7 @@ body {
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    font-size: 0.75em;
 }
 #fog{
     /*Add a fog from the middle to the bottom of the container*/
@@ -193,13 +194,23 @@ body {
     border: none;
 }
 
+
 #clearChat{
+    transition: 0.25s;
     border-radius: 5px;
     margin-right: 5px;
     padding: 5px 10px;
-    background-color: #ff0400;
+    background-color: #fff;
     color: #fff;
-    border: none;
+    border: 1px solid #7d878d;
+}
+
+#clearChat:hover{
+    /*dont effect the other elements when chanching size*/
+    transform: scale(1.1);
+    transition: 0.25s;
+    background-color: #e2011b;
+
 }
 
 #porg-container {
@@ -244,7 +255,7 @@ h2{
     }
 
     .alert.abled {
-        animation: fadeIn 0.5s forwards, fadeOut 0.5s 2.5s forwards;
+        animation: fadeIn 0.5s forwards, fadeOut 0.5s 5s forwards;
     }
 
     .alert.disabled {
