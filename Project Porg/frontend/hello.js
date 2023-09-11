@@ -59,7 +59,7 @@ function clearChat() {
     }
     const botMessage = document.createElement('div');
     botMessage.className = 'message';
-    botMessage.textContent = "Hallo, ich bin dein treuer Porg! Wie kann ich dir heute helfen?";
+    botMessage.textContent = "Hallo, ich bin Porg! Wie kann ich dir heute helfen?";
     const selector = document.createElement('div');
     selector.id = 'selector';
     document.querySelector('.messages').append(botMessage);
@@ -98,7 +98,6 @@ function removeLinksfromList() {
         speicher[0].removeChild(speicher[0].firstChild);
     }
     const linkLi = document.createElement('li');
-    linkLi.textContent = 'hier kommt eine link liste hin';
     linkLi.id= 'father';
     document.getElementById("ol").append(linkLi);
 }
