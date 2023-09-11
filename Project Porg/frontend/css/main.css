@@ -158,7 +158,6 @@ body {
 }
 
 #sendMessage {
-    transition: 0.25s;
     border-radius: 5px;
     margin-left: 5px;
     padding: 5px 10px;
@@ -166,10 +165,7 @@ body {
     color: #fff;
     border: none;
 }
-#sendMessage:hover{
-    transform: scale(1.1);
-    transition: 0.25s;
-}
+
 
 #clearChat{
     transition: 0.25s;
