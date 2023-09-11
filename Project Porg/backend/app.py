@@ -4,11 +4,11 @@ import os
 import chatgpt
 import pinecone
 import mail
+import databaseManager
 
 load_dotenv()
 openai.api_key = f"{os.getenv('OPENAI_API_KEY')}" + f"{os.getenv('OPENAI_API_KEY_2')}"
 chatbot = chatgpt.ChatGPT()
-semanticbot = chatgpt.ChatGPT()
 pinecone.init(api_key=os.getenv("PINECONE_API_KEY") or "", environment=os.getenv("PINECONE_ENV") or "")
 
 pinecone_index = pinecone.Index("projectporg")
@@ -26,28 +26,57 @@ def search(query):
     return res
 
 def chat(query):
-    semanticSearchQuestion = semanticbot.getSemanticSearchQuestion(query)
     chatbot.system("""Antworte im Format: <Antwort> Quelle: <Quellen>.
     Du bist ein Chatbot der Dualen Hochschule Baden-Württemberg (DHBW). Dein Name ist Porg. 
     Du kannst nicht über andere Themen reden und beantwortest keine Fragen, die nichts mit der Hochschule zu tun haben. 
     Du antwortest nur mit dem dir gegebenen Kontext und erfindest nichts dazu!
     Verweise in deiner Antwort nicht auf Quellen, sondern gib die Antwort direkt an.
     Bei Aufzählungen immer \n- verwenden.""")
-    context = search(semanticSearchQuestion)
-    res = chatbot.chat(f"Dein Wissen:\n{context}\n\n{semanticSearchQuestion}", replace_last=True)
+    context = search(query)
+    res = chatbot.chat(f"Dein Wissen:\n{context}\n\n{query}")
     return res
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 app = Flask(__name__)
-CORS(app, resources={r"/chat": {"origins": "*"}, r"/mail": {"origins": "*"}})
+CORS(app, resources={r"/chat": {"origins": "*"}, r"/mail": {"origins": "*"}, r"/getData": {"origins": "*"}, r"/reset": {"origins": "*"}})
 
 @app.route("/chat", methods=["POST"])
 def chat_api():
     data = request.json
     query = data["query"]
     result = chat(query)
+    uuid = data["uuid"]
+    jahrgang = data["jahrgang"]
+    messages = chatbot.getMessages()
+    databaseManager.add_key(uuid, messages, jahrgang)
     response = jsonify({"response": result})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
+@app.route("/getData", methods=["POST"])
+def getData_api():
+    data = request.json
+    uuid = data["uuid"]
+    result = databaseManager.get_key(uuid)
+    if result[0][1].strip() != "":
+        messages = eval(result[0][1])
+        chatbot.setMessages(messages)
+    if result == None:
+        response = jsonify({"response": "No data found"})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
+    response = jsonify({"response": result})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
+@app.route("/reset", methods=["POST"])
+def reset_api():
+    data = request.json
+    uuid = data["uuid"]
+    databaseManager.add_key(uuid, "", "2022")
+    chatbot.reset()
+    response = jsonify({"response": "success"})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 

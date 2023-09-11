@@ -1,12 +1,14 @@
-console.log("hello world!");
 let talking = false;
+setCookie();
+let uuid = getCookie("uuid");
+addMessages();
 window.addEventListener('keyup', function (event) {
     if (event.key === 'Enter' && !talking) {
         sendMessage();
     }
 });
 
-function receiveMessage(message) {
+function receiveMessage(message, animate = true) {
     message = message.replace("Antwort: ", "");
     if (message.trim() !== '') {
         const botMessageContainer = document.createElement('div');
@@ -25,17 +27,25 @@ function receiveMessage(message) {
         }
         botMessageContainer.appendChild(botMessage);
         document.querySelector('.messages').insertBefore(botMessageContainer, document.querySelector('#selector'));
-        typeWriter(text, messageNumber, quelle);
+        if (animate) {
+            typeWriter(text, messageNumber, quelle);
+        } else {
+            botMessage.innerHTML = text + quelle;
+        }
         message.value = '';
         document.getElementById("selector").scrollIntoView();
         document.getElementById("sendMessage").disabled = false;
         document.getElementById("sendMessage").style.backgroundColor= '#e2011b';
+        document.getElementById('reportBug').style.display = 'block';
         talking = false;
     }
 }
 
-function sendMessage() {
-    const userInput = document.getElementById('user-input').value;
+function sendMessage(message="") {
+    let userInput = document.getElementById('user-input').value;
+    if (message.trim() !== '') {
+        userInput = message;
+    }
     if (userInput.trim() !== '') {
         talking = true;
         const userMessageContainer = document.createElement('div');
@@ -49,13 +59,28 @@ function sendMessage() {
         userMessageContainer.scrollIntoView();
         document.getElementById('sendMessage').disabled = true;
         document.getElementById("sendMessage").style.backgroundColor= '#7d878d';
-        askGPT(userInput);
+        if (message.trim() === '') { 
+            askGPT(userInput);
+        }
     }
 }
+
 function clearChat() {
     let messages = document.getElementsByClassName('messages');
     while (messages[0].firstChild) {
         messages[0].removeChild(messages[0].firstChild);
+    }
+    const Http = new XMLHttpRequest();
+    const url='http://127.0.0.1:5050/reset';
+    Http.open("POST", url);
+    Http.setRequestHeader("Content-Type", "application/json");
+    Http.setRequestHeader("Access-Control-Allow-Origin", "*");
+    Http.send(JSON.stringify({"uuid": uuid}));
+    Http.onreadystatechange = (e) => {
+        if (Http.readyState === 4 && Http.status === 200) {
+            const response = JSON.parse(Http.responseText);
+            console.log(response);
+        }
     }
     const botMessage = document.createElement('div');
     botMessage.className = 'message';
@@ -65,6 +90,7 @@ function clearChat() {
     document.querySelector('.messages').append(botMessage);
     document.querySelector('.messages').append(selector);
     botMessage.scrollIntoView();
+    document.getElementById('reportBug').style.display = 'none';
 }
 function lookForLinks(message) {
     const urlRegex = /(https?:\/\/[^\s]+)/g;
@@ -82,6 +108,14 @@ function lookForLinks(message) {
     a.textContent = "Quelle zu diesen Informationen"
     return a.outerHTML;
 }
+function changeFontSize(amount) {
+    let nachrichten = document.getElementsByClassName("chat-container");
+    for (let i = 0; i < nachrichten.length; i++) {
+        nachrichten[i].style.fontSize = amount/50 + "em";
+    }
+}
+
+
 function addLinktoList(beschreibung, link){
     const linkLi = document.createElement('li');
     const linkA = document.createElement('a');
@@ -101,13 +135,14 @@ function removeLinksfromList() {
     linkLi.id= 'father';
     document.getElementById("ol").append(linkLi);
 }
+
 function askGPT(message){
     const Http = new XMLHttpRequest();
     const url='http://127.0.0.1:5050/chat';
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/json");
     Http.setRequestHeader("Access-Control-Allow-Origin", "*");
-    Http.send(JSON.stringify({"query": message}));
+    Http.send(JSON.stringify({"query": message, "uuid": uuid, "jahrgang": "2022"}));
     Http.onreadystatechange = (e) => {
         if (Http.readyState === 4 && Http.status === 200) {
             const response = JSON.parse(Http.responseText);
@@ -184,4 +219,61 @@ function addAlert(){
     alert.appendChild(span);
     document.querySelector('body').appendChild(alert);
     alert.scrollIntoView();
+}
+
+function addMessages(){
+    const Http = new XMLHttpRequest();
+    const url='http://127.0.0.1:5050/getData';
+    Http.open("POST", url);
+    Http.setRequestHeader("Content-Type", "application/json");
+    Http.setRequestHeader("Access-Control-Allow-Origin", "*");
+    Http.send(JSON.stringify({"uuid": uuid}));
+    Http.onreadystatechange = (e) => {
+        if (Http.readyState === 4 && Http.status === 200) {
+            const response = JSON.parse(Http.responseText);
+            let conversation = eval(response["response"][0][1])
+            if (conversation === undefined){
+                return;
+            }
+            for(const element of conversation){
+                if(element["role"] === "assistant"){
+                    receiveMessage(element["content"], false);
+                }else{
+                    sendMessage(element["content"]);
+                }
+            }
+        }
+    }
+}
+function uuidv4() {
+    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+function setCookie() {
+    let cookie = getCookie("uuid");
+    if (cookie === "") {
+        cookie = uuidv4();
+        document.cookie = "uuid=" + cookie + "; expires=Thu, 31 Dec 2100 12:00:00 UTC; path=/";
+        console.log("Cookie set");
+    } else {
+        console.log("Cookie already set");
+    }
 }
