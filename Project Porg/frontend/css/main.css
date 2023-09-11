@@ -152,7 +152,7 @@ body {
     padding: 5px;
     border: 1px solid #7d878d;
     border-radius: 5px;
-    width: 8vw;
+    width: 100%;
 }
 
 #sendMessage {
@@ -187,7 +187,17 @@ h2{
     color: #5E6970;
     margin-top: -3px
 }
-
 #selector{
     height: 125px;
+}
+.slider{
+    width: 100%;
+    height: 25px;
+    border-radius: 5px;
+    color: #ff0400;
+    background: #5E6970;
+    outline: none;
+    opacity: 0.4;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
 }
