@@ -162,6 +162,26 @@ function sendMail(){
         if (Http.readyState === 4 && Http.status === 200) {
             const response = JSON.parse(Http.responseText);
             console.log(response);
+            addAlert();
         }
     }
+}
+
+function addAlert(){
+    const alert = document.createElement('div');
+    alert.className = 'alert abled';
+    const span = document.createElement('span');
+    span.className = 'closebtn';
+    span.textContent = "x";
+    span.onclick = function() {
+        alert.classList.remove("abled");
+        alert.classList.add("disabled");
+    };
+    const strong = document.createElement('strong');
+    strong.textContent = "Reported!";
+    alert.appendChild(strong);
+    alert.textContent = " Ihr Chatverlauf wurde dem Team von Project Porg zugesendet und wird überprüft.";
+    alert.appendChild(span);
+    document.querySelector('body').appendChild(alert);
+    alert.scrollIntoView();
 }
