@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import os
 import chatgpt
 import pinecone
+import mail
 
 load_dotenv()
 openai.api_key = f"{os.getenv('OPENAI_API_KEY')}" + f"{os.getenv('OPENAI_API_KEY_2')}"
@@ -39,7 +40,7 @@ def chat(query):
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 app = Flask(__name__)
-CORS(app, resources={r"/chat": {"origins": "*"}})
+CORS(app, resources={r"/chat": {"origins": "*"}, r"/mail": {"origins": "*"}})
 
 @app.route("/chat", methods=["POST"])
 def chat_api():
@@ -47,6 +48,15 @@ def chat_api():
     query = data["query"]
     result = chat(query)
     response = jsonify({"response": result})
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
+
+@app.route("/mail", methods=["POST"])
+def mail_api():
+    data = request.json
+    query = data["query"]
+    mail.send_mail(query)
+    response = jsonify({"response": "success"})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
