@@ -108,6 +108,14 @@ function lookForLinks(message) {
     a.textContent = "Quelle zu diesen Informationen"
     return a.outerHTML;
 }
+function changeFontSize(amount) {
+    let nachrichten = document.getElementsByClassName("chat-container");
+    for (let i = 0; i < nachrichten.length; i++) {
+        nachrichten[i].style.fontSize = amount/50 + "em";
+    }
+}
+
+
 function addLinktoList(beschreibung, link){
     const linkLi = document.createElement('li');
     const linkA = document.createElement('a');
