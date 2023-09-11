@@ -59,7 +59,7 @@ function clearChat() {
     }
     const botMessage = document.createElement('div');
     botMessage.className = 'message';
-    botMessage.textContent = "Hallo, ich bin dein treuer Porg! Wie kann ich dir heute helfen?";
+    botMessage.textContent = "Hallo, ich bin Porg! Wie kann ich dir heute helfen?";
     const selector = document.createElement('div');
     selector.id = 'selector';
     document.querySelector('.messages').append(botMessage);
