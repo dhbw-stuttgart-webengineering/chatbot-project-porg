@@ -291,3 +291,15 @@ function setCookie() {
         console.log("Cookie already set");
     }
 }
+
+// Dark/Light Mode Switch
+
+function switchTheme() {
+    let a = document.documentElement.getAttribute('data-theme');
+    if (a == "light") {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+    else {
+        document.documentElement.setAttribute('data-theme', 'light');
+    }    
+}
