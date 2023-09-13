@@ -71,7 +71,7 @@ body {
     border: 0;
     background: url('https://static.vecteezy.com/ti/gratis-vektor/p3/8467997-schriftgrosse-symbol-schriftgrosse-zeichen-erhohung-schriftart-zeichen-schriftart-grosseres-symbol-schrifttyp-symbol-vektor.jpg');
     cursor: pointer;
-  }
+}
   
   .slider::-moz-range-thumb {
     width: 23px;
@@ -79,18 +79,25 @@ body {
     border: 0;
     background: url('https://static.vecteezy.com/ti/gratis-vektor/p3/8467997-schriftgrosse-symbol-schriftgrosse-zeichen-erhohung-schriftart-zeichen-schriftart-grosseres-symbol-schrifttyp-symbol-vektor.jpg');
     cursor: pointer;
-  }
+}
 .slider{
+    appearance: none;
     width: 100%;
-    height: 25px;
+    height: 1vh;
     border-radius: 5px;
     color: #ff0400;
-    background: #5E6970;
+    background: #CF2C2A;
     outline: none;
     opacity: 0.4;
     -webkit-transition: .2s;
     transition: opacity .2s;
+    cursor: pointer;
 }
+.slider:hover {
+    opacity: 1;
+}
+/*Change Color of the thumb*/
+
 
 .chat-container {
     height: 65vh;
@@ -106,6 +113,7 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
     font-size: 0.75em;
+    z-index: 1;
 }
 #fog{
     /*Add a fog from the middle to the bottom of the container*/
