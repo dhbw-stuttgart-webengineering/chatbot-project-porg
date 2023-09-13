@@ -13,7 +13,6 @@ body {
     font-family: Arial, sans-serif;
     font-size: calc(0.5em + 1vw);
 }
-
 /* Grid */
 .grid-container{
     display: grid;
@@ -35,6 +34,18 @@ body {
     max-width: 30vw;
     margin: auto;
 }
+.chat-container{
+    position: relative;
+    height: 70vh;
+    max-height: 70vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border-radius: 5px;
+    border: 1px solid #7d878d;
+    margin-top: 40px;
+    padding: 10px;
+    z-index: 2;
+}
 .settings-container {
     grid-area: 3 / 1 / 2 / 2;
     margin: auto;
@@ -42,8 +53,6 @@ body {
     border: 1px solid #7d878d;
     height: 70vh;
     width: 80%;
-    border: 1px solid #7d878d;
-    border-radius: 5px;
     padding: 10px;
 
 }
@@ -54,8 +63,6 @@ body {
     border: 1px solid #7d878d;
     height: 70vh;
     width: 80%;
-    border: 1px solid #7d878d;
-    border-radius: 5px;
     padding: 10px;
 
 }
@@ -63,44 +70,8 @@ body {
     margin-left: 10%;
     list-style: none;
 }
-.slider::-webkit-slider-thumb {
-    appearance: none;
-    width: 15px;
-    height: 15px;
-    border-radius: 40%;
-    border: 0;
-    cursor: pointer;
-    background:#000;
-}
   
-.slider::-moz-range-thumb {
-    width: 23px;
-    height: 25px;
-    border: 0;
-    background: url('https://static.vecteezy.com/ti/gratis-vektor/p3/8467997-schriftgrosse-symbol-schriftgrosse-zeichen-erhohung-schriftart-zeichen-schriftart-grosseres-symbol-schrifttyp-symbol-vektor.jpg');
-    cursor: pointer;
-}
-.slider{
-    appearance: none;
-    justify-self: center;
-    width: 100%;
-    height: 1vh;
-    border-radius: 5px;
-    color: #ff0400;
-    background: #CF2C2A;
-    outline: none;
-    opacity: 0.4;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-    cursor: pointer;
-}
-.slider:hover {
-    opacity: 0.75;
-}
-
-
-.chat-container {
-    height: 65vh;
+select{
     border: 1px solid #7d878d;
     margin: auto;
     border-radius: 5px;
@@ -184,7 +155,7 @@ body {
     display: flex;
     justify-content: center;
     margin-top: 10px;
-}
+    }
 
 .input-container input {
     padding: 5px;
@@ -194,12 +165,13 @@ body {
 }
 
 #sendMessage {
+    transition: 0.25s;
+    color: #ffff;
+    background-color: #e2011b;
+    border: none;
     border-radius: 5px;
     margin-left: 5px;
-    padding: 5px 10px;
-    background-color: #e2011b;
-    color: #fff;
-    border: none;
+
 }
 
 
@@ -209,26 +181,27 @@ body {
     margin-right: 5px;
     padding: 5px 10px;
     background-color: #fff;
-    color: #fff;
     border: 1px solid #7d878d;
 }
 
-#clearChat:hover{
+#clearChat:hover, #sendMessage:hover{
+    /*dont effect the other elements when chanching size*/
     transform: scale(1.1);
     transition: 0.25s;
     background-color: #e2011b;
+    color: #fff;
 
 }
 
 #porg-container {
-    display: flex;
+display: flex;
     align-items: flex-end;
     justify-content: flex-start;
     position: absolute;
     bottom: 36px;
     margin-left: -20px;
     z-index: 4;
-    height: 177px;
+height: 177px;
     width: 100%;
 }
 #porg-container img{
@@ -247,6 +220,17 @@ h2{
 }
 #selector{
     height: 125px;
+}
+.slider{
+    width: 100%;
+    height: 25px;
+    border-radius: 5px;
+    color: #ff0400;
+    background: #5E6970;
+    outline: none;
+    opacity: 0.4;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
 }
 
     .alert {
@@ -307,3 +291,105 @@ h2{
   .closebtn:hover {
     color: black;
   }
+
+.body {
+    transform: scale(0.8);
+
+}
+  /* Middle */
+  .content {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    text-align: center;
+    width: 70%;
+  }
+  .circle {
+    position: relative;
+    border-radius: 100%;
+    width: 20vh;
+    height: 20vh;
+    background: linear-gradient(40deg, #FF0080,#FF8C00 70%);
+    margin: auto;
+  }
+  .crescent {
+    position: absolute;
+    border-radius: 100%;
+    right: 0;
+    width: 16vh;
+    height: 16vh;
+    background: white;
+    transform: scale(0);
+    transform-origin: top right;
+    transition: transform .6s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+  p { 
+    font-size: 90%;
+  }
+
+  #label, .toggle {
+    height: 8vh;
+    border-radius: 7vh;
+  }
+  #label {
+    width: 100%;
+    background-color: rgba(0,0,0,.1);
+    position: relative;
+    margin-top: 4vh; 
+    cursor: pointer;
+  }
+  .toggle {
+    position: absolute;
+    width: 50%;
+    background-color: #fff;
+    box-shadow: 0 2px 15px rgba(0,0,0,.15);
+    transition: transform .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .names {
+    font-size: 90%;
+    font-weight: bolder;
+    width: 65%;
+    margin-left: 17.5%;
+    margin-top: .5%;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    user-select: none;
+  }
+  .dark {
+    opacity: .5;
+  }  
+  /* -------- Switch Styles ------------*/
+  
+  [type="checkbox"] {
+    display: none;
+
+  }
+  /* Toggle */
+  [type="checkbox"]:checked + .app .toggle{
+    transform: translateX(100%);
+    background-color: #34323D;
+  }
+  [type="checkbox"]:checked + .app .dark{
+    opacity: 1;
+  }
+  [type="checkbox"]:checked + .app .light{
+    opacity: .5;
+  }
+  /* App */
+  [type="checkbox"]:checked + .app{
+    background-color:  #26242E;
+    color: white;
+  }
+  /* Circle */
+  [type="checkbox"]:checked + .app .crescent{
+    transform: scale(1);
+    background: #26242E;
+  }
+  [type="checkbox"]:checked + .app .circle{
+    background: linear-gradient(40deg, #8983F7, #A3DAFB 70%);
+  }
+  [type="checkbox"]:checked + .app .main-circle{
+    background: linear-gradient(40deg, #8983F7, #A3DAFB 70%);
+  }
+  
