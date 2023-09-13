@@ -5,11 +5,13 @@ import chatgpt
 import pinecone
 import mail
 import databaseManager
+import datetime
 
 load_dotenv()
 openai.api_key = f"{os.getenv('OPENAI_API_KEY')}" + f"{os.getenv('OPENAI_API_KEY_2')}"
-chatbot = chatgpt.ChatGPT()
 pinecone.init(api_key=os.getenv("PINECONE_API_KEY") or "", environment=os.getenv("PINECONE_ENV") or "")
+
+chatbots = {}
 
 pinecone_index = pinecone.Index("projectporg")
 
@@ -25,7 +27,7 @@ def search(query):
     res = pinecone_index.query(vector=embeds, top_k=10, include_metadata=True)
     return res
 
-def chat(query):
+def chat(chatbot, query):
     chatbot.system("""Antworte im Format: <Antwort> Quelle: <Quellen>.
     Du bist ein Chatbot der Dualen Hochschule Baden-Württemberg (DHBW). Dein Name ist Porg. 
     Du kannst nicht über andere Themen reden und beantwortest keine Fragen, die nichts mit der Hochschule zu tun haben. 
@@ -34,7 +36,32 @@ def chat(query):
     Bei Aufzählungen immer \n- verwenden.""")
     context = search(query)
     res = chatbot.chat(f"Dein Wissen:\n{context}\n\n{query}")
+    checkForOldChatbots()
     return res
+
+def getChatbot(uuid):
+    if uuid in chatbots:
+        chatbots[uuid]["lastUsed"] = datetime.datetime.now()
+        return chatbots[uuid]["chatbot"]
+    chatbot = chatgpt.ChatGPT(uuid)
+    result = databaseManager.get_key(uuid)
+    if result == None:
+        databaseManager.add_key(uuid, "") 
+        result = databaseManager.get_key(uuid)
+        messages = eval(result[0][1])
+        chatbot.setMessages(messages)
+    chatbots[uuid] = {"chatbot": chatbot, "lastUsed": datetime.datetime.now()}
+    return chatbot
+
+def checkForOldChatbots():
+    delete = []
+    for uuid in chatbots:
+        print(uuid + ": " + str((datetime.datetime.now() - chatbots[uuid]["lastUsed"]).total_seconds()))
+        if (datetime.datetime.now() - chatbots[uuid]["lastUsed"]).total_seconds() > 300:
+            delete.append(uuid)
+    for uuid in delete:
+        print("Deleting chatbot uuid: " + uuid)
+        del chatbots[uuid]
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
@@ -45,8 +72,9 @@ CORS(app, resources={r"/chat": {"origins": "*"}, r"/mail": {"origins": "*"}, r"/
 def chat_api():
     data = request.json
     query = data["query"]
-    result = chat(query)
     uuid = data["uuid"]
+    result = chat(getChatbot(uuid), query)
+    chatbot = getChatbot(uuid)
     messages = chatbot.getMessages()
     databaseManager.add_key(uuid, messages)
     response = jsonify({"response": result})
@@ -58,6 +86,7 @@ def getData_api():
     data = request.json
     uuid = data["uuid"]
     result = databaseManager.get_key(uuid)
+    chatbot = getChatbot(uuid)
     if result == None:
         databaseManager.add_key(uuid, "")
         result = databaseManager.get_key(uuid)
@@ -77,6 +106,7 @@ def reset_api():
     data = request.json
     uuid = data["uuid"]
     databaseManager.add_key(uuid, "")
+    chatbot = getChatbot(uuid)
     chatbot.reset()
     response = jsonify({"response": "success"})
     response.headers.add('Access-Control-Allow-Origin', '*')

@@ -9,9 +9,30 @@
   url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.ttf")format("truetype"),
   url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.svg#Generis Sans W01 Regular")format("svg");
 }
+
+/* Colors */
+[data-theme="light"]{
+  --primary-color: #ffffff;
+  --secondary-color: #CE2D2A;
+  --font-color1: #424242;
+  --font-color2: #ffffff;
+  --bg-color: #fff;
+  --heading-color: #292922;
+}
+
+[data-theme="dark"] {
+  --primary-color: #8380ee;
+  --secondary-color: #7186c0;
+  --font-color1: #c5b8ff; 
+  --font-color2: #ffffff;
+  --bg-color: #26242D;
+  --heading-color: #7c8bb5;
+}
+
 body {
   font-family: Arial, sans-serif;
   font-size: calc(0.5em + 1vw);
+  background-color: var(--bg-color);
 }
 /* Grid */
 .grid-container{
@@ -32,7 +53,7 @@ h2{
   font-size: 1.5em;
   letter-spacing: 0.1em;
   font-weight: 100;
-  color: #5E6970;
+  color: var(--font-color1);
   margin-top: -3px
 }
 
@@ -41,8 +62,8 @@ h2{
   z-index: 1;
   top: 0;
   width: 100%;
-  background-color: #f44336;
-  color: white;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
   margin: 0px -8px;
   box-sizing: border-box;
   padding: 20px;
@@ -82,7 +103,7 @@ h2{
 
 .closebtn {
   margin-left: 15px;
-  color: white;
+  color: var(--primary-color);
   font-weight: bold;
   float: right;
   font-size: 22px;

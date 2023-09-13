@@ -1,7 +1,6 @@
 import sqlite3
 import os
 
-# Create a database connection
 def create_connection():
     path = os.path.dirname(os.path.abspath(__file__))
     db_file = path + "/database.db"
