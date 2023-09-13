@@ -226,6 +226,7 @@ body {
     bottom: 32px;
     margin-left: -40px;
     z-index: 4;
+    height: 177px;
 }
 h2{
     text-align: center;
