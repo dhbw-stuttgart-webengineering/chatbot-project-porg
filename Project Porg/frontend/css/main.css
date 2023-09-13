@@ -1,97 +1,96 @@
 /* Custom font */
 @import url(https://db.onlinewebfonts.com/c/aa93cb662eed3dbceaf9144b30dbea90?family=Generis+Sans+W01+Regular);
 @font-face {
-    font-family: "Generis Sans W01 Regular";
-    src: url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.eot");
-    src: url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.eot?#iefix")format("embedded-opentype"),
-    url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.woff2")format("woff2"),
-    url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.woff")format("woff"),
-    url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.ttf")format("truetype"),
-    url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.svg#Generis Sans W01 Regular")format("svg");
+  font-family: "Generis Sans W01 Regular";
+  src: url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.eot");
+  src: url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.eot?#iefix")format("embedded-opentype"),
+  url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.woff2")format("woff2"),
+  url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.woff")format("woff"),
+  url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.ttf")format("truetype"),
+  url("https://db.onlinewebfonts.com/t/aa93cb662eed3dbceaf9144b30dbea90.svg#Generis Sans W01 Regular")format("svg");
 }
 body {
-    font-family: Arial, sans-serif;
-    font-size: calc(0.5em + 1vw);
+  font-family: Arial, sans-serif;
+  font-size: calc(0.5em + 1vw);
 }
 /* Grid */
 .grid-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr; 
-    grid-template-rows: 0.25fr 1.5fr; 
-    gap: 0 0;
-    grid-template-areas: 
-    ". . ."
-    ". . ."; 
-    
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-rows: 0.25fr 1.5fr; 
+  gap: 0 0;
+  grid-template-areas: 
+  ". . ."
+  ". . .";    
 }
 .header{
-    grid-area: 1 / 1 / 2 / 4;
+  grid-area: 1 / 1 / 2 / 4;
 }
 
 h2{
-    text-align: center;
-    font-size: 1.5em;
-    letter-spacing: 0.1em;
-    font-weight: 100;
-    color: #5E6970;
-    margin-top: -3px
+  text-align: center;
+  font-size: 1.5em;
+  letter-spacing: 0.1em;
+  font-weight: 100;
+  color: #5E6970;
+  margin-top: -3px
 }
 
 .alert {
-    position: absolute;
-    z-index: 1;
-    top: 0;
-    width: 100%;
-    background-color: #f44336;
-    color: white;
-    margin: 0px -8px;
-    box-sizing: border-box;
-    padding: 20px;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  background-color: #f44336;
+  color: white;
+  margin: 0px -8px;
+  box-sizing: border-box;
+  padding: 20px;
 }
 
 .alert.abled {
-    animation: fadeIn 0.5s forwards, fadeOut 0.5s 5s forwards;
+  animation: fadeIn 0.5s forwards, fadeOut 0.5s 5s forwards;
 }
 
 .alert.disabled {
-    animation: fadeOut 0.5s forwards;
+  animation: fadeOut 0.5s forwards;
 }
 
 @keyframes fadeIn {
-    0% {
-    top: -100px;
-    opacity: 0;
-    }
-    100% {
-    top: 0px;
-    opacity: 1;
-    }
+  0% {
+  top: -100px;
+  opacity: 0;
+  }
+  100% {
+  top: 0px;
+  opacity: 1;
+  }
 }
 
 @keyframes fadeOut {
-    0% {
-    top: 0px;
-    opacity: 1;
-    }
-    100% {
-    top: -100px;
-    opacity: 0;
-    }
+  0% {
+  top: 0px;
+  opacity: 1;
+  }
+  100% {
+  top: -100px;
+  opacity: 0;
+  }
 }
 
 
 
 .closebtn {
-margin-left: 15px;
-color: white;
-font-weight: bold;
-float: right;
-font-size: 22px;
-line-height: 20px;
-cursor: pointer;
-transition: 0.3s;
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .closebtn:hover {
-color: black;
+  color: black;
 }
