@@ -121,12 +121,12 @@ body {
     background-size: 100% 25%;
     background-repeat: no-repeat;
     background-position: bottom;
-    z-index: 3;
+    z-index: 0;
     height: 70vh;
     width: 99%;
     border-radius: 5px;
     margin-left: -10px;
-    bottom: 38.25px;
+    bottom: 41px;
     position: absolute;
     /*make click through*/
     pointer-events: none;
