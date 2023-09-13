@@ -8,6 +8,20 @@ window.addEventListener('keyup', function (event) {
     }
 });
 
+window.addEventListener('DOMContentLoaded', ()=>{
+    let slider = document.getElementById("schriftgroeße");
+    
+    /* Load the font-size saved in the cookies */
+    slider.value = getCookie("fontSize");
+    changeFontSize(slider.value);
+
+    slider.addEventListener("mousemove", function() {
+        console.log(slider.value);
+        changeFontSize(slider.value);
+        document.cookie = "fontSize=" + slider.value + "; expires=Thu, 31 Dec 2100 12:00:00 UTC; path=/";
+    });
+});
+
 function receiveMessage(message, animate = true) {
     message = message.replace("Antwort: ", "");
     if (message.trim() !== '') {
