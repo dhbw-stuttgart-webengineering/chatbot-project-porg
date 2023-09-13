@@ -153,8 +153,8 @@
     width: 100%;
 }
 #porg-container img{
-  height: 20vw;
-  min-height: 100px;
-  max-height: 200px;
-  width: auto;
+    height: 20vw;
+    min-height: 100px;
+    max-height: 200px;
+    width: auto;
 }
