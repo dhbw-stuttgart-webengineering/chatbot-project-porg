@@ -126,7 +126,7 @@ body {
     width: 99%;
     border-radius: 5px;
     margin-left: -10px;
-    bottom: 41px;
+    bottom: 40px;
     position: absolute;
     /*make click through*/
     pointer-events: none;
@@ -221,11 +221,21 @@ body {
 }
 
 #porg-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
     position: absolute;
-    bottom: 32px;
-    margin-left: -40px;
+    bottom: 36px;
+    margin-left: -20px;
     z-index: 4;
     height: 177px;
+    width: 100%;
+}
+#porg-container img{
+    height: 20vw;
+    min-height: 100px;
+    max-height: 200px;
+    width: auto;
 }
 h2{
     text-align: center;
