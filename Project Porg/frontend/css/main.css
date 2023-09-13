@@ -214,7 +214,6 @@ body {
 }
 
 #clearChat:hover{
-    /*dont effect the other elements when chanching size*/
     transform: scale(1.1);
     transition: 0.25s;
     background-color: #e2011b;

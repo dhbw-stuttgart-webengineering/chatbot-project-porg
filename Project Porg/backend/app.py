@@ -47,9 +47,8 @@ def chat_api():
     query = data["query"]
     result = chat(query)
     uuid = data["uuid"]
-    jahrgang = data["jahrgang"]
     messages = chatbot.getMessages()
-    databaseManager.add_key(uuid, messages, jahrgang)
+    databaseManager.add_key(uuid, messages)
     response = jsonify({"response": result})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
@@ -60,7 +59,7 @@ def getData_api():
     uuid = data["uuid"]
     result = databaseManager.get_key(uuid)
     if result == None:
-        databaseManager.add_key(uuid, "", "2022")
+        databaseManager.add_key(uuid, "")
         result = databaseManager.get_key(uuid)
     if result[0][1].strip() != "":
         messages = eval(result[0][1])
@@ -77,7 +76,7 @@ def getData_api():
 def reset_api():
     data = request.json
     uuid = data["uuid"]
-    databaseManager.add_key(uuid, "", "2022")
+    databaseManager.add_key(uuid, "")
     chatbot.reset()
     response = jsonify({"response": "success"})
     response.headers.add('Access-Control-Allow-Origin', '*')

@@ -12,16 +12,15 @@ def create_connection():
         print(e)
     return conn
 
-def add_key(uuid, message=None, jahrgang=None):
+def add_key(uuid, message=None):
     conn = create_connection()
     getData = f"""SELECT * FROM [Daten] WHERE [UUID] = '{uuid}';"""
     cur = conn.cursor()
     cur.execute(getData)
     data = cur.fetchall()
     if message == None: message = data[0][1]
-    if jahrgang == None: jahrgang = data[0][2]
-    sql = "INSERT INTO [Daten] ([UUID], [Messages], [Jahrgang]) VALUES (?, ?, ?);"
-    values = (uuid, str(message), jahrgang)
+    sql = "INSERT INTO [Daten] ([UUID], [Messages]) VALUES (?, ?);"
+    values = (uuid, str(message))
     cur = conn.cursor()
     cur.execute(sql, values)
     conn.commit()
