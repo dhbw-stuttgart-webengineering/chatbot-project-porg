@@ -175,3 +175,7 @@ color: white;
 [type="checkbox"]:checked + .app .main-circle{
     background: linear-gradient(40deg, #8983F7, #A3DAFB 70%);
 }
+
+[type="checkbox"]:checked + .app .user-input{
+    color: black;
+}
