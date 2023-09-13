@@ -231,11 +231,11 @@ body {
     z-index: 4;
     height: 177px;
     width: 100%;
-
 }
 #porg-container img{
     height: 20vw;
     min-height: 100px;
+    max-height: 200px;
     width: auto;
 }
 h2{
