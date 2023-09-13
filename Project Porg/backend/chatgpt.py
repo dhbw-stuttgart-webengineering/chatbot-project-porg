@@ -2,10 +2,11 @@ import openai
 
 class ChatGPT:
 
-    def __init__(self, model="gpt-3.5-turbo-16k"):
+    def __init__(self, uuid, model="gpt-3.5-turbo-16k"):
         self.model = model
         self.history = []
         self._messages = []
+        self.uuid = uuid
 
     @property
     def messages(self):
