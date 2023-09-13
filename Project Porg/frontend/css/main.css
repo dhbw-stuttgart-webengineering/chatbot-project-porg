@@ -64,13 +64,13 @@ body {
     list-style: none;
 }
 .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
     appearance: none;
-    width: 23px;
-    height: 24px;
+    width: 15px;
+    height: 15px;
+    border-radius: 40%;
     border: 0;
-    background: url('https://static.vecteezy.com/ti/gratis-vektor/p3/8467997-schriftgrosse-symbol-schriftgrosse-zeichen-erhohung-schriftart-zeichen-schriftart-grosseres-symbol-schrifttyp-symbol-vektor.jpg');
     cursor: pointer;
+    background:#000;
 }
   
   .slider::-moz-range-thumb {
@@ -94,9 +94,8 @@ body {
     cursor: pointer;
 }
 .slider:hover {
-    opacity: 1;
+    opacity: 0.75;
 }
-/*Change Color of the thumb*/
 
 
 .chat-container {
