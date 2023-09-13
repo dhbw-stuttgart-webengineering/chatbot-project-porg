@@ -49,7 +49,7 @@ function receiveMessage(message, animate = true) {
         message.value = '';
         document.getElementById("selector").scrollIntoView();
         document.getElementById("sendMessage").disabled = false;
-        document.getElementById("sendMessage").style.backgroundColor= '#e2011b';
+        document.getElementById("sendMessage").style.backgroundColor= 'var(--secondary-color)';
         document.getElementById('reportBug').style.display = 'block';
         talking = false;
     }
