@@ -85,7 +85,7 @@ function clearChat() {
         messages[0].removeChild(messages[0].firstChild);
     }
     const Http = new XMLHttpRequest();
-    const url='http://127.0.0.1:5050/reset';
+    const url='https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app/reset';
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/json");
     Http.setRequestHeader("Access-Control-Allow-Origin", "*");
@@ -152,7 +152,7 @@ function removeLinksfromList() {
 
 function askGPT(message){
     const Http = new XMLHttpRequest();
-    const url='http://127.0.0.1:5050/chat';
+    const url='https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app/chat';
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/json");
     Http.setRequestHeader("Access-Control-Allow-Origin", "*");
@@ -193,7 +193,7 @@ function typeWriter(txt, messageNumber, quelle) {
 
 function sendMail(){
     const Http = new XMLHttpRequest();
-    const url='http://127.0.0.1:5050/mail';
+    const url='https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app/mail';
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/json");
     Http.setRequestHeader("Access-Control-Allow-Origin", "*");
@@ -237,7 +237,7 @@ function addAlert(){
 
 function addMessages(){
     const Http = new XMLHttpRequest();
-    const url='http://127.0.0.1:5050/getData';
+    const url='https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app/getData';
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/json");
     Http.setRequestHeader("Access-Control-Allow-Origin", "*");
