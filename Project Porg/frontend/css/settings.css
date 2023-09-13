@@ -68,67 +68,67 @@ select{
 
 /* Switch Light/Dark */
 .body {
-transform: scale(0.8);
+    transform: scale(0.8);
 }
 /* Middle */
 .content {
-display: flex;
-flex-direction: column;
-margin: auto;
-text-align: center;
-width: 70%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    text-align: center;
+    width: 70%;
 }
 .circle {
-position: relative;
-border-radius: 100%;
-width: 20vh;
-height: 20vh;
-background: linear-gradient(40deg, #FF0080,#FF8C00 70%);
-margin: auto;
+    position: relative;
+    border-radius: 100%;
+    width: 20vh;
+    height: 20vh;
+    background: linear-gradient(40deg, #FF0080,#FF8C00 70%);
+    margin: auto;
 }
 .crescent {
-position: absolute;
-border-radius: 100%;
-right: 0;
-width: 16vh;
-height: 16vh;
-background: white;
-transform: scale(0);
-transform-origin: top right;
-transition: transform .6s cubic-bezier(0.645, 0.045, 0.355, 1);
+    position: absolute;
+    border-radius: 100%;
+    right: 0;
+    width: 16vh;
+    height: 16vh;
+    background: white;
+    transform: scale(0);
+    transform-origin: top right;
+    transition: transform .6s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 p { 
 font-size: 90%;
 }
 
 #label, .toggle {
-height: 8vh;
-border-radius: 7vh;
+    height: 8vh;
+    border-radius: 7vh;
 }
 #label {
-width: 100%;
-background-color: rgba(0,0,0,.1);
-position: relative;
-margin-top: 4vh; 
-cursor: pointer;
+    width: 100%;
+    background-color: rgba(0,0,0,.1);
+    position: relative;
+    margin-top: 4vh; 
+    cursor: pointer;
 }
 .toggle {
-position: absolute;
-width: 50%;
-background-color: #fff;
-box-shadow: 0 2px 15px rgba(0,0,0,.15);
-transition: transform .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: absolute;
+    width: 50%;
+    background-color: #fff;
+    box-shadow: 0 2px 15px rgba(0,0,0,.15);
+    transition: transform .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .names {
-font-size: 90%;
-font-weight: bolder;
-width: 65%;
-margin-left: 17.5%;
-margin-top: .5%;
-position: absolute;
-display: flex;
-justify-content: space-between;
-user-select: none;
+    font-size: 90%;
+    font-weight: bolder;
+    width: 65%;
+    margin-left: 17.5%;
+    margin-top: .5%;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    user-select: none;
 }
 .dark {
 opacity: .5;
