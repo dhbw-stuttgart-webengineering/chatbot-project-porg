@@ -59,6 +59,9 @@ def getData_api():
     data = request.json
     uuid = data["uuid"]
     result = databaseManager.get_key(uuid)
+    if result == None:
+        databaseManager.add_key(uuid, "", "2022")
+        result = databaseManager.get_key(uuid)
     if result[0][1].strip() != "":
         messages = eval(result[0][1])
         chatbot.setMessages(messages)
