@@ -9,9 +9,12 @@ window.addEventListener('keyup', function (event) {
 });
 
 window.addEventListener('DOMContentLoaded', ()=>{
+    let slider = document.getElementById("schriftgroeße");
+    
     /* Load the font-size saved in the cookies */
     slider.value = getCookie("fontSize");
-    let slider = document.getElementById("schriftgroeße");
+    changeFontSize(slider.value);
+
     slider.addEventListener("mousemove", function() {
         console.log(slider.value);
         changeFontSize(slider.value);
