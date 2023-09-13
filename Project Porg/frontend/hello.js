@@ -156,7 +156,7 @@ function askGPT(message){
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/json");
     Http.setRequestHeader("Access-Control-Allow-Origin", "*");
-    Http.send(JSON.stringify({"query": message, "uuid": uuid, "jahrgang": "2022"}));
+    Http.send(JSON.stringify({"query": message, "uuid": uuid}));
     Http.onreadystatechange = (e) => {
         if (Http.readyState === 4 && Http.status === 200) {
             const response = JSON.parse(Http.responseText);
