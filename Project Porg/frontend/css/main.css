@@ -17,7 +17,7 @@ body {
 .grid-container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr; 
-    grid-template-rows: 0.45fr 1.5fr; 
+    grid-template-rows: 0.25fr 1.5fr; 
     gap: 0 0;
     grid-template-areas: 
     ". . ."
@@ -294,7 +294,6 @@ h2{
 
 .body {
     transform: scale(0.8);
-
 }
   /* Middle */
   .content {
