@@ -16,7 +16,7 @@
     border: 1px solid #7d878d;
     margin-top: 40px;
     padding: 10px;
-    z-index: 5;
+    z-index: 1;
 }
 
 
@@ -52,7 +52,9 @@
     border-radius: 5px;
     position: absolute;
     right: 10px;
-    background-color: #fdbfbf;
+    top: 8vh;
+    z-index: 1;
+    background-color: var(--bg-color);
     border: 1px solid #7d878d;
     color: #000;
     padding: 5px 10px;
@@ -102,7 +104,7 @@
     width: 100%;
     appearance: none;
     background-color: var(--bg-color);
-    color: var(--font-color2);
+    color: var(--font-color1);
 }
 
 #sendMessage {
