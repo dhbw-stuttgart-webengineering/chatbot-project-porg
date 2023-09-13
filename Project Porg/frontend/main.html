@@ -20,28 +20,31 @@
                     <!-- Open Link in new tab-->
                     <a href="https://www.dhbw-stuttgart.de/" target="_blank"><img src="https://www.dhbw-stuttgart.de/typo3conf/ext/dhbw_sitepackage/Resources/Public/Images/logo.svg" alt="Logo"></a>
                 </div>
-            </div>
-            <div class="settings-container">
-                <h2>Einstellungen</h2>
+                <!-- Setting Slider Light/Dark-Mode-->
                 <input type="checkbox" id="switch" onchange="switchTheme()">
-                        <div class="app">
-                            <div class="body">
-                        <!-- Middle -->
-                                 <div class="content">
-                                    <div class="circle">
-                                        <div class="crescent"></div>
-                                    </div>
+                    <div class="app">
+                        <div class="body">
+                    <!-- Middle -->
+                            <div class="circlespace">
+                                <div class="circle">
+                                    <div class="crescent"></div>
+                                </div>
+                            </div>
+                                <div class="content">
+                                    
                                     <label id="label" for="switch">
                                     <div class="toggle"></div>
                                     <div class="names">
                                         <p class="light">Light</p>
                                         <p class="dark">Dark</p>
-                                    </div>
-                                    </label>
                                 </div>
+                                </label>
                             </div>
                         </div>
-        
+                    </div>
+            </div>
+            <div class="settings-container">
+                <h2>Einstellungen</h2>
                     <label for="slider">Schriftgröße</label>
                     <input type="range" onChange="changeFontSize(this.value)" min="30" max="70" value="50" class="slider" id="schriftgroeße">
                     <select name="jahrgang" id="jahrgang">
