@@ -18,28 +18,18 @@
     padding: 10px;
     z-index: 2;
 }
-.settings-container {
-    grid-area: 3 / 1 / 2 / 2;
-    margin: auto;
-    border-radius: 5px;
-    border: 1px solid #7d878d;
-    height: 70vh;
-    width: 80%;
-    padding: 10px;
 
-}
 
 #fog{
     /*Add a fog from the middle to the bottom of the container*/
     background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgb(255, 255, 255) 100%);
-    background-size: 100% 25%;
+    background-size: 95% 25%;
     background-repeat: no-repeat;
     background-position: bottom;
-    z-index: 0;
+    z-index: 2;
     height: 70vh;
-    width: 99%;
+    width: 100%;
     border-radius: 5px;
-    margin-left: -10px;
     bottom: 40px;
     position: absolute;
     /*make click through*/
@@ -142,15 +132,18 @@
 
 }
 #porg-container {
+    padding: 0px 10px;
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
     position: absolute;
-    bottom: -2px;
+    bottom: 0;
     margin-left: -20px;
     z-index: 4;
-    height: 177px;
     width: 100%;
+    bottom: 0;
+    margin-bottom: 40px;
+    pointer-events: none;
 }
 #porg-container img{
     height: 20vw;

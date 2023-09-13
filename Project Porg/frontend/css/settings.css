@@ -1,13 +1,16 @@
 /* Allgemein */
-.link-container {
-    grid-area: 3 / 3 / 2 / 4;
+
+.settings-container {
+    grid-area: 3 / 1 / 2 / 2;
     margin: auto;
     border-radius: 5px;
     border: 1px solid #7d878d;
     height: 70vh;
     width: 80%;
     padding: 10px;
+
 }
+
 .link-list {
     margin-left: 10%;
     list-style: none;
