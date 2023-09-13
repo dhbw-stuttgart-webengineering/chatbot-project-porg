@@ -126,7 +126,7 @@ body {
     width: 99%;
     border-radius: 5px;
     margin-left: -10px;
-    bottom: 41px;
+    bottom: 40px;
     position: absolute;
     /*make click through*/
     pointer-events: none;
