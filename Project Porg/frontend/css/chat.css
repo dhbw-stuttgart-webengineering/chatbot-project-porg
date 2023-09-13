@@ -102,6 +102,7 @@
     width: 100%;
     appearance: none;
     background-color: var(--bg-color);
+    color: var(--font-color2);
 }
 
 #sendMessage {
