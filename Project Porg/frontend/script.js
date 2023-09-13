@@ -49,7 +49,7 @@ function receiveMessage(message, animate = true) {
         message.value = '';
         document.getElementById("selector").scrollIntoView();
         document.getElementById("sendMessage").disabled = false;
-        document.getElementById("sendMessage").style.backgroundColor= 'var(--secondary-color)';
+        document.getElementById("sendMessage").style.backgroundColor= '#e2011b';
         document.getElementById('reportBug').style.display = 'block';
         talking = false;
     }
@@ -85,7 +85,7 @@ function clearChat() {
         messages[0].removeChild(messages[0].firstChild);
     }
     const Http = new XMLHttpRequest();
-    const url='http://127.0.0.1:8080/reset';
+    const url='https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app/reset';
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/json");
     Http.setRequestHeader("Access-Control-Allow-Origin", "*");
@@ -152,7 +152,7 @@ function removeLinksfromList() {
 
 function askGPT(message){
     const Http = new XMLHttpRequest();
-    const url='http://127.0.0.1:8080/chat';
+    const url='https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app/chat';
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/json");
     Http.setRequestHeader("Access-Control-Allow-Origin", "*");
@@ -193,7 +193,7 @@ function typeWriter(txt, messageNumber, quelle) {
 
 function sendMail(){
     const Http = new XMLHttpRequest();
-    const url='http://127.0.0.1:8080/mail';
+    const url='https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app/mail';
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/json");
     Http.setRequestHeader("Access-Control-Allow-Origin", "*");
@@ -237,7 +237,7 @@ function addAlert(){
 
 function addMessages(){
     const Http = new XMLHttpRequest();
-    const url='http://127.0.0.1:8080/getData';
+    const url='https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app/getData';
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/json");
     Http.setRequestHeader("Access-Control-Allow-Origin", "*");
@@ -290,16 +290,4 @@ function setCookie() {
     } else {
         console.log("Cookie already set");
     }
-}
-
-// Dark/Light Mode Switch
-
-function switchTheme() {
-    let a = document.documentElement.getAttribute('data-theme');
-    if (a == "light") {
-        document.documentElement.setAttribute('data-theme', 'dark');
-    }
-    else {
-        document.documentElement.setAttribute('data-theme', 'light');
-    }    
 }
