@@ -20,9 +20,32 @@
             </div>
             <div class="settings-container">
                 <h2>Einstellungen</h2>
-                    <label for="slider">Schriftgröße</label>
-                    <input type="range" min="30" max="70" value="50" class="slider" id="schriftgroeße">
-                <p>Hier werden verschiedenste Einstellungs-Optionen angezeigt</p>
+                <input type="checkbox" id="switch" onchange=darkmode()>
+                        <div class="app">
+                            <div class="body">
+                        <!-- Middle -->
+                                 <div class="content">
+                                    <div class="circle">
+                                        <div class="crescent"></div>
+                                    </div>
+                                    <label id="label" for="switch">
+                                    <div class="toggle"></div>
+                                    <div class="names">
+                                        <p class="light">Light</p>
+                                        <p class="dark">Dark</p>
+                                    </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+        
+                    <label for="slider" id="tagForDarkmode">Schriftgröße</label>
+                    <input type="range" onChange="changeFontSize(this.value)" min="30" max="70" value="50" class="slider" id="schriftgroeße">
+                    <select name="jahrgang" id="jahrgang">
+                        <option value="2023" selected>Jahrgang 2023</option>
+                        <option value="2022">Jahrgang 2022</option>
+                        <option value="2021">Jahrgang 2021</option>
+                      </select>
             </div>
             <div class="chat">
                 <div class="chat-container">
@@ -57,6 +80,6 @@
                     <li><a href="sources.html" id="LinkImpressum">Impressum</a></li>
                 </ol>
             </div>
-        </div>
+        </div> 
     </body>
 </html>
