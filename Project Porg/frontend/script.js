@@ -124,8 +124,8 @@ function lookForLinks(message) {
 }
 function changeFontSize(amount) {
     let nachrichten = document.getElementsByClassName("chat-container");
-    for (let i = 0; i < nachrichten.length; i++) {
-        nachrichten[i].style.fontSize = amount/50 + "em";
+    for (const element of nachrichten) {
+        element.style.fontSize = amount/50 + "em";
     }
 }
 
@@ -269,12 +269,12 @@ function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
     let ca = decodedCookie.split(';');
-    for(let i = 0; i <ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') {
+    for(const element of ca) {
+      let c = element;
+      while (c.startsWith(' ')) {
         c = c.substring(1);
       }
-      if (c.indexOf(name) == 0) {
+      if (c.startsWith(name)) {
         return c.substring(name.length, c.length);
       }
     }

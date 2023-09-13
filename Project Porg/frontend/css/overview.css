@@ -1,0 +1,9 @@
+.link-container {
+    grid-area: 3 / 3 / 2 / 4;
+    margin: auto;
+    border-radius: 5px;
+    border: 1px solid #7d878d;
+    height: 70vh;
+    width: 80%;
+    padding: 10px;
+}

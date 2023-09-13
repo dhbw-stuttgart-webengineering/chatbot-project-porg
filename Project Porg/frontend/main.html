@@ -2,6 +2,9 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/settings.css">
+        <link rel="stylesheet" href="css/chat.css">
+        <link rel="stylesheet" href="css/overview.css">
         <!-- Custom font -->
         <link href="https://db.onlinewebfonts.com/c/aa93cb662eed3dbceaf9144b30dbea90?family=Generis+Sans+W01+Regular" rel="stylesheet">
         
@@ -20,9 +23,32 @@
             </div>
             <div class="settings-container">
                 <h2>Einstellungen</h2>
+                <input type="checkbox" id="switch">
+                        <div class="app">
+                            <div class="body">
+                        <!-- Middle -->
+                                 <div class="content">
+                                    <div class="circle">
+                                        <div class="crescent"></div>
+                                    </div>
+                                    <label id="label" for="switch">
+                                    <div class="toggle"></div>
+                                    <div class="names">
+                                        <p class="light">Light</p>
+                                        <p class="dark">Dark</p>
+                                    </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+        
                     <label for="slider">Schriftgröße</label>
-                    <input type="range" min="30" max="70" value="50" class="slider" id="schriftgroeße">
-                <p>Hier werden verschiedenste Einstellungs-Optionen angezeigt</p>
+                    <input type="range" onChange="changeFontSize(this.value)" min="30" max="70" value="50" class="slider" id="schriftgroeße">
+                    <select name="jahrgang" id="jahrgang">
+                        <option value="2023" selected>Jahrgang 2023</option>
+                        <option value="2022">Jahrgang 2022</option>
+                        <option value="2021">Jahrgang 2021</option>
+                      </select>
             </div>
             <div class="chat">
                 <div class="chat-container">
@@ -38,10 +64,10 @@
                         </div>
                         <div id="selector"></div>
                     </div>
-                    <div id="fog"></div>
-                    <div id="porg-container">
-                        <img src="files/porg.png" class="porg" id="porg" height="175px">
-                    </div>
+                </div>
+                <div id="fog"></div>
+                <div id="porg-container">
+                    <img src="files/porg.png" alt="Porg" class="porg" id="porg" height="175px">
                 </div>
                 <div class="input-container">
                     <button id="clearChat" title="Chat löschen" onclick="clearChat()">🗑️</button>
@@ -57,6 +83,6 @@
                     <li><a href="sources.html" id="LinkImpressum">Impressum</a></li>
                 </ol>
             </div>
-        </div>
+        </div> 
     </body>
 </html>
