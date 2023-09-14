@@ -18,6 +18,7 @@
   --font-color2: #ffffff;
   --bg-color: #fff;
   --heading-color: #292922;
+  --pathto-porg: "files/light";
 }
 
 [data-theme="dark"] {
@@ -27,6 +28,7 @@
   --font-color2: #26242D;
   --bg-color: #26242D;
   --heading-color: #7c8bb5;
+  --pathto-porg: "files/dark";
 }
 
 body {
