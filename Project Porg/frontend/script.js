@@ -260,7 +260,7 @@ function typeWriter(txt, messageNumber, quelle) {
         document.getElementById("selector").scrollIntoView();
         let talk = Math.floor(Math.random() * 2);
         if (talk === 1) {
-            document.getElementById("porg").setAttribute("src", "files/Porg_Speaking.png")
+            document.getElementById("porg").setAttribute("src", "/Porg_Speaking.png")
         } else {
             document.getElementById("porg").setAttribute("src", "files/Porg.png")
         }
