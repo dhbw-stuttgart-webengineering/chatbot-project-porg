@@ -39,7 +39,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
         setCookie("username", username);
     });
     // Add event listener to send message button
-    document.getElementById("sendMessage").addEventListener('keyup', function (event) {
+    window.addEventListener('keyup', function (event) {
         if (event.key === 'Enter' && !talking) {
             sendMessage();
         }
@@ -48,7 +48,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     addMessages();
 
     // Load font-size from cookies
-    let slider = document.getElementById("schriftgroeße");
+    let slider = document.getElementById("fontSize");
     
     slider.value = getCookie("fontSize");
     changeFontSize(slider.value);
