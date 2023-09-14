@@ -27,7 +27,7 @@
     background-repeat: no-repeat;
     background-position: bottom;
     z-index: 2;
-    height: 70vh;
+    height: 70min;
     width: 100%;
     border-radius: 5px;
     bottom: 40px;
@@ -82,7 +82,9 @@
 }
 
 #selector{
-    height: 125px;
+    height: 15vmin;
+    min-height: 100px;
+    max-height: 200px;
 }
 
 .user-message .message {
@@ -149,7 +151,7 @@
     pointer-events: none;
 }
 #porg-container img{
-    height: 20vw;
+    height: 20vmin;
     min-height: 100px;
     max-height: 200px;
     width: auto;
