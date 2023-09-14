@@ -6,6 +6,7 @@ class ChatGPT:
         self.model = model
         self.history = []
         self._messages = []
+        self.lastQuestion = ""
         self.uuid = uuid
 
     @property
