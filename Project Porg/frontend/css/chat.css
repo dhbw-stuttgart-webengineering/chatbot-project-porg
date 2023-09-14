@@ -82,7 +82,9 @@
 }
 
 #selector{
-    height: 15vh;
+    height: 15vmin;
+    min-height: 100px;
+    max-height: 200px;
 }
 
 .user-message .message {
