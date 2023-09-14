@@ -291,27 +291,3 @@ function setCookie() {
         console.log("Cookie already set");
     }
 }
-
-
-
-// Detect System Theme
-
-const darkThemeMq = window.matchMedia("(prefers-color-scheme: dark)");
-if (darkThemeMq.matches) {
-    document.documentElement.setAttribute('data-theme', 'dark');
-} else {
-    document.documentElement.setAttribute('data-theme', 'light');
-}
-
-
-// Dark/Light Mode Switch
-
-function switchTheme() {
-    let a = document.documentElement.getAttribute('data-theme');
-    if (a == "light") {
-        document.documentElement.setAttribute('data-theme', 'dark');
-    }
-    else {
-        document.documentElement.setAttribute('data-theme', 'light');
-    }    
-}
