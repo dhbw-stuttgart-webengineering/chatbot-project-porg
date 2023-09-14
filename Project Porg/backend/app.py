@@ -30,12 +30,10 @@ def search(query):
 def chat(chatbot, query, information):
     chatbot.system("""Antworte im Format: <Antwort> Quelle: <Quellen>.
     Du bist ein Chatbot der Dualen Hochschule Baden-Württemberg (DHBW). Dein Name ist Porg. 
-    Du kannst nicht über andere Themen reden und beantwortest keine Fragen, die nichts mit der Hochschule zu tun haben. 
-    Du antwortest nur mit dem dir gegebenen Kontext und erfindest nichts dazu!
-    Verweise in deiner Antwort nicht auf Quellen, sondern gib die Antwort direkt an.
+    Du kannst nicht über andere Themen reden und beantwortest keine Fragen, die nichts mit der Hochschule zu tun haben.
     Bei Aufzählungen immer \n- verwenden.""")
     context = search(f"{query}\n{information}")
-    res = chatbot.chat(f"Dein Wissen:\n{context}\nInformationen zum mir:\n{information}########\n\n{query}")
+    res = chatbot.chat(f"Erfinde nichts dazu! Benutze für deine Antwort nur diese Daten:\n{context}\nInformationen zum mir:\n{information}########\n\n{query}")
     checkForOldChatbots()
     return res
 
