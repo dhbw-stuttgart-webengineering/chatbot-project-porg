@@ -225,7 +225,7 @@ function removeLinksfromList() {
  */
 function askGPT(message){
     const Http = new XMLHttpRequest();
-    const url=endpoint + '/chat';
+    const url= endpoint + '/chat';
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/json");
     Http.setRequestHeader("Access-Control-Allow-Origin", "*");
