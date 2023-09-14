@@ -268,16 +268,22 @@ function typeWriter(txt, messageNumber, quelle) {
         document.getElementById("bot-message-" + messageNumber).innerHTML += txtArray[i];
         document.getElementById("selector").scrollIntoView();
         let talk = Math.floor(Math.random() * 2);
-        if (talk === 1) {
-            document.getElementById("porg").setAttribute("src", "/Porg_Speaking.png")
+        let a = document.documentElement.getAttribute('data-theme');
+        if (a == "light") {
+            src = porgLight;
         } else {
-            document.getElementById("porg").setAttribute("src", "files/Porg.png")
+            src = porgDark;
+        }
+        if (talk === 1) {
+            document.getElementById("porg").setAttribute("src", src+"/Porg_Speaking.png")
+        } else {
+            document.getElementById("porg").setAttribute("src", src+"/Porg.png")
         }
         txtArray.shift();
         i++;
         setTimeout(typeWriter, speed, txtArray.join(""), messageNumber, quelle);
     } else {
-        document.getElementById("porg").setAttribute("src", "files/Porg.png")
+        document.getElementById("porg").setAttribute("src", src+"/Porg.png")
         document.getElementById('bot-message-' + messageNumber).innerHTML += quelle;
     }
 }
