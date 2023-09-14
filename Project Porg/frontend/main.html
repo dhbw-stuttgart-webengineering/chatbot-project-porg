@@ -43,16 +43,19 @@
                     </div>
             </div>
             <div class="settings-container">
-                <h2>Einstellungen</h2>
-                    <label for="username">Benutzername</label>
+                <div id="flexstart">
+                    <h2>Einstellungen</h2>
                     <input type="text" id="username" name="username" placeholder="Benutzername">
-                    <label for="slider">Schriftgröße</label>
-                    <input type="range" onChange="changeFontSize(this.value)" min="30" max="70" value="50" class="slider" id="fontSize">
                     <select name="jahrgang" id="jahrgang">
                         <option value="2023" selected>Jahrgang 2023</option>
                         <option value="2022">Jahrgang 2022</option>
                         <option value="2021">Jahrgang 2021</option>
-                      </select>
+                    </select>
+                    <input type="range" onChange="changeFontSize(this.value)" min="30" max="70" value="50" class="slider" id="fontSize">
+                </div>
+                <div id="flexend">
+                    <p id="settings-hinweis">Persönliche Daten können nur bei Beginn des Chats eingestellt werden. Um diese zu ändern, löschen sie den Chatverlauf.</p>
+                </div>
             </div>
             <div class="chat">
                 <div class="chat-container">

@@ -67,6 +67,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
 function receiveMessage(message, animate = true) {
     message = message.replace("Antwort: ", "");
     if (message.trim() !== '') {
+        disableSettings();
         const botMessageContainer = document.createElement('div');
         const botMessage = document.createElement('div');
         let messageNumber = document.getElementsByClassName('message').length;
@@ -120,6 +121,7 @@ function sendMessage(message="") {
         userMessageContainer.scrollIntoView();
         document.getElementById('sendMessage').disabled = true;
         document.getElementById("sendMessage").style.backgroundColor= '#7d878d';
+        disableSettings();
         if (message.trim() === '') { 
             askGPT(userInput);
         }
@@ -149,6 +151,7 @@ function clearChat() {
             console.log(response);
         }
     }
+    disableSettings();
     const botMessage = document.createElement('div');
     botMessage.className = 'message';
     botMessage.textContent = "Hallo, ich bin Porg! Wie kann ich dir heute helfen?";
@@ -350,6 +353,7 @@ function addMessages(){
             }
         }
     }
+    disableSettings();
 }
 
 
@@ -421,4 +425,18 @@ function switchTheme() {
     else {
         document.documentElement.setAttribute('data-theme', 'light');
     }    
+}
+
+/**
+ * Disables the "jahrgang" and "username" input fields if there is at least one element with the "user-message" class.
+ * Otherwise, enables the input fields.
+ */
+function disableSettings(){
+    if (document.getElementsByClassName("user-message").length !== 0){
+        document.getElementById("jahrgang").disabled = true;
+        document.getElementById("username").disabled = true;
+    } else {
+        document.getElementById("jahrgang").disabled = false;
+        document.getElementById("username").disabled = false;
+    }
 }
