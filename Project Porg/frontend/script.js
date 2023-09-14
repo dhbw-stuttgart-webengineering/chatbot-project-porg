@@ -6,6 +6,7 @@ let uuid = getCookie("uuid");
 let jahrgang = getCookie("jahrgang");
 let username = getCookie("username");
 let endpoint = "https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app";
+// let endpoint = "http://127.0.0.1:8080"
 
 /**
  * Wait for DOM to load before executing code.
@@ -232,7 +233,7 @@ function askGPT(message){
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/json");
     Http.setRequestHeader("Access-Control-Allow-Origin", "*");
-    Http.send(JSON.stringify({"query": message, "uuid": uuid, "information": {"jahrgang": jahrgang, "username": username}}));
+    Http.send(JSON.stringify({"query": message, "uuid": uuid, "information": {"jahrgang": "Jahrgang " + jahrgang.toString(), "username": username}}));
     Http.onreadystatechange = (e) => {
         if (Http.readyState === 4 && Http.status === 200) {
             const response = JSON.parse(Http.responseText);
