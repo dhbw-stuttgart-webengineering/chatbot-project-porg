@@ -27,7 +27,7 @@ def search(query):
     res = pinecone_index.query(vector=embeds, top_k=10, include_metadata=True)
     return res
 
-def chat(chatbot, query):
+def chat(chatbot, query, information):
     chatbot.system("""Antworte im Format: <Antwort> Quelle: <Quellen>.
     Du bist ein Chatbot der Dualen Hochschule Baden-Württemberg (DHBW). Dein Name ist Porg. 
     Du kannst nicht über andere Themen reden und beantwortest keine Fragen, die nichts mit der Hochschule zu tun haben. 
@@ -35,7 +35,7 @@ def chat(chatbot, query):
     Verweise in deiner Antwort nicht auf Quellen, sondern gib die Antwort direkt an.
     Bei Aufzählungen immer \n- verwenden.""")
     context = search(query)
-    res = chatbot.chat(f"Dein Wissen:\n{context}\n\n{query}")
+    res = chatbot.chat(f"Dein Wissen:\n{context}\nInformationen zum mir:\n{information}########\n\n{query}")
     checkForOldChatbots()
     return res
 
@@ -73,7 +73,8 @@ def chat_api():
     data = request.json
     query = data["query"]
     uuid = data["uuid"]
-    result = chat(getChatbot(uuid), query)
+    information = data["information"]
+    result = chat(getChatbot(uuid), query, information)
     chatbot = getChatbot(uuid)
     messages = chatbot.getMessages()
     databaseManager.add_key(uuid, messages)
