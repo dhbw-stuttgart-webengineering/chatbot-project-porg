@@ -11,6 +11,15 @@ let endpoint = "https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.r
  * Wait for DOM to load before executing code.
  */
 window.addEventListener('DOMContentLoaded', ()=>{
+        
+    //set Porg
+    let a = document.documentElement.getAttribute('data-theme');
+    if (a == "light") {
+        document.getElementById("porg").src = porgLight+"Porg.png";
+    } else {
+        document.getElementById("porg").src = porgDark+"Porg.png";
+    }
+
     // Check if UUID is set
     if (!checkCookie("uuid")) {
         uuid = uuidv4();
@@ -414,18 +423,25 @@ function checkCookie(name) {
 }
 
 
+
 /**
  * Switches between light and dark theme by toggling the 'data-theme' attribute of the root element.
  */
+
+var porgDark ="files/dark/";
+var porgLight ="files/light/";
 function switchTheme() {
     let a = document.documentElement.getAttribute('data-theme');
     if (a == "light") {
         document.documentElement.setAttribute('data-theme', 'dark');
+        document.getElementById("porg").src = porgDark+"Porg.png";
     }
     else {
         document.documentElement.setAttribute('data-theme', 'light');
+        document.getElementById("porg").src = porgLight+"Porg.png";
     }    
 }
+
 
 /**
  * Disables the "jahrgang" and "username" input fields if there is at least one element with the "user-message" class.
@@ -440,3 +456,4 @@ function disableSettings(){
         document.getElementById("username").disabled = false;
     }
 }
+
