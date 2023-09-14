@@ -1,27 +1,69 @@
+/*
+* Declare Variables
+*/
 let talking = false;
-setCookie();
 let uuid = getCookie("uuid");
-addMessages();
-window.addEventListener('keyup', function (event) {
-    if (event.key === 'Enter' && !talking) {
-        sendMessage();
-    }
-});
+let jahrgang = getCookie("jahrgang");
+let username = getCookie("username");
+let endpoint = "https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app";
 
+/**
+ * Wait for DOM to load before executing code.
+ */
 window.addEventListener('DOMContentLoaded', ()=>{
+    // Check if UUID is set
+    if (!checkCookie("uuid")) {
+        uuid = uuidv4();
+        setCookie("uuid", uuid);
+    }
+    // Check if Jahrgang is set
+    if (!checkCookie("jahrgang")) {
+        jahrgang = document.getElementById("jahrgang").value;
+        setCookie("jahrgang", jahrgang);
+    } else {
+        document.getElementById("jahrgang").value = jahrgang;
+    }
+    // Check if Username is set
+    if (checkCookie("username")) {
+        username = getCookie("username");
+        document.getElementById("username").value = username;
+    }
+    // Add event listener to jahrgang input
+    document.getElementById("jahrgang").addEventListener("change", function() {
+        jahrgang = document.getElementById("jahrgang").value;
+        setCookie("jahrgang", jahrgang);
+    });
+    // Add event listener to username input
+    document.getElementById("username").addEventListener("change", function() {
+        username = document.getElementById("username").value;
+        setCookie("username", username);
+    });
+    // Add event listener to send message button
+    document.getElementById("sendMessage").addEventListener('keyup', function (event) {
+        if (event.key === 'Enter' && !talking) {
+            sendMessage();
+        }
+    });
+    // Add Messages from Database
+    addMessages();
+
+    // Load font-size from cookies
     let slider = document.getElementById("schriftgroeße");
     
-    /* Load the font-size saved in the cookies */
     slider.value = getCookie("fontSize");
     changeFontSize(slider.value);
 
     slider.addEventListener("mousemove", function() {
-        console.log(slider.value);
         changeFontSize(slider.value);
-        document.cookie = "fontSize=" + slider.value + "; expires=Thu, 31 Dec 2100 12:00:00 UTC; path=/";
+        setCookie("fontSize", slider.value);
     });
 });
 
+/**
+ * Receives a message from bot and appends it to the chat window.
+ * @param {string} message - The message to be displayed.
+ * @param {boolean} [animate=true] - Whether or not to animate the message.
+ */
 function receiveMessage(message, animate = true) {
     message = message.replace("Antwort: ", "");
     if (message.trim() !== '') {
@@ -55,6 +97,11 @@ function receiveMessage(message, animate = true) {
     }
 }
 
+/**
+ * Sends a message to the chat interface.
+ * @param {string} message - The message to be sent. If empty, the function will use the value of the user input field.
+ * message parameter is necassary for recreating messages from the database.
+ */
 function sendMessage(message="") {
     let userInput = document.getElementById('user-input').value;
     if (message.trim() !== '') {
@@ -79,13 +126,19 @@ function sendMessage(message="") {
     }
 }
 
+
+/**
+ * Clears the chat messages and sends a POST request to reset the chat history in the database.
+ * Also adds a bot message and a selector to the chat.
+ * @function
+ */
 function clearChat() {
     let messages = document.getElementsByClassName('messages');
     while (messages[0].firstChild) {
         messages[0].removeChild(messages[0].firstChild);
     }
     const Http = new XMLHttpRequest();
-    const url='https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app/reset';
+    const url=endpoint + '/reset';
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/json");
     Http.setRequestHeader("Access-Control-Allow-Origin", "*");
@@ -106,6 +159,14 @@ function clearChat() {
     botMessage.scrollIntoView();
     document.getElementById('reportBug').style.display = 'none';
 }
+
+
+/**
+ * Looks for links in a given message and returns an HTML anchor element with the link.
+ * If no link is found, returns the original message.
+ * @param {string} message - The message to search for links.
+ * @returns {string} - The original message or an HTML anchor element with the link.
+ */
 function lookForLinks(message) {
     const urlRegex = /(https?:\/\/[^\s]+)/g;
     if (!message.match(urlRegex)) {
@@ -122,6 +183,12 @@ function lookForLinks(message) {
     a.textContent = "Quelle zu diesen Informationen"
     return a.outerHTML;
 }
+
+
+/**
+ * Changes the font size of the chat container.
+ * @param {number} amount - The amount to change the font size by.
+ */
 function changeFontSize(amount) {
     let nachrichten = document.getElementsByClassName("chat-container");
     for (const element of nachrichten) {
@@ -140,6 +207,8 @@ function addLinktoList(beschreibung, link){
     linkLi.appendChild(linkA);
     document.getElementById("father").append(linkLi);
 }
+
+
 function removeLinksfromList() {
     let speicher = document.getElementsByClassName('link-list');
     while (speicher[0].firstChild) {
@@ -150,9 +219,13 @@ function removeLinksfromList() {
     document.getElementById("ol").append(linkLi);
 }
 
+/**
+ * Sends a message to a GPT chatbot server and receives a response.
+ * @param {string} message - The message to send to the chatbot.
+ */
 function askGPT(message){
     const Http = new XMLHttpRequest();
-    const url='https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app/chat';
+    const url=endpoint + '/chat';
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/json");
     Http.setRequestHeader("Access-Control-Allow-Origin", "*");
@@ -166,6 +239,12 @@ function askGPT(message){
     }
 }
 
+/**
+ * This function simulates a typewriter effect by printing out a given text message character by character.
+ * @param {string} txt - The text message to be printed out.
+ * @param {number} messageNumber - The ID of the message to be printed out.
+ * @param {string} quelle - The source of the message to be printed out.
+ */
 function typeWriter(txt, messageNumber, quelle) {
     let i = 0;
     const txtArray = txt.toString().split("");
@@ -191,9 +270,12 @@ function typeWriter(txt, messageNumber, quelle) {
     }
 }
 
+/**
+ * Sends an HTTP POST request to a mail server with the chat history as the request body.
+ */
 function sendMail(){
     const Http = new XMLHttpRequest();
-    const url='https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app/mail';
+    const url=endpoint + '/mail';
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/json");
     Http.setRequestHeader("Access-Control-Allow-Origin", "*");
@@ -216,6 +298,11 @@ function sendMail(){
     }
 }
 
+/**
+ * Creates and displays an alert message for the report with a close button.
+ * @function
+ * @returns {void}
+ */
 function addAlert(){
     const alert = document.createElement('div');
     alert.className = 'alert abled';
@@ -235,9 +322,14 @@ function addAlert(){
     alert.scrollIntoView();
 }
 
+/**
+ * Sends a POST request to a specified URL to retrieve conversation data and adds the messages to the chat window.
+ * @function addMessages
+ * @returns {void}
+ */
 function addMessages(){
     const Http = new XMLHttpRequest();
-    const url='https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app/getData';
+    const url=endpoint + '/getData';
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/json");
     Http.setRequestHeader("Access-Control-Allow-Origin", "*");
@@ -259,12 +351,23 @@ function addMessages(){
         }
     }
 }
+
+
+/**
+ * Generates a random UUID v4 string.
+ * @returns {string} The generated UUID v4 string.
+ */
 function uuidv4() {
     return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
       (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     );
 }
 
+/**
+ * Retrieves the value of a cookie by its name.
+ * @param {string} cname - The name of the cookie to retrieve.
+ * @returns {string} The value of the cookie, or an empty string if the cookie does not exist.
+ */
 function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
@@ -279,15 +382,43 @@ function getCookie(cname) {
       }
     }
     return "";
-  }
+}
 
-function setCookie() {
-    let cookie = getCookie("uuid");
-    if (cookie === "") {
-        cookie = uuidv4();
-        document.cookie = "uuid=" + cookie + "; expires=Thu, 31 Dec 2100 12:00:00 UTC; path=/";
-        console.log("Cookie set");
+
+/**
+ * Sets a cookie with the given name and value.
+ * @param {string} name - The name of the cookie.
+ * @param {string} value - The value of the cookie.
+ */
+function setCookie(name, value) {
+    document.cookie = name + "=" + value + "; expires=Thu, 31 Dec 2100 12:00:00 UTC; path=/";
+}
+
+
+/**
+ * Checks if a cookie with the given name exists.
+ * @param {string} name - The name of the cookie to check.
+ * @returns {boolean} - Returns true if the cookie exists, false otherwise.
+ */
+function checkCookie(name) {
+    let cookie = getCookie(name);
+    if (cookie != "") {
+        return true;
     } else {
-        console.log("Cookie already set");
+        return false;
     }
+}
+
+
+/**
+ * Switches between light and dark theme by toggling the 'data-theme' attribute of the root element.
+ */
+function switchTheme() {
+    let a = document.documentElement.getAttribute('data-theme');
+    if (a == "light") {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+    else {
+        document.documentElement.setAttribute('data-theme', 'light');
+    }    
 }
