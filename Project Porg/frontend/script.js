@@ -12,7 +12,16 @@ let endpoint = "https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.r
  * Wait for DOM to load before executing code.
  */
 window.addEventListener('DOMContentLoaded', ()=>{
-        
+    //set theme from cookie
+    if (checkCookie("systemmode")) {
+        if (getCookie("systemmode") == "dark") {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById("switch").checked = true;
+        }
+    } else {
+        setCookie("systemmode", "light");
+    }
+
     //set Porg
     let a = document.documentElement.getAttribute('data-theme');
     if (a == "light") {
@@ -430,7 +439,6 @@ function checkCookie(name) {
 }
 
 
-
 /**
  * Switches between light and dark theme by toggling the 'data-theme' attribute of the root element.
  */
@@ -442,10 +450,12 @@ function switchTheme() {
     if (a == "light") {
         document.documentElement.setAttribute('data-theme', 'dark');
         document.getElementById("porg").src = porgDark+"Porg.png";
+        setCookie("systemmode", "dark");
     }
     else {
         document.documentElement.setAttribute('data-theme', 'light');
         document.getElementById("porg").src = porgLight+"Porg.png";
+        setCookie("systemmode", "light");
     }    
 }
 
