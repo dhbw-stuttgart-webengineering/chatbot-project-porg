@@ -76,6 +76,11 @@ window.addEventListener('DOMContentLoaded', ()=>{
         changeFontSize(slider.value);
         setCookie("fontSize", slider.value);
     });
+
+    // add class
+    setTimeout(function(){
+        document.getElementById("loading").classList.add("remove");
+    }, 300);
 });
 
 /**
