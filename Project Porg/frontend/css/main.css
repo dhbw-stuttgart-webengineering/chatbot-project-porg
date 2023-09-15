@@ -213,6 +213,35 @@ opacity: .5;
   height: 4vmin;
   min-width: 75px;
 }
+#loading{
+  width: 98%
+  ;height: 98%;
+  z-index: 9999;
+  position: absolute;
+  background-color: var(--bg-color);
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+#loading img{
+  width: 50px;
+}
+
+#loading.remove{
+  animation: remove 0.25s forwards;
+}
+
+@keyframes remove {
+  0% {
+  opacity: 1;
+  }
+  100% {
+  opacity: 0;
+  }
+}
+
+
 /* -------- Switch Styles ------------*/
 
 [type="checkbox"] {
