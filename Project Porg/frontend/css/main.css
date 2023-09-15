@@ -221,7 +221,7 @@ opacity: .5;
   background-color: var(--bg-color);
   align-items: center;
   justify-content: center;
-  display: flex;
+  display: flex; */
 }
 
 #loading img{
@@ -238,6 +238,8 @@ opacity: .5;
   }
   100% {
   opacity: 0;
+  display: none;
+  pointer-events: none;
   }
 }
 
