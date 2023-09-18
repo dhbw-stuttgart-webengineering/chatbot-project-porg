@@ -81,6 +81,9 @@ window.addEventListener('DOMContentLoaded', ()=>{
     setTimeout(function(){
         document.getElementById("loading").classList.add("remove");
     }, 300);
+
+    // let Porg blink
+    setInterval(blinkingAnimation, 200);
 });
 
 /**
@@ -479,3 +482,30 @@ function disableSettings(){
     }
 }
 
+/**
+ * Function that handles the blinking animation of the Porg image.
+ * @function
+ * @name blinkingAnimation
+ * @returns {void}
+ */
+function blinkingAnimation() {
+    let blink = Math.floor(Math.random() * 10);
+    let a = document.documentElement.getAttribute('data-theme');
+    if (a == "light") {
+        if (blink === 1) {
+            document.getElementById("porg").src = porgLight+"Porg_closed_eyes.png";
+        } else {
+            if (!talking) {
+                document.getElementById("porg").src = porgLight+"Porg.png";
+            }
+        }
+    } else {
+        if (blink === 1) {
+            document.getElementById("porg").src = porgDark+"Porg_closed_eyes.png";
+        } else {
+            if (!talking) {
+                document.getElementById("porg").src = porgDark+"Porg.png";
+            }
+        }
+    }
+}
