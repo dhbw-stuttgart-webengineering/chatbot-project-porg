@@ -223,6 +223,7 @@ opacity: .5;
   background-color: var(--bg-color);
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   display: flex;
 }
 
@@ -336,14 +337,58 @@ color: white;
   background-size: 17vmin;
   width: 11vmin;
   height: 11vmin;
+  position: relative;
 }
 #moon{
   background-image: url("/Project Porg/frontend/files/cookies/moon.jpg");
   background-size: 17vmin;
   width: 4vmin;
   height: 4vmin;
-  margin-bottom: 5vmin;
-  margin-left: -3vmin;
+  margin-left: -4vmin;
+  transform: translate(14vmin, -5vmin);
+  animation: rotateAroundEarth 8s infinite linear, spin 14s infinite linear;
+  position: relative;
+}
+
+@keyframes rotateAroundEarth{
+  0%{
+    transform: translate(14vmin, -5vmin) rotate(0deg);
+    z-index: 1;
+  }
+  1%{
+    transform: translate(13.9vmin, -4.9vmin) rotate(1deg);
+    z-index: 0;
+  }
+  25%{
+    transform: translateX(7vmin) translateY(0vmin) rotate(90deg);
+    z-index: 0;
+    scale: 0.6;
+  }
+  48%{
+    transform: translate(1.2vmin, 4.9vmin) rotate(179deg);
+    z-index: 0;
+  }
+  50%{
+    transform: translate(1vmin, 5vmin) rotate(180deg);
+    z-index: 0;
+  }
+  51%{
+    transform: translate(1.2vmin, 4.9vmin) rotate(181deg);
+    z-index: 1;
+  }
+  75%{
+    transform: translateX(6vmin) translateY(0vmin) rotate(270deg);
+    z-index: 1;
+    scale: 1.4;
+  }
+  99%{
+    transform: translate(13.9vmin, -4.9vmin) rotate(359deg);
+    z-index: 1;
+  }
+  100%{
+    transform: translate(14vmin, -5vmin) rotate(360deg);
+    z-index: 1;
+  }
 }
 
 @keyframes spin{
