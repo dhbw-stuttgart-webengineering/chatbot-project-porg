@@ -221,11 +221,16 @@ opacity: .5;
   background-color: var(--bg-color);
   align-items: center;
   justify-content: center;
-  display: flex; */
+  flex-direction: column;
+  display: flex;
 }
 
 #loading img{
   width: 50px;
+}
+
+#loading p{
+  color: var(--font-color1);
 }
 
 #loading.remove{
