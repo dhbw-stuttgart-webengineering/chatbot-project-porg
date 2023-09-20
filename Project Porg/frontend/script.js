@@ -83,7 +83,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     }, 300);
 
     // let Porg blink
-    setInterval(blinkingAnimation, 200);
+    setInterval(blinkingAnimation, 100);
 });
 
 /**
@@ -489,7 +489,7 @@ function disableSettings(){
  * @returns {void}
  */
 function blinkingAnimation() {
-    let blink = Math.floor(Math.random() * 10);
+    let blink = Math.floor(Math.random() * 20);
     let a = document.documentElement.getAttribute('data-theme');
     if (a == "light") {
         if (blink === 1) {
