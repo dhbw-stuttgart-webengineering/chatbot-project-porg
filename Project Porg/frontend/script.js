@@ -130,12 +130,21 @@ function receiveMessage(message, animate = true) {
  * @param {string} message - The message to be sent. If empty, the function will use the value of the user input field.
  * message parameter is necassary for recreating messages from the database.
  */
+
+
 function sendMessage(message="") {
     let userInput = document.getElementById('user-input').value;
-    if (message.trim() !== '') {
+    if (userInput == 'playD&D') {
+        window.open('egg/DD/dist/index.html');
+    } else if (userInput == 'playTT') {
+        window.open('egg/TT/dist/index.html');
+    } else if (userInput == 'playMS') {
+        window.open('egg/MS/dist/index.html');
+    }else{
+        if (message.trim() !== '') {
         userInput = message;
-    }
-    if (userInput.trim() !== '') {
+        }
+        if (userInput.trim() !== '') {
         talking = true;
         const userMessageContainer = document.createElement('div');
         userMessageContainer.className = 'user-message';
@@ -153,6 +162,7 @@ function sendMessage(message="") {
             askGPT(userInput);
         }
     }
+}
 }
 
 
@@ -205,7 +215,7 @@ function lookForLinks(message) {
     const a = document.createElement('a');
     a.style.fontSize = "12px";
     let url = message.match(urlRegex)[0];
-    if (url.match(/[^\w\d]$/)) {
+    if (RegExp(/[^\w\d]$/).exec(url)) {
         url = url.slice(0, url.length - 1);
     }
     a.href = url;
@@ -287,6 +297,7 @@ function typeWriter(txt, messageNumber, quelle) {
         document.getElementById("selector").scrollIntoView();
         let talk = Math.floor(Math.random() * 2);
         let a = document.documentElement.getAttribute('data-theme');
+        let src;
         if (a == "light") {
             src = porgLight;
         } else {
@@ -439,11 +450,7 @@ function setCookie(name, value) {
  */
 function checkCookie(name) {
     let cookie = getCookie(name);
-    if (cookie != "") {
-        return true;
-    } else {
-        return false;
-    }
+    return cookie != "";
 }
 
 
@@ -451,8 +458,8 @@ function checkCookie(name) {
  * Switches between light and dark theme by toggling the 'data-theme' attribute of the root element.
  */
 
-var porgDark ="files/dark/";
-var porgLight ="files/light/";
+let porgDark ="files/dark/";
+let porgLight ="files/light/";
 function switchTheme() {
     let a = document.documentElement.getAttribute('data-theme');
     if (a == "light") {
@@ -494,18 +501,12 @@ function blinkingAnimation() {
     if (a == "light") {
         if (blink === 1) {
             document.getElementById("porg").src = porgLight+"Porg_closed_eyes.png";
-        } else {
-            if (!talking) {
+        } else if (!talking) {
                 document.getElementById("porg").src = porgLight+"Porg.png";
             }
-        }
-    } else {
-        if (blink === 1) {
+    } else if (blink === 1) {
             document.getElementById("porg").src = porgDark+"Porg_closed_eyes.png";
-        } else {
-            if (!talking) {
+        } else if (!talking) {
                 document.getElementById("porg").src = porgDark+"Porg.png";
             }
-        }
-    }
 }

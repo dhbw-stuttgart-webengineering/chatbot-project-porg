@@ -1,0 +1,43 @@
+// Match the SCSS variables here
+- rows = 9
+- cols = 9
+
+- count = rows * cols
+
+%form
+  - count.times do |i|
+    %input{:type => "checkbox", :id => "c#{i+1}"}
+    %input{:type => "checkbox", :id => "f#{i+1}"}
+
+  %input(type="radio" name="mode" id="modeMine" checked)
+  %input(type="radio" name="mode" id="modeFlag")
+
+  .actionSelector
+    %label(for="modeMine")
+      ⛏
+    %label(for="modeFlag")
+      🚩
+
+  .grid
+    - count.times do |i|
+      %label{:for => "c#{i+1}"}
+    .flags
+      - count.times do |i|
+        %label{:for => "f#{i+1}"}
+    %button.error(type="reset" tabindex="-1")
+      Ooohhh 🙁
+      %br
+      Click to try again
+    %button.victory(type="reset" tabindex="-1")
+      👌👀✔💯💯💯
+      %br
+      Click to restart
+      
+  .infos
+    .counter
+    .timer
+      - 3.times do
+        .digit
+      .separator
+      - 2.times do
+        .digit
