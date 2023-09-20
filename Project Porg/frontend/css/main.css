@@ -213,7 +213,7 @@ opacity: .5;
   height: 4vmin;
   min-width: 75px;
 }
-#loading{
+#loading {
   width: 98%
   ;height: 98%;
   z-index: 9999;
@@ -221,8 +221,9 @@ opacity: .5;
   background-color: var(--bg-color);
   align-items: center;
   justify-content: center;
-  display: flex; */
+  display: flex;
 }
+
 
 #loading img{
   width: 50px;
@@ -277,3 +278,4 @@ color: white;
 [type="checkbox"]:checked + .app .main-circle{
   background: linear-gradient(40deg, #8983F7, #A3DAFB 70%);
 }
+
