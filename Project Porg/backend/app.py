@@ -24,7 +24,7 @@ def embedding(query):
 
 def search(query):
     embeds, _ = embedding(query)
-    res = pinecone_index.query(vector=embeds, top_k=3, include_metadata=True)
+    res = pinecone_index.query(vector=embeds, top_k=7, include_metadata=True)
     messages = [f"{i+1}. {message['metadata']['text']}. Quelle: {message['metadata']['link']}\n" for i, message in enumerate(res["matches"])]
     res = "".join(messages)
     print(res)
@@ -68,7 +68,7 @@ def checkForOldChatbots():
     delete = []
     for uuid in chatbots:
         print(uuid + ": " + str((datetime.datetime.now() - chatbots[uuid]["chatbot"]["lastUsed"]).total_seconds()))
-        if (datetime.datetime.now() - chatbots[uuid]["chatbot"]["lastUsed"]).total_seconds() > 300:
+        if (datetime.datetime.now() - chatbots[uuid]["chatbot"]["lastUsed"]).total_seconds() > 60:
             delete.append(uuid)
     for uuid in delete:
         print("Deleting chatbot uuid: " + uuid)
