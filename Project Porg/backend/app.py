@@ -58,7 +58,7 @@ def getChatbot(uuid):
         result = databaseManager.get_key(uuid)
         if result[0][1] == None:
             messages = eval(result[0][1])
-        chatbot.setMessages(messages)
+            chatbot.setMessages(messages)
     chatbots[uuid] = {}
     chatbots[uuid]["chatbot"] = {"chatbot": chatbot, "lastUsed": datetime.datetime.now()}
     chatbots[uuid]["semanticbot"] = semanticbot
