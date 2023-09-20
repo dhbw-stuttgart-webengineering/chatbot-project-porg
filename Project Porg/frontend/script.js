@@ -208,7 +208,6 @@ function sendMessage(message="") {
         // Dies ist wichtig um die Nachrichten aus der Datenbank wiederherzustellen und hat nichts damit zu tun, ob der User einen Input gibt
         // Wenn der User einen input gibt, ist der message Parameter leer und dieser if block wird nicht ausgeführt
         messageContent = message;
-        }
         if (messageContent.trim() !== '') {
         talking = true;
         const userMessageContainer = document.createElement('div');
@@ -231,7 +230,7 @@ function sendMessage(message="") {
                 document.getElementById("porg").src = porgDark+"Porg_waiting.gif";
             }
             askGPT(messageContent);
-        }
+        }}
     }
 }
 
