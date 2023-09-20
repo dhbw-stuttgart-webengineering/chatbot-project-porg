@@ -12,81 +12,11 @@ let endpoint = "https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.r
  * Wait for DOM to load before executing code.
  */
 window.addEventListener('DOMContentLoaded', async ()=> {
-    //set theme from cookie
-    if (checkCookie("systemmode")) {
-        if (getCookie("systemmode") == "dark") {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            document.getElementById("switch").checked = true;
-        }
-    } else {
-        setCookie("systemmode", "light");
-    }
-
-    //if check cookie = true, remove #cookies
-    if (checkCookie("cookies")) {
-        document.getElementById("cookies").style.display = "none";
-    }
-
-    //set Porg
-    let a = document.documentElement.getAttribute('data-theme');
-    if (a == "light") {
-        document.getElementById("porg").src = porgLight+"Porg.png";
-    } else {
-        document.getElementById("porg").src = porgDark+"Porg.png";
-    }
-
-    // Check if UUID is set
-    if (!checkCookie("uuid")) {
-        uuid = uuidv4();
-        setCookie("uuid", uuid);
-    }
-    // Check if Jahrgang is set
-    if (!checkCookie("jahrgang")) {
-        jahrgang = document.getElementById("jahrgang").value;
-        setCookie("jahrgang", jahrgang);
-    } else {
-        document.getElementById("jahrgang").value = jahrgang;
-    }
-    // Check if Username is set
-    if (checkCookie("username")) {
-        username = getCookie("username");
-        document.getElementById("username").value = username;
-    }
-    // Add event listener to jahrgang input
-    document.getElementById("jahrgang").addEventListener("change", function() {
-        jahrgang = document.getElementById("jahrgang").value;
-        setCookie("jahrgang", jahrgang);
-    });
-    // Add event listener to username input
-    document.getElementById("username").addEventListener("change", function() {
-        username = document.getElementById("username").value;
-        setCookie("username", username);
-    });
-    // Add event listener to send message button
-    window.addEventListener('keyup', function (event) {
-        if (event.key === 'Enter' && !talking) {
-            sendMessage();
-        }
-    });
-    // Add Messages from Database
-    let isMessagesSet = false;
-    let i = 0;
-
-   
-    while (!isMessagesSet) {
-        isMessagesSet = await connectToDatabase();
-        i++;
-        if (i === 10) {
-            document.getElementById("loading-text").textContent = "Versuche Chatverlauf zu laden ...";
-        } else if (i === 20) {
-            document.getElementById("loading-text").textContent = "Habe Probleme, aber gebe mein Bestes ...";
-        } else if (i === 30) {
-            document.getElementById("loading-text").textContent = "Verbindung zum Server konnte nicht hergestellt werden. Bitte versuche es später erneut.";
-            // delete loading-img
-            document.getElementById("loading-img").remove();
-        }
-        await new Promise(r => setTimeout(r, 1000));
-    }
+    setThemeFromCookie();
+    setPorg();
+    checkCookies();
+    addEventListener();
+    addMessageFromDatabase();
 
     // Load font-size from cookies
     let slider = document.getElementById("fontSize");
@@ -104,6 +34,84 @@ window.addEventListener('DOMContentLoaded', async ()=> {
     // let Porg blink
     setInterval(blinkingAnimation, 100);
 });
+function setCookies(){
+    // Check if UUID is set
+    if (!checkCookie("uuid")) {
+        uuid = uuidv4();
+        setCookie("uuid", uuid);
+    }
+    // Check if Jahrgang is set
+    if (!checkCookie("jahrgang")) {
+        jahrgang = document.getElementById("jahrgang").value;
+        setCookie("jahrgang", jahrgang);
+    } else {
+        document.getElementById("jahrgang").value = jahrgang;
+    }
+    // Check if Username is set
+    if (checkCookie("username")) {
+        username = getCookie("username");
+        document.getElementById("username").value = username;
+    }
+}
+function setThemeFromCookie(){
+    //set theme from cookie
+    if (checkCookie("systemmode")) {
+        if (getCookie("systemmode") == "dark") {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.getElementById("switch").checked = true;
+        }
+    } else {
+        setCookie("systemmode", "light");
+    }
+    if (checkCookie("cookies")) {
+        document.getElementById("cookies").style.display = "none";
+    }
+}
+function addEventListener(){
+    // Add event listener to jahrgang input
+    document.getElementById("jahrgang").addEventListener("change", function() {
+        jahrgang = document.getElementById("jahrgang").value;
+        setCookie("jahrgang", jahrgang);
+    });
+    // Add event listener to username input
+    document.getElementById("username").addEventListener("change", function() {
+        username = document.getElementById("username").value;
+        setCookie("username", username);
+    });
+    // Add event listener to send message button
+    window.addEventListener('keyup', function (event) {
+        if (event.key === 'Enter' && !talking) {
+            sendMessage();
+        }
+    });
+}
+async function setMessageFromDatabase(){
+// Add Messages from Database
+let isMessagesSet = false;
+let i = 0;
+while (!isMessagesSet) {
+    isMessagesSet = await connectToDatabase();
+    i++;
+    if (i === 10) {
+        document.getElementById("loading-text").textContent = "Versuche Chatverlauf zu laden ...";
+    } else if (i === 20) {
+        document.getElementById("loading-text").textContent = "Habe Probleme, aber gebe mein Bestes ...";
+    } else if (i === 30) {
+        document.getElementById("loading-text").textContent = "Verbindung zum Server konnte nicht hergestellt werden. Bitte versuche es später erneut.";
+        // delete loading-img
+        document.getElementById("loading-img").remove();
+    }
+    await new Promise(r => setTimeout(r, 1000));
+}
+}
+function setPorg(){
+    let a = document.documentElement.getAttribute('data-theme');
+    if (a == "light") {
+        document.getElementById("porg").src = porgLight+"Porg.png";
+    } else {
+        document.getElementById("porg").src = porgDark+"Porg.png";
+    }
+}
 
 async function connectToDatabase() {
     try {
@@ -195,8 +203,7 @@ function sendMessage(message="") {
         showIframe('egg/TT/dist/index.html');
     } else if (messageContent== 'playMS') {
         showIframe('egg/MS/dist/index.html');
-    }else{
-        if (message.trim() !== '') {
+    }else if (message.trim() !== '') {
         // Wenn message nicht leer ist (im Fall von Datenbank Nachrichten), dann wird messageContent auf message gesetzt
         // Dies ist wichtig um die Nachrichten aus der Datenbank wiederherzustellen und hat nichts damit zu tun, ob der User einen Input gibt
         // Wenn der User einen input gibt, ist der message Parameter leer und dieser if block wird nicht ausgeführt
@@ -226,7 +233,6 @@ function sendMessage(message="") {
             askGPT(messageContent);
         }
     }
-}
 }
 
 
@@ -279,7 +285,7 @@ function lookForLinks(message) {
     const a = document.createElement('a');
     a.style.fontSize = "12px";
     let url = message.match(urlRegex)[0];
-    if (RegExp(/[^\w\d]$/).exec(url)) {
+    if (RegExp(/[^\d]$/).exec(url)) {
         url = url.slice(0, url.length - 1);
     }
     a.href = url;
