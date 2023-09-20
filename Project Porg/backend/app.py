@@ -56,7 +56,8 @@ def getChatbot(uuid):
     if result == None:
         databaseManager.add_key(uuid, "") 
         result = databaseManager.get_key(uuid)
-        messages = eval(result[0][1])
+        if result[0][1] == None:
+            messages = eval(result[0][1])
         chatbot.setMessages(messages)
     chatbots[uuid] = {}
     chatbots[uuid]["chatbot"] = {"chatbot": chatbot, "lastUsed": datetime.datetime.now()}
