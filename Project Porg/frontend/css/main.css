@@ -316,19 +316,23 @@ color: white;
 
 /*Earth & Moon*/
 #earth, #moon{
-  width: 11vmin;
-  height: 11vmin;
   border-radius: 100%;
-  background-size: 17vmin;
   animation: spin 14s infinite linear;
   box-shadow: inset 0 0 0 0.75vmin rgba(0, 0, 0, 0.084); ;  
-  
 }
 #earth{
-  background-image: url("https://media.istockphoto.com/id/1306235331/vector/simplified-world-map-vector-illustration.jpg?s=612x612&w=0&k=20&c=upPEHqLBNiakoRE4qBO0hfFiuINfNKg-3SZyhSraKP0=");
+  background-image: url("/Project Porg/frontend/files/cookies/earth.jpg");
+  background-size: 17vmin;
+  width: 11vmin;
+  height: 11vmin;
 }
 #moon{
-  background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/1b9285b2-fb2e-463b-b377-b97a21b29652/d5ihwho-1eac67e1-4781-47c7-b621-eea607367a51.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzFiOTI4NWIyLWZiMmUtNDYzYi1iMzc3LWI5N2EyMWIyOTY1MlwvZDVpaHdoby0xZWFjNjdlMS00NzgxLTQ3YzctYjYyMS1lZWE2MDczNjdhNTEuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.UYtaHB9DY2YFWy98wmlfSw4w-oz5pJ8mfz1gzBdagK8");
+  background-image: url("/Project Porg/frontend/files/cookies/moon.jpg");
+  background-size: 17vmin;
+  width: 4vmin;
+  height: 4vmin;
+  margin-bottom: 5vmin;
+  margin-left: -3vmin;
 }
 
 @keyframes spin{
