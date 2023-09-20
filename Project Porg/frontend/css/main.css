@@ -223,8 +223,17 @@ opacity: .5;
   background-color: var(--bg-color);
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   display: flex;
+}
+
+#frame {
+  grid-area: 3 / 3 / 2 / 4;
+    margin: auto;
+    border-radius: 5px;
+    border: 1px solid #7d878d;
+    height: 96%;
+    width: 95%;
+    padding: 10px;  
 }
 
 

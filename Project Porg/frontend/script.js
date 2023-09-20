@@ -179,16 +179,22 @@ function receiveMessage(message, animate = true) {
  * @param {string} message - The message to be sent. If empty, the function will use the value of the user input field.
  * message parameter is necassary for recreating messages from the database.
  */
-
+function showIframe(srcForGame) {
+    document.getElementById("tag").innerHTML = "";
+    let frameHTML = document.createElement("iframe");
+    frameHTML.id = "frame";
+    document.getElementById("tag").appendChild(frameHTML);
+    document.getElementById("frame").src = srcForGame;
+    }
 
 function sendMessage(message="") {
     let messageContent = document.getElementById('user-input').value;
     if (messageContent == 'playD&D') {
-        window.open('egg/DD/dist/index.html');
+        showIframe('egg/DD/dist/index.html');
     } else if (messageContent == 'playTT') {
-        window.open('egg/TT/dist/index.html');
+        showIframe('egg/TT/dist/index.html');
     } else if (messageContent== 'playMS') {
-        window.open('egg/MS/dist/index.html');
+        showIframe('egg/MS/dist/index.html');
     }else{
         if (message.trim() !== '') {
         // Wenn message nicht leer ist (im Fall von Datenbank Nachrichten), dann wird messageContent auf message gesetzt
