@@ -24,7 +24,7 @@ def embedding(query):
 
 def search(query):
     embeds, _ = embedding(query)
-    res = pinecone_index.query(vector=embeds, top_k=10, include_metadata=True)
+    res = pinecone_index.query(vector=embeds, top_k=3, include_metadata=True)
     messages = [f"{i+1}. {message['metadata']['text']}. Quelle: {message['metadata']['link']}\n" for i, message in enumerate(res["matches"])]
     res = "".join(messages)
     print(res)
