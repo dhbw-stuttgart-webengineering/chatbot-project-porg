@@ -14,9 +14,9 @@ let endpoint = "https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.r
 window.addEventListener('DOMContentLoaded', async ()=> {
     setThemeFromCookie();
     setPorg();
-    checkCookies();
-    addEventListener();
-    addMessageFromDatabase();
+    setCookies();
+    setEventListener();
+    setMessageFromDatabase();
 
     // Load font-size from cookies
     let slider = document.getElementById("fontSize");
@@ -67,7 +67,7 @@ function setThemeFromCookie(){
         document.getElementById("cookies").style.display = "none";
     }
 }
-function addEventListener(){
+function setEventListener(){
     // Add event listener to jahrgang input
     document.getElementById("jahrgang").addEventListener("change", function() {
         jahrgang = document.getElementById("jahrgang").value;
