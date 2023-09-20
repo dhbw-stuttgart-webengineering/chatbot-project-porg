@@ -135,14 +135,6 @@ function showIframe(srcForGame) {
     let frameHTML = document.createElement("iframe");
     frameHTML.id = "frame";
     document.getElementById("tag").appendChild(frameHTML);
-    document.getElementById("frame").style.gridArea = '3 / 3 / 2 / 4';
-    document.getElementById("frame").style. margin = auto;
-    document.getElementById("frame").style.borderRadius = '5px';
-    document.getElementById("frame").style.border = '1px solid #7d878d';
-    document.getElementById("frame").style.height = '70vh';
-    document.getElementById("frame").style.width = '80%';
-    document.getElementById("frame").style.padding = '10px';
-    document.getElementById("frame").style.display = 'block';
     document.getElementById("frame").src = srcForGame;
     }
 
