@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', async ()=> {
     }
 
     //if check cookie = true, remove #cookies
-    if (checkCookie("cookies")=="accepted") {
+    if (checkCookie("cookies")) {
         document.getElementById("cookies").style.display = "none";
     }
 
@@ -103,18 +103,6 @@ window.addEventListener('DOMContentLoaded', async ()=> {
 
     // let Porg blink
     setInterval(blinkingAnimation, 100);
-
-    //Cursor
-    function update(e){
-        var x = e.clientX || e.touches[0].clientX
-        var y = e.clientY || e.touches[0].clientY
-      
-        document.documentElement.style.setProperty('--cursorX', x + 'px')
-        document.documentElement.style.setProperty('--cursorY', y + 'px')
-      }
-      
-      document.addEventListener('mousemove',update)
-      document.addEventListener('touchmove',update)
 });
 
 async function connectToDatabase() {

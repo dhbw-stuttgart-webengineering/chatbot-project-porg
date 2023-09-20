@@ -214,8 +214,10 @@ opacity: .5;
   min-width: 75px;
 }
 #loading {
-  width: 98%
-  ;height: 98%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 9999;
   position: absolute;
   background-color: var(--bg-color);
