@@ -176,10 +176,12 @@ font-size: 90%;
   border-radius: 3vmin;
 }
 #label {
-  width: 50%;
   background-color: rgba(0,0,0,.1);
   position: relative; 
   cursor: pointer;
+  width:  17vmin;
+  height: 4vmin;
+  min-width: 75px;
 }
 .toggle {
   position: absolute;
@@ -208,11 +210,6 @@ font-size: 90%;
 .dark {
 opacity: .5;
 }  
-#label {
-  width:  17vmin;
-  height: 4vmin;
-  min-width: 75px;
-}
 #loading {
   top: 0;
   left: 0;
@@ -329,7 +326,7 @@ color: white;
 #earth, #moon{
   border-radius: 100%;
   animation: spin 14s infinite linear;
-  box-shadow: inset 0 0 0 0.75vmin rgba(0, 0, 0, 0.084); ;  
+  box-shadow: inset 0 0 0 0.75vmin rgba(0, 0, 0, 0.084); 
 }
 #earth{
   background-image: url("/Project Porg/frontend/files/cookies/earth.jpg");
