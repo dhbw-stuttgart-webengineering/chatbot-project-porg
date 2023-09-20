@@ -131,17 +131,20 @@ function receiveMessage(message, animate = true) {
  * message parameter is necassary for recreating messages from the database.
  */
 function sendMessage(message="") {
-    let userInput = document.getElementById('user-input').value;
+    let messageContent = document.getElementById('user-input').value;
     if (message.trim() !== '') {
-        userInput = message;
+        // Wenn message nicht leer ist (im Fall von Datenbank Nachrichten), dann wird messageContent auf message gesetzt
+        // Dies ist wichtig um die Nachrichten aus der Datenbank wiederherzustellen und hat nichts damit zu tun, ob der User einen Input gibt
+        // Wenn der User einen input gibt, ist der message Parameter leer und dieser if block wird nicht ausgeführt
+        messageContent = message;
     }
-    if (userInput.trim() !== '') {
+    if (messageContent.trim() !== '') {
         talking = true;
         const userMessageContainer = document.createElement('div');
         userMessageContainer.className = 'user-message';
         const userMessage = document.createElement('div');
         userMessage.className = 'message';
-        userMessage.textContent = userInput;
+        userMessage.textContent = messageContent;
         userMessageContainer.appendChild(userMessage);
         document.querySelector('.messages').insertBefore(userMessageContainer, document.querySelector('#selector'));
         document.getElementById('user-input').value = '';
@@ -150,7 +153,13 @@ function sendMessage(message="") {
         document.getElementById("sendMessage").style.backgroundColor= '#7d878d';
         disableSettings();
         if (message.trim() === '') { 
-            askGPT(userInput);
+            let a = document.documentElement.getAttribute('data-theme');
+            if (a == "light") {
+                document.getElementById("porg").src = porgLight+"Porg_waiting.gif";
+            } else {
+                document.getElementById("porg").src = porgDark+"Porg_waiting.gif";
+            }
+            askGPT(messageContent);
         }
     }
 }
@@ -491,6 +500,7 @@ function disableSettings(){
 function blinkingAnimation() {
     let blink = Math.floor(Math.random() * 20);
     let a = document.documentElement.getAttribute('data-theme');
+    if (talking) return;
     if (a == "light") {
         if (blink === 1) {
             document.getElementById("porg").src = porgLight+"Porg_closed_eyes.png";
