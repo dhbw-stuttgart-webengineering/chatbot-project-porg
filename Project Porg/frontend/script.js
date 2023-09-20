@@ -11,7 +11,7 @@ let endpoint = "https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.r
 /**
  * Wait for DOM to load before executing code.
  */
-window.addEventListener('DOMContentLoaded', ()=>{
+window.addEventListener('DOMContentLoaded', async ()=> {
     //set theme from cookie
     if (checkCookie("systemmode")) {
         if (getCookie("systemmode") == "dark") {
@@ -20,6 +20,11 @@ window.addEventListener('DOMContentLoaded', ()=>{
         }
     } else {
         setCookie("systemmode", "light");
+    }
+
+    //if check cookie = true, remove #cookies
+    if (checkCookie("cookies")) {
+        document.getElementById("cookies").style.display = "none";
     }
 
     //set Porg
@@ -64,7 +69,24 @@ window.addEventListener('DOMContentLoaded', ()=>{
         }
     });
     // Add Messages from Database
-    addMessages();
+    let isMessagesSet = false;
+    let i = 0;
+
+   
+    while (!isMessagesSet) {
+        isMessagesSet = await connectToDatabase();
+        i++;
+        if (i === 10) {
+            document.getElementById("loading-text").textContent = "Versuche Chatverlauf zu laden ...";
+        } else if (i === 20) {
+            document.getElementById("loading-text").textContent = "Habe Probleme, aber gebe mein Bestes ...";
+        } else if (i === 30) {
+            document.getElementById("loading-text").textContent = "Verbindung zum Server konnte nicht hergestellt werden. Bitte versuche es später erneut.";
+            // delete loading-img
+            document.getElementById("loading-img").remove();
+        }
+        await new Promise(r => setTimeout(r, 1000));
+    }
 
     // Load font-size from cookies
     let slider = document.getElementById("fontSize");
@@ -77,14 +99,41 @@ window.addEventListener('DOMContentLoaded', ()=>{
         setCookie("fontSize", slider.value);
     });
 
-    // add class
-    setTimeout(function(){
-        document.getElementById("loading").classList.add("remove");
-    }, 300);
+    document.getElementById("loading").classList.add("remove");
 
     // let Porg blink
     setInterval(blinkingAnimation, 100);
 });
+
+async function connectToDatabase() {
+    try {
+        const response = await fetch(endpoint + '/getData', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            body: JSON.stringify({"uuid": uuid})
+        });
+        const data = await response.json();
+        let conversation = eval(data["response"][0][1])
+        disableSettings();
+        if (conversation === undefined){
+            return true;
+        }
+        for(const element of conversation){
+            if(element["role"] === "assistant"){
+                receiveMessage(element["content"], false);
+            }else{
+                sendMessage(element["content"]);
+            }
+        }
+        return true;
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
 
 /**
  * Receives a message from bot and appends it to the chat window.
@@ -385,38 +434,6 @@ function addAlert(){
 }
 
 /**
- * Sends a POST request to a specified URL to retrieve conversation data and adds the messages to the chat window.
- * @function addMessages
- * @returns {void}
- */
-function addMessages(){
-    const Http = new XMLHttpRequest();
-    const url=endpoint + '/getData';
-    Http.open("POST", url);
-    Http.setRequestHeader("Content-Type", "application/json");
-    Http.setRequestHeader("Access-Control-Allow-Origin", "*");
-    Http.send(JSON.stringify({"uuid": uuid}));
-    Http.onreadystatechange = (e) => {
-        if (Http.readyState === 4 && Http.status === 200) {
-            const response = JSON.parse(Http.responseText);
-            let conversation = eval(response["response"][0][1])
-            if (conversation === undefined){
-                return;
-            }
-            for(const element of conversation){
-                if(element["role"] === "assistant"){
-                    receiveMessage(element["content"], false);
-                }else{
-                    sendMessage(element["content"]);
-                }
-            }
-        }
-    }
-    disableSettings();
-}
-
-
-/**
  * Generates a random UUID v4 string.
  * @returns {string} The generated UUID v4 string.
  */
@@ -525,4 +542,9 @@ function blinkingAnimation() {
         } else if (!talking) {
                 document.getElementById("porg").src = porgDark+"Porg.png";
             }
+}
+
+function acceptCookies() {
+    document.getElementById("cookies").style.display = "none";
+    setCookie("cookies", "accepted");
 }
