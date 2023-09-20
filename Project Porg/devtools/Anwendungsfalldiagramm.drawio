@@ -1,0 +1,121 @@
+<mxfile host="app.diagrams.net" modified="2023-09-20T08:48:28.866Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="GI-7mf5TmnnoFGMJnB4d" version="21.7.5" type="device">
+  <diagram name="Seite-1" id="GL4MelPVZNFhSv0OQ5AH">
+    <mxGraphModel dx="954" dy="787" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ksR4bOjcCQria6fC63uQ-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="194" y="120" width="440" height="590" as="geometry" />
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-2" value="User" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="210" width="40" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-6" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="ksR4bOjcCQria6fC63uQ-2" target="ksR4bOjcCQria6fC63uQ-9">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="190" as="sourcePoint" />
+            <mxPoint x="191" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-9" value="Öffnet Webseite" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="364" y="140" width="96" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-14" value="Datenbank" style="shape=datastore;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="238.5" width="77" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-17" value="Cookies richten Einstellungen ein" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="364" y="193" width="96" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-18" value="Alte Nachrichten werden geladen" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="364" y="247" width="96" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-19" value="User gibt eine Nachricht ein" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="364" y="304" width="96" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-20" value="Browser" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.polygon;polyCoords=[[0.25,0],[0.75,0],[1,0.25],[1,0.75],[0.75,1],[0.25,1],[0,0.75],[0,0.25]];polyline=0;" vertex="1" parent="1">
+          <mxGeometry x="680" y="133.5" width="48.5" height="53" as="geometry" />
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-21" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.031;exitY=0.509;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="ksR4bOjcCQria6fC63uQ-20" target="ksR4bOjcCQria6fC63uQ-17">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="121" y="210" as="sourcePoint" />
+            <mxPoint x="374" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-22" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=-0.078;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="ksR4bOjcCQria6fC63uQ-14" target="ksR4bOjcCQria6fC63uQ-18">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="660" y="220" as="sourcePoint" />
+            <mxPoint x="470" y="225" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-23" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="ksR4bOjcCQria6fC63uQ-2" target="ksR4bOjcCQria6fC63uQ-19">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="121" y="210" as="sourcePoint" />
+            <mxPoint x="374" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-25" value="Sendet die Nachricht an Vektor-Datenbank" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="360" width="150" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-26" value="Backend" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.basic.sun" vertex="1" parent="1">
+          <mxGeometry x="710" y="453" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-28" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="ksR4bOjcCQria6fC63uQ-26" target="ksR4bOjcCQria6fC63uQ-25">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="724" y="279" as="sourcePoint" />
+            <mxPoint x="470" y="279" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-29" value="Vector Datenbank" style="shape=datastore;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="320" width="80" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-31" value="" style="shape=singleArrow;direction=north;whiteSpace=wrap;html=1;rotation=30;" vertex="1" parent="1">
+          <mxGeometry x="728.5" y="330" width="21.5" height="43.08" as="geometry" />
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-32" value="" style="shape=singleArrow;direction=north;whiteSpace=wrap;html=1;rotation=30;" vertex="1" parent="1">
+          <mxGeometry x="747.75" y="320" width="21.5" height="43.08" as="geometry" />
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-33" value="" style="shape=singleArrow;direction=north;whiteSpace=wrap;html=1;rotation=30;" vertex="1" parent="1">
+          <mxGeometry x="759.25" y="330" width="21.5" height="43.08" as="geometry" />
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-35" value="Gibt die am naheliegendsten Vektor-Daten zurück" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="337" y="420" width="150" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-37" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ksR4bOjcCQria6fC63uQ-29" target="ksR4bOjcCQria6fC63uQ-35">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="730" y="540" as="sourcePoint" />
+            <mxPoint x="500" y="392" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-38" value="Sendet GPT-4 Vektor-Daten und Nachricht" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="337" y="481.5" width="150" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-40" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="ksR4bOjcCQria6fC63uQ-26" target="ksR4bOjcCQria6fC63uQ-38">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="710" y="503" as="sourcePoint" />
+            <mxPoint x="497" y="452" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-41" value="GPT-4" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.loud_callout" vertex="1" parent="1">
+          <mxGeometry x="708.5" y="590" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-42" value="Gibt Nachricht zurück" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="337" y="542" width="150" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-43" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.015;exitY=0.292;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ksR4bOjcCQria6fC63uQ-41" target="ksR4bOjcCQria6fC63uQ-42">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="720" y="513" as="sourcePoint" />
+            <mxPoint x="497" y="513" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-46" value="Zeigt Nachricht um Chat an und speichert neue Messages in die Datenbank" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="337" y="607" width="150" height="73" as="geometry" />
+        </mxCell>
+        <mxCell id="ksR4bOjcCQria6fC63uQ-47" value="" style="endArrow=classic;html=1;rounded=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="ksR4bOjcCQria6fC63uQ-26" target="ksR4bOjcCQria6fC63uQ-46">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="690" y="550" as="sourcePoint" />
+            <mxPoint x="497" y="513" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
