@@ -22,6 +22,11 @@ window.addEventListener('DOMContentLoaded', async ()=> {
         setCookie("systemmode", "light");
     }
 
+    //if check cookie = true, remove #cookies
+    if (checkCookie("cookies")=="accepted") {
+        document.getElementById("cookies").style.display = "none";
+    }
+
     //set Porg
     let a = document.documentElement.getAttribute('data-theme');
     if (a == "light") {
@@ -98,6 +103,18 @@ window.addEventListener('DOMContentLoaded', async ()=> {
 
     // let Porg blink
     setInterval(blinkingAnimation, 100);
+
+    //Cursor
+    function update(e){
+        var x = e.clientX || e.touches[0].clientX
+        var y = e.clientY || e.touches[0].clientY
+      
+        document.documentElement.style.setProperty('--cursorX', x + 'px')
+        document.documentElement.style.setProperty('--cursorY', y + 'px')
+      }
+      
+      document.addEventListener('mousemove',update)
+      document.addEventListener('touchmove',update)
 });
 
 async function connectToDatabase() {
@@ -531,4 +548,9 @@ function blinkingAnimation() {
         } else if (!talking) {
                 document.getElementById("porg").src = porgDark+"Porg.png";
             }
+}
+
+function acceptCookies() {
+    document.getElementById("cookies").style.display = "none";
+    setCookie("cookies", "accepted");
 }
