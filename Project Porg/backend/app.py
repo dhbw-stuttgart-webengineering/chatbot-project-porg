@@ -13,7 +13,7 @@ pinecone.init(api_key=os.getenv("PINECONE_API_KEY") or "", environment=os.getenv
 
 chatbots = {}
 
-pinecone_index = pinecone.Index("projectporg")
+pinecone_index = pinecone.Index(os.getenv("PINECONE_INDEX") or "")
 
 def embedding(query):
     texts = [query]

@@ -9,7 +9,7 @@ load_dotenv()
 pinecone.init(api_key=os.getenv("PINECONE_API_KEY") or "", environment=os.getenv("PINECONE_ENV") or "")
 openai.api_key = f"{os.getenv('OPENAI_API_KEY')}" + f"{os.getenv('OPENAI_API_KEY_2')}"
 
-pinecone_index = pinecone.Index("projectporg")
+pinecone_index = pinecone.Index(os.getenv("PINECONE_INDEX") or "")
 
 def readCSV(path):
     df = pandas.read_csv(path, encoding="utf-8", sep=";", names=["text", "link"])
@@ -28,7 +28,8 @@ def embedding(df):
 def upsert(df):
     embeds, meta = embedding(df)
     try:
-        pinecone_index.upsert(vectors=[{"id": str(n), "values": vec, "metadata": meta[n]} for n, vec in enumerate(embeds)])
+        v = [{"id": str(n), "values": vec, "metadata": meta[n]} for n, vec in enumerate(embeds)]
+        pinecone_index.upsert(vectors=v)
         print("Upsert successful")
     except Exception as e:
         print("Upsert failed")
