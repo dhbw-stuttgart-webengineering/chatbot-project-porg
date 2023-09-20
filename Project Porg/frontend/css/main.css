@@ -397,6 +397,30 @@ color: white;
   }
 }
 
+#rocket{
+  background-size:cover;
+  position: absolute;
+  width: 3vmin;
+  left: 0;
+  top: 0;
+  animation: start 4s linear;
+  z-index: 1;
+}
+
+@keyframes start{
+  0%{
+    transform: translate(45vmin, 42vmin);
+  }
+  50%{
+    transform: translate(55vmin, 35vmin)rotate(45deg);
+  }
+  60%{
+    transform: translate(55vmin, 35vmin)rotate(45deg);
+  }
+  100%{
+    transform: translate(65vmin, 30vmin)rotate(90deg);
+  }
+}
 
 #cookies button{
   /*remove default browser style*/
