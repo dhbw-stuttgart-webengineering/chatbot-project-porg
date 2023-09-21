@@ -197,17 +197,26 @@ function showIframe(srcForGame) {
 
 function sendMessage(message="") {
     let messageContent = document.getElementById('user-input').value;
-    if (messageContent == 'playD&D') {
+    if (messageContent.startsWith('!play')) {
+        let link = messageContent.split(" ")[1];
+        /* no usecase yet */
+    } else if (messageContent == 'playD&D') {
         showIframe('egg/DD/dist/index.html');
+    } else if (messageContent == 'easterEggs') {
+        addFunctionLinktoList("play Dungeons and Dragons",'#', function(){showIframe('egg/DD/dist/index.html')});
+        addFunctionLinktoList("play Table Tennis",'#', function(){showIframe('egg/TT/dist/index.html')});
+        addFunctionLinktoList("play Wordle",'#', function(){showIframe('https://wordle.at/')});
+        addFunctionLinktoList("play Minesweeper",'#', function(){showIframe('egg/MS/dist/index.html')});
     } else if (messageContent == 'playTT') {
         showIframe('egg/TT/dist/index.html');
+    } else if (messageContent == 'playWordle') {
+        showIframe('https://wordle.at/');   
     } else if (messageContent== 'playMS') {
         showIframe('egg/MS/dist/index.html');
-    }else if (message.trim() !== '') {
+    }else if (messageContent.trim() !== '') {
         // Wenn message nicht leer ist (im Fall von Datenbank Nachrichten), dann wird messageContent auf message gesetzt
         // Dies ist wichtig um die Nachrichten aus der Datenbank wiederherzustellen und hat nichts damit zu tun, ob der User einen Input gibt
         // Wenn der User einen input gibt, ist der message Parameter leer und dieser if block wird nicht ausgeführt
-        messageContent = message;
         if (messageContent.trim() !== '') {
         talking = true;
         const userMessageContainer = document.createElement('div');
@@ -316,7 +325,17 @@ function addLinktoList(beschreibung, link){
     linkLi.appendChild(linkA);
     document.getElementById("father").append(linkLi);
 }
-
+function addFunctionLinktoList(beschreibung, link, functionToCall){
+    const linkLi = document.createElement('li');
+    const linkA = document.createElement('a');
+    linkA.textContent = beschreibung;
+    linkA.href = link;
+    linkA.onclick = functionToCall;
+    linkA.className = 'removeTag';
+    linkLi.className ='removeTag';
+    linkLi.appendChild(linkA);
+    document.getElementById("father").append(linkLi);
+}
 
 function removeLinksfromList() {
     let speicher = document.getElementsByClassName('link-list');
