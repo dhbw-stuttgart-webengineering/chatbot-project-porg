@@ -6,7 +6,13 @@ let uuid = getCookie("uuid");
 let jahrgang = getCookie("jahrgang");
 let username = getCookie("username");
 let endpoint = "https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app";
-// let endpoint = "http://127.0.0.1:8080"
+
+let games = {
+    "playD&D": "egg/DD/dist/index.html",
+    "playTT": "egg/TT/dist/index.html",
+    "playWordle": "https://wordle.at/",
+    "playMS": "egg/MS/dist/index.html"
+}
 
 /**
  * Wait for DOM to load before executing code.
@@ -81,7 +87,7 @@ function setEventListener(){
     // Add event listener to send message button
     window.addEventListener('keyup', function (event) {
         if (event.key === 'Enter' && !talking) {
-            sendMessage();
+            sendMessage(document.getElementById('user-input').value);
         }
     });
 }
@@ -131,9 +137,9 @@ async function connectToDatabase() {
         }
         for(const element of conversation){
             if(element["role"] === "assistant"){
-                receiveMessage(element["content"], false);
+                addBotMessage(element["content"], false);
             }else{
-                sendMessage(element["content"]);
+                addUserMessage(element["content"]);
             }
         }
         return true;
@@ -148,31 +154,10 @@ async function connectToDatabase() {
  * @param {string} message - The message to be displayed.
  * @param {boolean} [animate=true] - Whether or not to animate the message.
  */
-function receiveMessage(message, animate = true) {
-    message = message.replace("Antwort: ", "");
+function receiveMessage(message) {
     if (message.trim() !== '') {
         disableSettings();
-        const botMessageContainer = document.createElement('div');
-        const botMessage = document.createElement('div');
-        let messageNumber = document.getElementsByClassName('message').length;
-        botMessage.className = 'message';
-        botMessage.id = 'bot-message-' + messageNumber;
-        botMessageContainer.id = 'bot-message-container-' + messageNumber;
-        let text = message.split("Quelle:");
-        let quelle = "<br>";
-        if(message.includes("Quelle:")){
-            text = message.split("Quelle:")[0].trim();
-            if(message.includes("https://")){
-                quelle += lookForLinks(message.split("Quelle:")[1]);
-            }
-        }
-        botMessageContainer.appendChild(botMessage);
-        document.querySelector('.messages').insertBefore(botMessageContainer, document.querySelector('#selector'));
-        if (animate) {
-            typeWriter(text, messageNumber, quelle);
-        } else {
-            botMessage.innerHTML = text + quelle;
-        }
+        addBotMessage(message);
         message.value = '';
         document.getElementById("selector").scrollIntoView();
         document.getElementById("sendMessage").disabled = false;
@@ -193,53 +178,72 @@ function showIframe(srcForGame) {
     frameHTML.id = "frame";
     document.getElementById("tag").appendChild(frameHTML);
     document.getElementById("frame").src = srcForGame;
-    }
+}
 
-function sendMessage(message="") {
-    let messageContent = document.getElementById('user-input').value;
-    if (messageContent.startsWith('!play')) {
-        let link = messageContent.split(" ")[1];
-        /* no usecase yet */
-    } else if (messageContent == 'playD&D') {
-        showIframe('egg/DD/dist/index.html');
-    } else if (messageContent == 'easterEggs') {
+function addUserMessage(message) {
+    const userMessageContainer = document.createElement('div');
+    userMessageContainer.className = 'user-message';
+    const userMessage = document.createElement('div');
+    userMessage.className = 'message';
+    userMessage.textContent = message;
+    userMessageContainer.appendChild(userMessage);
+    document.querySelector('.messages').insertBefore(userMessageContainer, document.querySelector('#selector'));
+    userMessage.scrollIntoView();
+}
+
+function addBotMessage(message, typewrite = true) {
+    const botMessageContainer = document.createElement('div');
+    const botMessage = document.createElement('div');
+    let messageNumber = document.getElementsByClassName('message').length;
+    botMessage.className = 'message';
+    botMessage.id = 'bot-message-' + messageNumber;
+    botMessageContainer.id = 'bot-message-container-' + messageNumber;
+    let text = message.split("Quelle:");
+    let quelle = "<br>";
+    if(message.includes("Quelle:")){
+        text = message.split("Quelle:")[0].trim();
+        if(message.includes("https://")){
+            quelle += lookForLinks(message.split("Quelle:")[1]);
+        }
+    }
+    botMessageContainer.appendChild(botMessage);
+    document.querySelector('.messages').insertBefore(botMessageContainer, document.querySelector('#selector'));
+    if (typewrite) typeWriter(text, messageNumber, quelle)
+    else botMessage.innerHTML = text + quelle;
+}
+
+function sendMessage(message) {
+    document.getElementById('user-input').value = '';
+    disableSettings();
+    if (message.startsWith('!play')) {
+        let link = message.split(" ")[1];
+        //TODO: check if link is valid
+    } else if (message == 'easterEggs') {
         addFunctionLinktoList("play Dungeons and Dragons",'#', function(){showIframe('egg/DD/dist/index.html')});
         addFunctionLinktoList("play Table Tennis",'#', function(){showIframe('egg/TT/dist/index.html')});
         addFunctionLinktoList("play Wordle",'#', function(){showIframe('https://wordle.at/')});
         addFunctionLinktoList("play Minesweeper",'#', function(){showIframe('egg/MS/dist/index.html')});
-    } else if (messageContent == 'playTT') {
-        showIframe('egg/TT/dist/index.html');
-    } else if (messageContent == 'playWordle') {
-        showIframe('https://wordle.at/');   
-    } else if (messageContent== 'playMS') {
-        showIframe('egg/MS/dist/index.html');
-    }else if (messageContent.trim() !== '') {
-        // Wenn message nicht leer ist (im Fall von Datenbank Nachrichten), dann wird messageContent auf message gesetzt
-        // Dies ist wichtig um die Nachrichten aus der Datenbank wiederherzustellen und hat nichts damit zu tun, ob der User einen Input gibt
-        // Wenn der User einen input gibt, ist der message Parameter leer und dieser if block wird nicht ausgeführt
-        if (messageContent.trim() !== '') {
+    } else if (message in games) {
+        showIframe(games[message]);
+        addUserMessage(message);
+        if (username !== "") {
+            addBotMessage("Viel Spaß beim Spielen, " + username + "!");
+        } else {
+            addBotMessage("Viel Spaß beim Spielen!");
+        }
+        return;
+    } else {
         talking = true;
-        const userMessageContainer = document.createElement('div');
-        userMessageContainer.className = 'user-message';
-        const userMessage = document.createElement('div');
-        userMessage.className = 'message';
-        userMessage.textContent = messageContent;
-        userMessageContainer.appendChild(userMessage);
-        document.querySelector('.messages').insertBefore(userMessageContainer, document.querySelector('#selector'));
-        document.getElementById('user-input').value = '';
-        userMessageContainer.scrollIntoView();
+        addUserMessage(message);
         document.getElementById('sendMessage').disabled = true;
         document.getElementById("sendMessage").style.backgroundColor= '#7d878d';
-        disableSettings();
-        if (message.trim() === '') { 
-            let a = document.documentElement.getAttribute('data-theme');
-            if (a == "light") {
-                document.getElementById("porg").src = porgLight+"Porg_waiting.gif";
-            } else {
-                document.getElementById("porg").src = porgDark+"Porg_waiting.gif";
-            }
-            askGPT(messageContent);
-        }}
+        let a = document.documentElement.getAttribute('data-theme');
+        if (a == "light") {
+            document.getElementById("porg").src = porgLight+"Porg_waiting.gif";
+        } else {
+            document.getElementById("porg").src = porgDark+"Porg_waiting.gif";
+        }
+        askGPT(message);
     }
 }
 
