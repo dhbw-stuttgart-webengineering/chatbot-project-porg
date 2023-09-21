@@ -403,7 +403,7 @@ color: white;
   width: 3vmin;
   left: 0;
   top: 0;
-  animation: start 4s linear;
+  animation: start 4s linear, fly 15s 4s linear infinite;
   z-index: 1;
 }
 
@@ -411,14 +411,32 @@ color: white;
   0%{
     transform: translate(45vmin, 42vmin);
   }
-  50%{
-    transform: translate(55vmin, 35vmin)rotate(45deg);
+  30%{
+    transform: translate(47vmin, 37vmin)rotate(45deg);
   }
   60%{
-    transform: translate(55vmin, 35vmin)rotate(45deg);
+    transform: translate(50vmin, 35vmin)rotate(45deg);
   }
   100%{
     transform: translate(65vmin, 30vmin)rotate(90deg);
+  }
+}
+
+@keyframes fly{
+  0%{
+    transform: translate(65vmin, 30vmin)rotate(90deg);
+  }
+  25%{
+    transform: translate(100vmin, 42vmin)rotate(180deg);
+  }
+  50%{
+    transform: translate(65vmin, 60vmin)rotate(270deg);
+  }
+  75%{
+    transform: translate(30vmin, 42vmin)rotate(360deg);
+  }
+  100%{
+    transform: translate(65vmin, 30vmin)rotate(450deg);
   }
 }
 
