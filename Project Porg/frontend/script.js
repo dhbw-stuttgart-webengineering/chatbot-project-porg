@@ -176,6 +176,14 @@ function showIframe(srcForGame) {
     document.getElementById("tag").innerHTML = "";
     let frameHTML = document.createElement("iframe");
     frameHTML.id = "frame";
+    let closeGame = document.createElement("button");
+    closeGame.id = "closegame";
+    closeGame.title = "Spiel schließen";
+    closeGame.textContent = "X";
+    closeGame.onclick = function() {
+        document.getElementById("tag").innerHTML = "";
+    };
+    document.getElementById("tag").appendChild(closeGame);
     document.getElementById("tag").appendChild(frameHTML);
     document.getElementById("frame").src = srcForGame;
 }
