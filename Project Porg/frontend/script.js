@@ -68,7 +68,7 @@ function setThemeFromCookie(){
     }
 }
 function setEventListener(){
-    // Add event listener to jahrgang input
+        // Add event listener to jahrgang input
     document.getElementById("jahrgang").addEventListener("change", function() {
         jahrgang = document.getElementById("jahrgang").value;
         setCookie("jahrgang", jahrgang);
