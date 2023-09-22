@@ -37,7 +37,7 @@ def chat(chatbot, query, information, semanticquestion):
     Bei Aufzählungen immer \n- verwenden.
     Wenn nach einer Person gefragt ist, gebe die Daten im Format: 'STECKBRIEF: \{"name": <name>, "bild": <bild>, "daten": <daten>\}' an.""")
     context = search(f"{semanticquestion}\n{information}")
-    res = chatbot.chat(f'Wenn nach einer Person gefragt ist, gebe die Daten im Format: STECKBRIEF: {{"name": <name>, "bild": <bild>, "daten": <daten>}}" an. Antworte im Format: <Antwort> Quelle: <Quellen>. Erfinde nichts dazu! Benutze für deine Antwort nur diese Daten:\n{context}\nInformationen zum mir:\n{information}\n########\n\n{query}')
+    res = chatbot.chat(f'Wenn nach einer Person gefragt ist, gebe die Daten im Format: "STECKBRIEF: {{"name": <name>, "bild": <bild>, "daten": <daten>}}" an. Antworte im Format: <Antwort> Quelle: <Quellen>. Erfinde nichts dazu! Benutze für deine Antwort nur diese Daten:\n{context}\nInformationen zum mir:\n{information}\n########\n\n{query}')
     checkForOldChatbots()
     return res
 
