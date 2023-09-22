@@ -156,8 +156,10 @@ async function connectToDatabase() {
  */
 function receiveMessage(message) {
     // Wenn message mit STECKBRIEF: anfängt
+    console.log(message);
     if (message.startsWith("STECKBRIEF:")) {
-        let map = eval(message.split("STECKBRIEF:")[1]);
+        let mapStr = message.split("STECKBRIEF: ")[1].split("}")[0] + "}";
+        let map = JSON.parse(mapStr);
         steckbrief(map["name"], map["bild"], map["daten"]);
         message = "Rechts findest du einen Steckbrief zu " + map["name"] + ".";
     }
