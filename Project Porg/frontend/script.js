@@ -155,6 +155,12 @@ async function connectToDatabase() {
  * @param {boolean} [animate=true] - Whether or not to animate the message.
  */
 function receiveMessage(message) {
+    // Wenn message mit STECKBRIEF: anfängt
+    if (message.startsWith("STECKBRIEF:")) {
+        let map = eval(message.split("STECKBRIEF:")[1]);
+        steckbrief(map["name"], map["bild"], map["daten"]);
+        message = "Rechts findest du einen Steckbrief zu " + map["name"] + ".";
+    }
     if (message.trim() !== '') {
         disableSettings();
         addBotMessage(message);
@@ -167,11 +173,6 @@ function receiveMessage(message) {
     }
 }
 
-/**
- * Sends a message to the chat interface.
- * @param {string} message - The message to be sent. If empty, the function will use the value of the user input field.
- * message parameter is necassary for recreating messages from the database.
- */
 function showIframe(srcForGame) {
     document.getElementById("tag").innerHTML = "";
     let frameHTML = document.createElement("iframe");
@@ -222,6 +223,7 @@ function addBotMessage(message, typewrite = true) {
 
 function sendMessage(message) {
     document.getElementById('user-input').value = '';
+    if (message.trim() === '') return;
     disableSettings();
     if (message.startsWith('!play')) {
         let link = message.split(" ")[1];
@@ -324,39 +326,6 @@ function changeFontSize(amount) {
     for (const element of nachrichten) {
         element.style.fontSize = amount/50 + "em";
     }
-}
-
-
-function addLinktoList(beschreibung, link){
-    const linkLi = document.createElement('li');
-    const linkA = document.createElement('a');
-    linkA.textContent = beschreibung;
-    linkA.href = link;
-    linkA.className = 'removeTag';
-    linkLi.className ='removeTag';
-    linkLi.appendChild(linkA);
-    document.getElementById("father").append(linkLi);
-}
-function addFunctionLinktoList(beschreibung, link, functionToCall){
-    const linkLi = document.createElement('li');
-    const linkA = document.createElement('a');
-    linkA.textContent = beschreibung;
-    linkA.href = link;
-    linkA.onclick = functionToCall;
-    linkA.className = 'removeTag';
-    linkLi.className ='removeTag';
-    linkLi.appendChild(linkA);
-    document.getElementById("father").append(linkLi);
-}
-
-function removeLinksfromList() {
-    let speicher = document.getElementsByClassName('link-list');
-    while (speicher[0].firstChild) {
-        speicher[0].removeChild(speicher[0].firstChild);
-    }
-    const linkLi = document.createElement('li');
-    linkLi.id= 'father';
-    document.getElementById("ol").append(linkLi);
 }
 
 /**
@@ -583,4 +552,30 @@ function blinkingAnimation() {
 function acceptCookies() {
     document.getElementById("cookies").style.display = "none";
     setCookie("cookies", "accepted");
+}
+
+function steckbrief(name, bild, daten){
+    document.getElementById("tag").innerHTML = "";
+    let steckbrief = document.createElement("div");
+    steckbrief.id = "steckbrief";
+    steckbrief.display = "flex";
+    steckbrief.flexDirection = "column";
+    let header = document.createElement("div");
+    header.id = "steckbrief-header";
+    header.display = "flex";
+    header.flexDirection = "row";
+    let image = document.createElement("img");
+    image.id = "steckbrief-image";
+    image.src = bild;
+    let nameElement = document.createElement("h1");
+    nameElement.id = "steckbrief-name";
+    nameElement.textContent = name;
+    header.appendChild(image);
+    header.appendChild(nameElement);
+    let data = document.createElement("div");
+    data.id = "steckbrief-data";
+    data.innerHTML = daten;
+    steckbrief.appendChild(header);
+    steckbrief.appendChild(data);
+    document.getElementById("tag").appendChild(steckbrief);
 }
