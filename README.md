@@ -69,9 +69,3 @@ Dieses Dokument bietet eine Übersicht über die Hauptfunktionalitäten und die 
 - Kagan Demirer
 - Niklas Werthmann
 - Sohail Ramin
-
-
-## Dank
-
-- OpenAI
-- Pinecone
