@@ -448,34 +448,32 @@ color: white;
   background-size:cover;
   position: absolute;
   width: 3vmin;
-  animation: start 4s linear, fly 15s 4s linear infinite;
+  animation: start 20s infinite linear;
   z-index: 1;
 }
 
 @keyframes start{
   0%{
-    transform: translate(0vmin, 0vmin);
+    transform: translate(0vmin, 0vmin)scale(0.1);
   }
-  30%{
-    transform: translate(2vmin, -5vmin)rotate(45deg);
+  7%{
+    transform: translate(2vmin, -5vmin)rotate(45deg)scale(1);
   }
-  60%{
-    transform: translate(5vmin, -7vmin)rotate(45deg);
+  15%{
+    transform: translate(5vmin, -7vmin)rotate(45deg)scale(1.2);
+  }
+  25%{
+    transform: translate(20vmin, -12vmin)rotate(90deg)scale(1.5);
+  }
+  50%{
+    transform: translate(100vmin, -12vmin)rotate(90deg)scale(0.1);
   }
   100%{
-    transform: translate(20vmin, -12vmin)rotate(90deg);
+    transform: translate(100vmin, -12vmin)rotate(90deg)scale(0);
   }
 }
 
-@keyframes fly{
-  /*rotate the element arround the center of the screen*/
-  0%{
-    transform: translate(20vmin, -12vmin)rotate(90deg);
-  }
-  100%{
-    transform: translate(20vmin, -12vmin)rotate(450deg);
-  }
-}
+
 
 .cookies{
   /*remove default browser style*/

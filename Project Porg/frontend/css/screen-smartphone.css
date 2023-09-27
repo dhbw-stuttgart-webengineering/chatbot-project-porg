@@ -52,6 +52,7 @@
         flex-direction: column;
         top: 20%;
         z-index: 7;
+        left: 0;
     }
     #navbar #switchtochat{
         background-color: #5e6061;
