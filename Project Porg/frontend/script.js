@@ -6,7 +6,7 @@ let uuid = getCookie("uuid");
 let jahrgang = getCookie("jahrgang");
 let username = getCookie("username");
 let endpoint = "https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app";
-let cookieDeclined = false;
+let cookieRefused = false;
 
 let games = {
     "playD&D": "egg/DD/dist/index.html",
@@ -20,7 +20,7 @@ let games = {
  */
 window.addEventListener('DOMContentLoaded', async ()=> {
     if (getCookie("cookies") === "accepted") {
-        setThemeFromCookie();
+        settingsFromCookies();
         setCookies();
         setMessageFromDatabase();
     }
@@ -51,14 +51,12 @@ function setCookies(){
         document.getElementById("username").value = username;
     }
 }
-function setThemeFromCookie(){
+function settingsFromCookies(){
     if (checkCookie("systemmode")) {
         if (getCookie("systemmode") == "dark") {
             document.documentElement.setAttribute('data-theme', 'dark');
             document.getElementById("switch").checked = true;
         }
-    } else {
-        setCookie("systemmode", "light");
     }
     if (checkCookie("cookies")) {
         document.getElementById("cookies").style.display = "none";
@@ -68,16 +66,12 @@ function setEventListener(){
         // Add event listener to jahrgang input
     document.getElementById("jahrgang").addEventListener("change", function() {
         jahrgang = document.getElementById("jahrgang").value;
-        if(declineCookies == false) {
-            setCookie("jahrgang", jahrgang);
-        }
+        setCookie("jahrgang", jahrgang);
     });
     // Add event listener to username input
     document.getElementById("username").addEventListener("change", function() {
         username = document.getElementById("username").value;
-        if (declineCookies == false) {
-            setCookie("username", username);
-        }
+        setCookie("username", username);
     });
     // Add event listener to send message button
     window.addEventListener('keyup', function (event) {
@@ -93,9 +87,7 @@ function setEventListener(){
 
     slider.addEventListener("mousemove", function() {
         changeFontSize(slider.value);
-        if(declineCookies == false) {
-            setCookie("fontSize", slider.value);
-        }
+        setCookie("fontSize", slider.value);
     });
 }
 async function setMessageFromDatabase(){
@@ -513,6 +505,7 @@ function getCookie(cname) {
  * @param {string} value - The value of the cookie.
  */
 function setCookie(name, value) {
+    if (cookieRefused) return;
     document.cookie = name + "=" + value + "; expires=Thu, 31 Dec 2100 12:00:00 UTC; path=/";
 }
 
@@ -591,7 +584,7 @@ function acceptCookies() {
     setCookie("cookies", "accepted");
 }
 
-function declineCookies() {
+function refuseCookies() {
     document.getElementById("cookies").style.display = "none";
-    cookieDeclined = true;
+    cookieRefused = true;
 }
