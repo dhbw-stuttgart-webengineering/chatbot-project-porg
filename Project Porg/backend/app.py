@@ -34,10 +34,9 @@ def chat(chatbot, query, information, semanticquestion):
     chatbot.system("""
     Du bist ein Chatbot der Dualen Hochschule Baden-Württemberg (DHBW). Dein Name ist Porg. 
     Du kannst nicht über andere Themen reden und beantwortest keine Fragen, die nichts mit der Hochschule zu tun haben.
-    Bei Aufzählungen immer \n- verwenden.
-    Wenn nach einer Person gefragt ist, gebe die Daten im Format: 'STECKBRIEF: \{"name": <name>, "bild": <bild>, "daten": <daten>\}' an.""")
+    Bei Aufzählungen immer \n- verwenden.""")
     context = search(f"{semanticquestion}\n{information}")
-    res = chatbot.chat(f'Wenn nach einer Person gefragt ist, gebe die Daten im Format: "STECKBRIEF: {{"name": <name>, "bild": <bild>, "daten": <daten>}}" an. Antworte im Format: <Antwort> Quelle: <Quellen>. Erfinde nichts dazu! Benutze für deine Antwort nur diese Daten:\n{context}\nInformationen zum mir:\n{information}\n########\n\n{query}')
+    res = chatbot.chat(f'Antworte im Format: <Antwort> Quelle: <Quellen>. Erfinde nichts dazu! Benutze für deine Antwort nur diese Daten:\n{context}\nInformationen zum mir:\n{information}\n########\n\n{query}')
     checkForOldChatbots()
     return res
 
@@ -90,7 +89,8 @@ def chat_api():
     semanticquestion = asksemanticbot(semanticbot, query, semanticbot.lastQuestion)
     result = chat(chatbot, query, information, semanticquestion)
     messages = chatbot.getMessages()
-    databaseManager.add_key(uuid, messages)
+    if uuid != "":
+        databaseManager.add_key(uuid, messages)
     response = jsonify({"response": result})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
@@ -99,6 +99,8 @@ def chat_api():
 def getData_api():
     data = request.json
     uuid = data["uuid"]
+    if uuid == "":
+        return jsonify({"response": "No uuid given"})
     result = databaseManager.get_key(uuid)
     chatbot = getChatbot(uuid)[0]
     if result == None:
@@ -119,6 +121,8 @@ def getData_api():
 def reset_api():
     data = request.json
     uuid = data["uuid"]
+    if uuid == "":
+        return jsonify({"response": "No uuid given"})
     databaseManager.add_key(uuid, "")
     chatbot = getChatbot(uuid)[0]
     chatbot.reset()
