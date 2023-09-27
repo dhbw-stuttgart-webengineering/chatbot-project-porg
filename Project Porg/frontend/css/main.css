@@ -31,6 +31,13 @@
   --pathto-porg: "files/dark";
 }
 
+
+@media only screen and (min-width: 1024px) {
+  #navbar {
+    display: none;
+  }
+}
+
 body {
   font-family: Arial, sans-serif;
   font-size: calc(0.5em + 1vw);
@@ -39,6 +46,7 @@ body {
 /* Grid */
 .grid-container{
   display: grid;
+  width: 100%;
   grid-template-columns: 1fr 1fr 1fr; 
   grid-template-rows: 0.25fr 1.5fr; 
   gap: 0 0;
@@ -111,8 +119,6 @@ h2{
   opacity: 0;
   }
 }
-
-
 
 .closebtn {
   margin-left: 15px;
@@ -224,18 +230,6 @@ opacity: .5;
   display: flex;
 }
 
-#frame {
-  grid-area: 3 / 3 / 2 / 4;
-    margin: auto;
-    border-radius: 5px;
-    border: 1px solid #7d878d;
-    height: 100%;
-    width: 100%;
-    top: -20px;
-    z-index: 1;
-    position: relative;
-}
-
 #tag #closegame {
   position:relative;
   float: right;
@@ -243,7 +237,6 @@ opacity: .5;
   top:20px;
   z-index: 2;
 }
-
 
 #loading img{
   width: 50px;

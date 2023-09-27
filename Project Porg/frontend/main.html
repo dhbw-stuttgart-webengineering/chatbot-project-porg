@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="css/overview.css">
         <link rel="stylesheet" href="css/screen-smartphone.css">
         <link rel="stylesheet" href="css/screen-tablet.css">
-        <link rel="stylesheet" href="css/screen-desktop.css">
         <link rel="stylesheet" href="css/laptop.css">
         <!-- Custom font -->
         <link href="https://db.onlinewebfonts.com/c/aa93cb662eed3dbceaf9144b30dbea90?family=Generis+Sans+W01+Regular" rel="stylesheet">
@@ -18,10 +17,13 @@
         <title>Dein DHBW Chatbot</title>
     </head>
     <body>
+        <!-- Loading Screen -->
         <div id="loading">
             <img src="files/loading.gif" alt="loading" id="loading-img">
             <p id="loading-text">Einen Moment bitte ...</p>
         </div>
+
+        <!-- Cookies -->
         <div id="cookies">
             <div id="headlineflex">
                 <h1>C</h1>
@@ -36,6 +38,15 @@
             </div>
             <p>Diese Seite verwendet Cookies, um Ihnen das bestmögliche Erlebnis zu gewährleisten. So werden beispielsweise Ihr Chatverlauf und Ihre Einstellungen gespeichert. Für das bestmögliche Nutzererlebnis empfehlen wir Ihnen, die Cookies zu akzeptieren.</p>
         </div>
+
+        <!-- Navbar Mobile -->
+        <div id="navbar">
+            <button id="switchtochat" onclick="openChat()">💬</button>
+            <button id="switchtosettings" onclick="openSettings()">⚙️</button>
+            <button id="switchtooverview" onclick="openOverview()">📋</button>
+        </div>
+
+        <!-- Content -->
         <div class = "grid-container">
             <div class="header">
                 <div class="logo">

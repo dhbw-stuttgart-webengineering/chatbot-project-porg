@@ -82,6 +82,7 @@ label{
 }
 
 #settings-hinweis {
+    margin-top: -10vh;
     align-self: flex-end;
     font-size: 10px;
     color: var(--font-color1);

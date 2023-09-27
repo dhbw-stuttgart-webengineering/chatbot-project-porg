@@ -1,3 +1,71 @@
-@media only screen and (max-width: 360px) {
-  
+@media only screen and (max-width: 450px) {
+    .grid-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr; 
+        grid-template-rows: 0.25fr 2fr; 
+        gap: 0 0;
+        grid-template-areas: 
+        ". . ."
+        ". . .";
+    }
+    
+    .chat{
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        width: 80%;
+        grid-column: 1 / 4;
+        display: block;
+    }
+
+
+    .link-container {
+        margin-top: 40px;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 5px;
+        border: 1px solid #7d878d;
+        width: 80%;
+        padding: 10px;
+        display: none;
+        grid-column: 1 / 4;
+    }
+
+    .settings-container {
+        margin-top: 40px;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 5px;
+        border: 1px solid #7d878d;
+        width: 80%;
+        padding: 10px;
+        display: none;
+        flex-direction: column;
+        grid-column: 1 / 4;
+    }
+
+    #navbar{
+        /*dont effect other elements on the page*/
+        position: absolute;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        top: 20%;
+    }
+    #navbar #switchtochat{
+        background-color: #5e6061;
+    }
+    #navbar button{
+        margin: 1px;
+        height: 40px;
+        border-radius: 10%;
+        appearance: none;
+        background-color: #7d878d;
+        border: 1px solid #5e6061;
+    }
+    #navbar button:hover{
+        background-color: #5e6061;
+    }
+    
 }
+
