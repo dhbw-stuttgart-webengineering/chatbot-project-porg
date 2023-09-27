@@ -5,7 +5,10 @@ let talking = false;
 let uuid = getCookie("uuid");
 let jahrgang = getCookie("jahrgang");
 let username = getCookie("username");
-let endpoint = "https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app";
+let semester = 1;
+let lehrjahr = 1;
+// let endpoint = "https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app";
+let endpoint = "http://127.0.0.1:8080";
 let cookieRefused = false;
 
 let games = {
@@ -18,7 +21,7 @@ let games = {
 /**
  * Wait for DOM to load before executing code.
  */
-window.addEventListener('DOMContentLoaded', async ()=> {
+window.addEventListener('DOMContentLoaded', ()=> {
     if (getCookie("cookies") === "accepted") {
         settingsFromCookies();
         setCookies();
@@ -28,6 +31,8 @@ window.addEventListener('DOMContentLoaded', async ()=> {
     setEventListener();
 
     document.getElementById("loading").classList.add("remove");
+
+    set_lehrjahr_and_semester();
 
     // let Porg blink
     setInterval(blinkingAnimation, 100);
@@ -66,6 +71,7 @@ function setEventListener(){
         // Add event listener to jahrgang input
     document.getElementById("jahrgang").addEventListener("change", function() {
         jahrgang = document.getElementById("jahrgang").value;
+        set_lehrjahr_and_semester();
         setCookie("jahrgang", jahrgang);
     });
     // Add event listener to username input
@@ -146,6 +152,24 @@ async function connectToDatabase() {
         console.log(error);
         return false;
     }
+}
+
+function set_lehrjahr_and_semester() {
+    // berechne Lehrjahr und Semester.
+    // Semester wird immer ab September und März berechnet.
+    let date = new Date();
+    let month = date.getMonth() + 1;
+    if (month >= 9) {
+        semester = 1;
+        lehrjahr = date.getFullYear() - jahrgang + 1;
+    } else if (month <= 3) {
+        semester = 1;
+        lehrjahr = date.getFullYear() - jahrgang;
+    } else {
+        semester = 2;
+        lehrjahr = date.getFullYear() - jahrgang;
+    }
+    semester = semester + (lehrjahr-1) * 2;
 }
 
 /**
@@ -367,7 +391,7 @@ function askGPT(message){
     Http.open("POST", url);
     Http.setRequestHeader("Content-Type", "application/json");
     Http.setRequestHeader("Access-Control-Allow-Origin", "*");
-    Http.send(JSON.stringify({"query": message, "uuid": uuid, "information": {"jahrgang": "Jahrgang " + jahrgang.toString(), "username": username}}));
+    Http.send(JSON.stringify({"query": message, "uuid": uuid, "information": {"jahrgang": "Jahrgang " + jahrgang.toString(), "username": username, "semester": "Semester " + semester.toString(), "lehrjahr": "Lehrjahr " + lehrjahr.toString()}}));
     Http.onreadystatechange = (e) => {
         if (Http.readyState === 4 && Http.status === 200) {
             const response = JSON.parse(Http.responseText);
