@@ -12,8 +12,8 @@ Die Anwendung ist zudem in der Lage einzelne Daten zum Nutzer wie etwa den Chat-
 Zur erfolgreichen Ausführung des (Python-)Codes müssen folgende Bibliotheken installiert werden:
 Für die Installation dieser Bibliotheken geben sie folgende Befehle in die Console ein:
 
-**pip install python-dontenv**
-**pip install openai**
-**pip install pinecone-client**
+**pip install python-dontenv**  
+**pip install openai**  
+**pip install pinecone-client**  
 
 Die Dateien können auf einem unabhängigen Webserver gehostet werden oder alternativ auch lokal verwendet werden.
