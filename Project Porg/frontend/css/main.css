@@ -465,36 +465,48 @@ color: white;
 }
 
 @keyframes fly{
+  /*rotate the element arround the center of the screen*/
   0%{
     transform: translate(20vmin, -12vmin)rotate(90deg);
-  }
-  25%{
-    transform: translate(65vmin, 0vmin)rotate(180deg);
-  }
-  50%{
-    transform: translate(20vmin, 18vmin)rotate(270deg);
-  }
-  75%{
-    transform: translate(-15vmin, 0vmin)rotate(360deg);
   }
   100%{
     transform: translate(20vmin, -12vmin)rotate(450deg);
   }
 }
 
-#cookies button{
+.cookies{
   /*remove default browser style*/
   appearance: none;
-  background-color: #23b313;
+  
   border: 2px solid #484848;
   border-radius: 5px;
   color: #ffffff;
   height: 6vmin;
-  width: 30vmin;
+  width: 20vmin;
+  margin-left: 1vmin;
+  margin-right: 1vmin;
   font-size: 1em;
 }
-#cookies button:hover{
+#accept{
+  background-color: #23b313;
+}
+#accept:hover{
   background-color: #36ff1f;
   color:#373737;
   cursor: pointer;
+}
+#refuse{
+  background-color: #c90000;
+}
+#refuse:hover{
+  background-color: #ff0000;
+  color:#ffffff;
+  cursor: pointer;
+}
+#cookies p{
+  font-size: 1.5vmin;
+  text-align: center;
+  color: rgb(128, 128, 128);
+  margin-left: 20%;
+  margin-right: 20%;
 }
