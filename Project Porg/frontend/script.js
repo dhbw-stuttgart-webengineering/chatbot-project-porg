@@ -6,6 +6,7 @@ let uuid = getCookie("uuid");
 let jahrgang = getCookie("jahrgang");
 let username = getCookie("username");
 let endpoint = "https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app";
+let cookieDeclined = false;
 
 let games = {
     "playD&D": "egg/DD/dist/index.html",
@@ -18,22 +19,13 @@ let games = {
  * Wait for DOM to load before executing code.
  */
 window.addEventListener('DOMContentLoaded', async ()=> {
-    setThemeFromCookie();
+    if (getCookie("cookies") === "accepted") {
+        setThemeFromCookie();
+        setCookies();
+        setMessageFromDatabase();
+    }
     setPorg();
-    setCookies();
     setEventListener();
-    setMessageFromDatabase();
-
-    // Load font-size from cookies
-    let slider = document.getElementById("fontSize");
-    
-    slider.value = getCookie("fontSize");
-    changeFontSize(slider.value);
-
-    slider.addEventListener("mousemove", function() {
-        changeFontSize(slider.value);
-        setCookie("fontSize", slider.value);
-    });
 
     document.getElementById("loading").classList.add("remove");
 
@@ -60,7 +52,6 @@ function setCookies(){
     }
 }
 function setThemeFromCookie(){
-    //set theme from cookie
     if (checkCookie("systemmode")) {
         if (getCookie("systemmode") == "dark") {
             document.documentElement.setAttribute('data-theme', 'dark');
@@ -77,17 +68,33 @@ function setEventListener(){
         // Add event listener to jahrgang input
     document.getElementById("jahrgang").addEventListener("change", function() {
         jahrgang = document.getElementById("jahrgang").value;
-        setCookie("jahrgang", jahrgang);
+        if(declineCookies == false) {
+            setCookie("jahrgang", jahrgang);
+        }
     });
     // Add event listener to username input
     document.getElementById("username").addEventListener("change", function() {
         username = document.getElementById("username").value;
-        setCookie("username", username);
+        if (declineCookies == false) {
+            setCookie("username", username);
+        }
     });
     // Add event listener to send message button
     window.addEventListener('keyup', function (event) {
         if (event.key === 'Enter' && !talking) {
             sendMessage(document.getElementById('user-input').value);
+        }
+    });
+    // Add event listener to change font size slider
+    let slider = document.getElementById("fontSize");
+    
+    slider.value = getCookie("fontSize");
+    changeFontSize(slider.value);
+
+    slider.addEventListener("mousemove", function() {
+        changeFontSize(slider.value);
+        if(declineCookies == false) {
+            setCookie("fontSize", slider.value);
         }
     });
 }
@@ -582,4 +589,9 @@ function blinkingAnimation() {
 function acceptCookies() {
     document.getElementById("cookies").style.display = "none";
     setCookie("cookies", "accepted");
+}
+
+function declineCookies() {
+    document.getElementById("cookies").style.display = "none";
+    cookieDeclined = true;
 }
