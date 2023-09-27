@@ -1,10 +1,13 @@
-.chat{
-    grid-area: 2 / 2 / 3 / 3;
-    position: relative;
-    width: 100%;
-    max-width: 30vw;
-    margin: auto;
+@media only screen and (min-width: 1024px) {
+    .chat{
+        grid-area: 2 / 2 / 3 / 3;
+        position: relative;
+        width: 100%;
+        max-width: 30vw;
+        margin: auto;
+    }
 }
+
 
 .chat-container{
     position: relative;

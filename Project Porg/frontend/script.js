@@ -588,3 +588,35 @@ function refuseCookies() {
     document.getElementById("cookies").style.display = "none";
     cookieRefused = true;
 }
+
+//function to open and close the tabs in mobile version
+
+function openChat() {
+    document.getElementById("switchtochat").style.backgroundColor = "#5e6061";
+    document.getElementById("switchtosettings").style.backgroundColor = "#7d878d";
+    document.getElementById("switchtooverview").style.backgroundColor = "#7dd878d";
+
+    document.getElementsByClassName("chat")[0].style.display = "block";
+    document.getElementsByClassName("settings-container")[0].style.display = "none";
+    document.getElementsByClassName("link-container")[0].style.display = "none";
+}
+
+function openSettings() {
+    document.getElementById("switchtochat").style.backgroundColor = "#7d878d";
+    document.getElementById("switchtosettings").style.backgroundColor = "#5e6061";
+    document.getElementById("switchtooverview").style.backgroundColor = "#7d878d";
+
+    document.getElementsByClassName("chat")[0].style.display = "none";
+    document.getElementsByClassName("settings-container")[0].style.display = "block";
+    document.getElementsByClassName("link-container")[0].style.display = "none";
+}
+
+function openOverview() {
+    document.getElementById("switchtochat").style.backgroundColor = "#7d878d";
+    document.getElementById("switchtosettings").style.backgroundColor = "#7d878d";
+    document.getElementById("switchtooverview").style.backgroundColor = "#5e6061";
+
+    document.getElementsByClassName("chat")[0].style.display = "none";
+    document.getElementsByClassName("settings-container")[0].style.display = "none";
+    document.getElementsByClassName("link-container")[0].style.display = "block";
+}
