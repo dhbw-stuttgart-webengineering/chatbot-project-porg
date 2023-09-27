@@ -85,6 +85,8 @@ function setEventListener(){
             sendMessage(document.getElementById('user-input').value);
         }
     });
+    // Add event listener to check if resized display all elements again
+    window.addEventListener('resize', backToDesktop);
     // Add event listener to change font size slider
     let slider = document.getElementById("fontSize");
     
@@ -618,7 +620,7 @@ function refuseCookies() {
 function openChat() {
     document.getElementById("switchtochat").style.backgroundColor = "#5e6061";
     document.getElementById("switchtosettings").style.backgroundColor = "#7d878d";
-    document.getElementById("switchtooverview").style.backgroundColor = "#7dd878d";
+    document.getElementById("switchtooverview").style.backgroundColor = "#7d878d";
 
     document.getElementsByClassName("chat")[0].style.display = "block";
     document.getElementsByClassName("settings-container")[0].style.display = "none";
@@ -643,4 +645,15 @@ function openOverview() {
     document.getElementsByClassName("chat")[0].style.display = "none";
     document.getElementsByClassName("settings-container")[0].style.display = "none";
     document.getElementsByClassName("link-container")[0].style.display = "block";
+}
+
+
+function backToDesktop(){
+    //if width over 600 px
+    if (window.innerWidth > 600) {
+        //clear all element.style properties
+        document.getElementsByClassName("chat")[0].style.display = "";
+        document.getElementsByClassName("settings-container")[0].style.display = "";
+        document.getElementsByClassName("link-container")[0].style.display = "";
+    }
 }

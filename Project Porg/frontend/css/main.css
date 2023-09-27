@@ -32,9 +32,18 @@
 }
 
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 601px) {
   #navbar {
     display: none;
+  }
+  .chat{
+    display: block;
+  }
+  .link-container{
+    display: block;
+  }
+  .settings-container{
+    display: block;
   }
 }
 
