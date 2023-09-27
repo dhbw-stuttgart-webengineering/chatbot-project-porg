@@ -1,4 +1,4 @@
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 600px) {
     .grid-container{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr; 
@@ -51,6 +51,7 @@
         display: flex;
         flex-direction: column;
         top: 20%;
+        display: block;
     }
     #navbar #switchtochat{
         background-color: #5e6061;
@@ -69,3 +70,6 @@
     
 }
 
+#navbar{
+    display: none;
+}
