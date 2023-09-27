@@ -36,17 +36,17 @@ def chat(chatbot, query, information, semanticquestion):
     Du kannst nicht über andere Themen reden und beantwortest keine Fragen, die nichts mit der Hochschule zu tun haben.
     Bei Aufzählungen immer \n- verwenden.""")
     context = search(f"{semanticquestion}\n{information}")
-    res = chatbot.chat(f'Antworte im Format: <Antwort> Quelle: <Quellen>. Erfinde nichts dazu! Benutze für deine Antwort nur diese Daten:\n{context}\nInformationen zum mir:\n{information}\n########\n\n{query}')
-    checkForOldChatbots()
+    res = chatbot.chat(f'Stelle wenn wirklich notwendig Rückfragen. Antworte im Format: <Antwort> Quelle: <Quellen>. Erfinde nichts dazu! Benutze für deine Antwort nur diese Daten:\n{context}\nInformationen zum mir:\n{information}\n########\n\n{query}')
+    check_for_old_chatbots()
     return res
 
 def asksemanticbot(chatbot, query, lastquestion):
     chatbot.system("")
-    res = chatbot.chat(f"Wenn die neue Frage keine vollständige Frage ist, schaue, ob es eine Ergänzung der alten Frage ist. Wenn ja, fasse diese zusammen und gebe die Frage zurück. Ansonsten gib mir die neue Frage unverändert zurück! Schreibe nichts anderes als die Frage! Gebe eine vollständige Frage zurück!\n\nAlte Frage: {lastquestion}\nNeue Frage: {query}", replace_last=True)
+    res = chatbot.chat(f"Wenn die neue Frage keine vollständige Frage ist, schaue, ob es eine Ergänzung der alten Frage ist. Wenn ja, fasse diese zusammen und gebe die Frage zurück. Wenn die nichts damit zu tun hat, gebe einfach die neue Frage zurück. Schreibe nichts anderes als die Frage! \n\nAlte Frage: {lastquestion}\nNeue Frage: {query}", replace_last=True)
     chatbot.lastQuestion = res
     return res
 
-def getChatbot(uuid):
+def get_chatbot(uuid):
     if uuid in chatbots:
         chatbots[uuid]["chatbot"]["lastUsed"] = datetime.datetime.now()
         return chatbots[uuid]["chatbot"]["chatbot"], chatbots[uuid]["semanticbot"]
@@ -64,7 +64,7 @@ def getChatbot(uuid):
     chatbots[uuid]["semanticbot"] = semanticbot
     return chatbot, semanticbot
 
-def checkForOldChatbots():
+def check_for_old_chatbots():
     delete = []
     for uuid in chatbots:
         print(uuid + ": " + str((datetime.datetime.now() - chatbots[uuid]["chatbot"]["lastUsed"]).total_seconds()))
@@ -85,7 +85,7 @@ def chat_api():
     query = data["query"]
     uuid = data["uuid"]
     information = data["information"]
-    chatbot, semanticbot = getChatbot(uuid)
+    chatbot, semanticbot = get_chatbot(uuid)
     semanticquestion = asksemanticbot(semanticbot, query, semanticbot.lastQuestion)
     result = chat(chatbot, query, information, semanticquestion)
     messages = chatbot.getMessages()
@@ -96,13 +96,13 @@ def chat_api():
     return response
 
 @app.route("/getData", methods=["POST"])
-def getData_api():
+def get_data_api():
     data = request.json
     uuid = data["uuid"]
     if uuid == "":
         return jsonify({"response": "No uuid given"})
     result = databaseManager.get_key(uuid)
-    chatbot = getChatbot(uuid)[0]
+    chatbot = get_chatbot(uuid)[0]
     if result == None:
         databaseManager.add_key(uuid, "")
         result = databaseManager.get_key(uuid)
@@ -124,7 +124,7 @@ def reset_api():
     if uuid == "":
         return jsonify({"response": "No uuid given"})
     databaseManager.add_key(uuid, "")
-    chatbot = getChatbot(uuid)[0]
+    chatbot = get_chatbot(uuid)[0]
     chatbot.reset()
     response = jsonify({"response": "success"})
     response.headers.add('Access-Control-Allow-Origin', '*')
