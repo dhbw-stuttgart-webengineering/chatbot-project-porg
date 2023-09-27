@@ -7,7 +7,7 @@ Diese werden mithilfe künstlicher Intelligenz und der Daten im DataSet (/progra
 
 Die Anwendung ist zudem in der Lage einzelne Daten zum Nutzer wie etwa den Chat-Verlauf oder den Namen in den Cookies bzw. einer Datenbank abzuspeichern.
 
-## Installtion
+## Installation
 
 Zur erfolgreichen Ausführung des (Python-)Codes müssen folgende Bibliotheken installiert werden:
 Für die Installation dieser Bibliotheken geben sie folgende Befehle in die Console ein:
