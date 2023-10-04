@@ -12,11 +12,17 @@ let endpoint = "https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.r
 let cookieRefused = false;
 
 let games = {
-    "playD&D": "egg/DD/dist/index.html",
-    "playTT": "egg/TT/dist/index.html",
-    "playWordle": "https://wordle.at/",
-    "playMS": "egg/MS/dist/index.html"
+    "D&D": "egg/DD/dist/index.html",
+    "TT": "egg/TT/dist/index.html",
+    "Wordle": "https://wordle.at/",
+    "MS": "egg/MS/dist/index.html"
 }
+
+// get json from personen.json
+let personen = {};
+fetch("personen.json")
+    .then(response => response.json())
+    .then(data => personen = data);
 
 /**
  * Wait for DOM to load before executing code.
@@ -199,21 +205,6 @@ function receiveMessage(message) {
  * @param {string} message - The message to be sent. If empty, the function will use the value of the user input field.
  * message parameter is necassary for recreating messages from the database.
  */
-function showIframe(srcForGame) {
-    document.getElementById("tag").innerHTML = "";
-    let frameHTML = document.createElement("iframe");
-    frameHTML.id = "frame";
-    let closeGame = document.createElement("button");
-    closeGame.id = "closegame";
-    closeGame.title = "Spiel schließen";
-    closeGame.textContent = "X";
-    closeGame.onclick = function() {
-        document.getElementById("tag").innerHTML = "";
-    };
-    document.getElementById("tag").appendChild(closeGame);
-    document.getElementById("tag").appendChild(frameHTML);
-    document.getElementById("frame").src = srcForGame;
-}
 function addUserMessage(message) {
     const userMessageContainer = document.createElement('div');
     userMessageContainer.className = 'user-message';
@@ -240,6 +231,14 @@ function addBotMessage(message, typewrite = true) {
             quelle += lookForLinks(message.split("Quelle:")[1]);
         }
     }
+    let keys = Object.keys(personen);
+    for (const key of keys) {
+        if (text.includes(key)) {
+            let person = personen[key];
+            let brief = new Steckbrief(person["name"], person["bild"], person["info"], person["data"]);
+            showInfo(brief);
+        }
+    }
     botMessageContainer.appendChild(botMessage);
     document.querySelector('.messages').insertBefore(botMessageContainer, document.querySelector('#selector'));
     if (typewrite) typeWriter(text, messageNumber, quelle)
@@ -249,9 +248,21 @@ function addBotMessage(message, typewrite = true) {
 function sendMessage(message) {
     document.getElementById('user-input').value = '';
     disableSettings();
-    if (message.startsWith('!play')) {
-        let link = message.split(" ")[1];
-        showIframe(link);
+    if (message.startsWith('/play')) {
+        let gameName = message.split(" ")[1];
+        if (gameName in games) {
+            let link = games[gameName];
+            console.log(link);
+            let gameLink = new Game(link);
+            showInfo(gameLink);
+            addUserMessage(message);
+            if (username !== "") {
+                addBotMessage("Viel Spaß beim Spielen, " + username + "!");
+            } else {
+                addBotMessage("Viel Spaß beim Spielen!");
+            }
+            return;
+        }
     } else if (message == 'easterEggs') {
         addFunctionLinktoList("play Dungeons and Dragons",'#', function(){showIframe('egg/DD/dist/index.html')});
         addFunctionLinktoList("play Table Tennis",'#', function(){showIframe('egg/TT/dist/index.html')});
@@ -289,6 +300,7 @@ function sendMessage(message) {
  */
 function clearChat() {
     let messages = document.getElementsByClassName('messages');
+    document.getElementById("info").innerHTML = "";
     while (messages[0].firstChild) {
         messages[0].removeChild(messages[0].firstChild);
     }
@@ -659,5 +671,95 @@ function backToDesktop(){
         document.getElementById("switchtochat").style.backgroundColor = "#5e6061";
         document.getElementById("switchtosettings").style.backgroundColor = "#7d878d";
         document.getElementById("switchtooverview").style.backgroundColor = "#7d878d";
+    }
+}
+
+function showInfo(element){
+    let info = document.getElementById("info");
+    info.innerHTML = "";
+    info.appendChild(element.generateHTML());
+
+}
+
+class Steckbrief {
+    constructor(name, bild, info, data) {
+        this.name = name;
+        this.bild = bild;
+        this.info = info;
+        this.data = data;
+    }
+
+    // generate html code for the steckbrief
+    generateHTML() {
+        let steckbrief = document.createElement("div");
+        steckbrief.className = "steckbrief";
+
+        let steckbriefTop = document.createElement("div");
+        steckbriefTop.className = "steckbriefTop";
+
+        let steckbriefBild = document.createElement("img");
+        steckbriefBild.className = "steckbriefBild";
+        steckbriefBild.src = this.bild;
+        steckbriefTop.appendChild(steckbriefBild);
+
+        let steckbriefInfo = document.createElement("div");
+        steckbriefInfo.className = "steckbriefInfo";
+        let steckbriefName = document.createElement("h2");
+        steckbriefName.className = "steckbriefName";
+        steckbriefName.textContent = this.name;
+        steckbriefInfo.appendChild(steckbriefName);
+        let steckbriefKontakt = document.createElement("p");
+        steckbriefKontakt.className = "steckbriefKontakt";
+        // if "\\n" in this.info, split it and create a new paragraph for each element
+        if (this.info.includes("\\n")) {
+            let infoArray = this.info.split("\\n");
+            for (const element of infoArray) {
+                let p = document.createElement("p");
+                p.textContent = element;
+                steckbriefKontakt.appendChild(p);
+            }
+        } else {
+            steckbriefKontakt.textContent = this.info;
+        }
+        steckbriefInfo.appendChild(steckbriefKontakt);
+        steckbriefTop.appendChild(steckbriefInfo);
+
+        let steckbriefBottom = document.createElement("div");
+        steckbriefBottom.className = "steckbriefBottom";
+
+        let steckbriefData = document.createElement("p");
+        steckbriefData.className = "steckbriefData";
+        steckbriefData.textContent = this.data;
+        steckbriefBottom.appendChild(steckbriefData);
+        
+        steckbrief.appendChild(steckbriefTop);
+        steckbrief.appendChild(steckbriefBottom);
+
+        return steckbrief;
+    }
+}
+
+class Game {
+    constructor(link) {
+        this.link = link;
+    }
+    
+    generateHTML() {
+        let div = document.createElement("div");
+        div.id = "gameDiv";
+        let frameHTML = document.createElement("iframe");
+        frameHTML.id = "frame";
+        let closeGame = document.createElement("button");
+        closeGame.id = "closegame";
+        closeGame.className = "button";
+        closeGame.title = "Spiel schließen";
+        closeGame.textContent = "X";
+        closeGame.onclick = function() {
+            document.getElementById("info").innerHTML = "";
+        };
+        frameHTML.src = this.link;
+        div.appendChild(closeGame);
+        div.appendChild(frameHTML);
+        return div;
     }
 }

@@ -16,6 +16,7 @@
   --secondary-color: #CE2D2A;
   --font-color1: #424242;
   --font-color2: #ffffff;
+  --font-color3: #26242D;
   --bg-color: #fff;
   --heading-color: #292922;
   --pathto-porg: "files/light";
@@ -26,6 +27,7 @@
   --secondary-color: #7186c0;
   --font-color1: #715f9d;
   --font-color2: #26242D;
+  --font-color3: #7d878d;
   --bg-color: #26242D;
   --heading-color: #7c8bb5;
   --pathto-porg: "files/dark";
@@ -238,14 +240,6 @@ opacity: .5;
   justify-content: center;
   flex-direction: column;
   display: flex;
-}
-
-#tag #closegame {
-  position:relative;
-  float: right;
-  right:10px;
-  top:20px;
-  z-index: 2;
 }
 
 #loading img{
