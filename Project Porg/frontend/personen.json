@@ -103,5 +103,24 @@
         "name": "Andrea Dölker",
         "info": "Raum: B3.05\\n 70174 Stuttgart\\n Tel.: 0711/1849-4516\\n Fax: 0711/1849-4510\\n andrea.doelker@dhbw-stuttgart.de",
         "data": "Studiengangssekretariat Informatik Lerchenstraße 1"
+    },
+    "Ayse Isik": {
+        "name": "Ayse Isik",
+        "info": "Labor Informatik\\n Lerchenstraße 1\\n Raum: B3.26 70174 Stuttgart\\n Tel.: 0711/1849-4563\\n Fax: 0711/1849-4510\\n ayse.isik@dhbw-stuttgart.de",
+        "data": "Labor Informatik Lerchenstraße 1"
+    },
+    "Daniel Pesler": {
+        "name": "Daniel Pesler",
+        "info": "Labor Informatik\\n Lerchenstraße 1\\n Raum: B3.27\\n 70174 Stuttgart\\n Tel.: 0711/1849-\\n Fax: 0711/1849-4510\\n daniel.pesler@dhbw-stuttgart.de",
+        "data": "Labor Informatik Lerchenstraße 1"
+    },
+    "Günter Schneider": {
+        "name": "Günter Schneider",
+        "info": "Labor Informatik\\n Lerchenstraße 1\\n Raum: B3.31\\n 70174 Stuttgart\\n Tel.: 0711/1849-4570\\n Fax: 0711/1849-4510\\n guenter.schneider@dhbw-stuttgart.de",
+        "data": "Labor Informatik Lerchenstraße 1"
+    },
+    "Holger Szüsz": {
+        "name": "Holger Szüsz",
+        "info": "Labor Informatik\\n Lerchenstraße 1\\n Raum: B3.29\\n 70174 Stuttgart\\n Tel.: 0711/1849-4609\\n holger.szuesz@dhbw-stuttgart.de",
+        "data": "Labor Informatik Lerchenstraße 1"
     }
-}
