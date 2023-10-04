@@ -121,8 +121,10 @@ function setPorg(){
     let a = document.documentElement.getAttribute('data-theme');
     if (a == "light") {
         document.getElementById("porg").src = porgLight+"Porg.png";
+        document.getElementById("tabicon").href = porgLight+"icon.png";
     } else {
         document.getElementById("porg").src = porgDark+"Porg.png";
+        document.getElementById("tabicon").href = porgDark+"icon.png";
     }
 }
 
@@ -557,14 +559,13 @@ function switchTheme() {
     let a = document.documentElement.getAttribute('data-theme');
     if (a == "light") {
         document.documentElement.setAttribute('data-theme', 'dark');
-        document.getElementById("porg").src = porgDark+"Porg.png";
         setCookie("systemmode", "dark");
     }
     else {
         document.documentElement.setAttribute('data-theme', 'light');
-        document.getElementById("porg").src = porgLight+"Porg.png";
         setCookie("systemmode", "light");
     }    
+    setPorg();
 }
 
 
