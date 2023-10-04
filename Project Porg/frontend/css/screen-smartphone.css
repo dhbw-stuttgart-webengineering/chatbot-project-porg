@@ -68,6 +68,8 @@
     #navbar button:hover{
         background-color: #5e6061;
     }
-    
+    #info{
+        display: none;
+    }
 }
 
