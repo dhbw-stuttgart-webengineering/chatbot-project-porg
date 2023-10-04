@@ -7,8 +7,8 @@ let jahrgang = getCookie("jahrgang");
 let username = getCookie("username");
 let semester = 1;
 let lehrjahr = 1;
-// let endpoint = "https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app";
-let endpoint = "http://127.0.0.1:8080";
+let endpoint = "https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app";
+//let endpoint = "http://127.0.0.1:8080";
 let cookieRefused = false;
 
 let games = {
@@ -339,7 +339,7 @@ function lookForLinks(message) {
         return message;
     }
     const a = document.createElement('a');
-    a.style.fontSize = "12px";
+    a.className = 'messageLink';
     let url = message.match(urlRegex)[0];
     if (RegExp(/[^\d]$/).exec(url)) {
         url = url.slice(0, url.length - 1);
