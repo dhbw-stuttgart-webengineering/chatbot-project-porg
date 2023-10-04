@@ -96,7 +96,7 @@ h2{
   top: 0;
   width: 100%;
   background-color: var(--secondary-color);
-  color: var(--primary-color);
+  color: var(--font-color2);
   margin: 0px -8px;
   box-sizing: border-box;
   padding: 20px;
