@@ -59,7 +59,7 @@ body {
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr 1fr; 
-  grid-template-rows: 0.25fr 1.5fr; 
+  grid-template-rows: 0.225fr 1.5fr; 
   gap: 0 0;
   grid-template-areas: 
   ". . ."
@@ -96,7 +96,7 @@ h2{
   top: 0;
   width: 100%;
   background-color: var(--secondary-color);
-  color: var(--primary-color);
+  color: var(--font-color2);
   margin: 0px -8px;
   box-sizing: border-box;
   padding: 20px;
