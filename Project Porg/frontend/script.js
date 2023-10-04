@@ -12,102 +12,17 @@ let endpoint = "https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.r
 let cookieRefused = false;
 
 let games = {
-    "playD&D": "egg/DD/dist/index.html",
-    "playTT": "egg/TT/dist/index.html",
-    "playWordle": "https://wordle.at/",
-    "playMS": "egg/MS/dist/index.html"
+    "D&D": "egg/DD/dist/index.html",
+    "TT": "egg/TT/dist/index.html",
+    "Wordle": "https://wordle.at/",
+    "MS": "egg/MS/dist/index.html"
 }
 
-let personen = {
-    "Prof. Dipl.-Ing. Friedemann Stockmayer": {
-        "name": "Prof. Dipl.-Ing. Friedemann Stockmayer",
-        "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/1/6/csm_124_f88e0ee413.jpg",
-        "info": "Lerchenstraße 1, Raum: B3.08, 70174 Stuttgart, Tel.: 0711/1849-4503, Fax: 0711/1849-4510, friedemann.stockmayer@dhbw-stuttgart.de"
-    },
-    "Prof. Dr. Mario Babilon": {
-        "name": "Prof. Dr. Mario Babilon",
-        "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/e/8/csm_545_0556d62775.jpg",
-        "info": "Studiengangsleiter Informatik, Lerchenstraße 1, Raum: B3.28, 70174 Stuttgart, Tel.: 0711/1849-4536, Fax: 0711/1849-4510, mario.babilon@dhbw-stuttgart.de"
-    },
-    "Prof. Dr. Ivan Bogicevic": {
-        "name": "Prof. Dr. Ivan Bogicevic",
-        "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/e/6/csm_1793_30c9ef4f21.jpg",
-        "info": "Professor für Informatik, Lerchenstraße 1, Raum: B3.16, 70174 Stuttgart, Tel.: 0711/1849-4534, ivan.bogicevic@dhbw-stuttgart.de"
-    },
-    "Prof. Dr. Janko Dietzsch": {
-        "name": "Prof. Dr. Janko Dietzsch",
-        "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/8/5/csm_1460_aa7df47972.jpg",
-        "info": "Professor an der DHBW, Lerchenstraße 1, Raum: B3.02, 70174 Stuttgart, Tel.: 0711/1849-4615, Fax: 0711/1849-4510, janko.dietzsch@dhbw-stuttgart.de"
-    },
-    "Prof. Dr. rer. nat. Matthias Drüppel": {
-        "name": "Prof. Dr. rer. nat. Matthias Drüppel",
-        "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/8/d/csm_1704_b57c8cac79.jpg",
-        "info": "Professor für Informatik, Lerchenstraße 1, Raum: B3.04, 70174 Stuttgart, Tel.: 0711/1849-4512, matthias.drueppel@dhbw-stuttgart.de"
-    },
-    "Prof. Dr. Jan Hladik": {
-        "name": "Prof. Dr. Jan Hladik",
-        "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/5/3/csm_1086_5e8b81e1f4.jpg",
-        "info": "Professor für Informatik, Lerchenstraße 1, Raum: B3.12, 70174 Stuttgart, Tel.: 0711/1849-4501, Fax: 0711/1849-4510, Jan.Hladik@dhbw-stuttgart.de"
-    },
-    "Prof. Dr. Monika Kochanowski": {
-        "name": "Prof. Dr. Monika Kochanowski",
-        "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/e/e/csm_1539_0af96d9e07.jpg",
-        "info": "Professorin für Informatik, Lerchenstraße 1, Raum: B3.10, 70174 Stuttgart, Tel.: 0711/1849-4583, Fax: 0711/1849-4510, monika.kochanowski@dhbw-stuttgart.de"
-    },
-    "Prof. Dr.-Ing. Falko Michael Kötter": {
-        "name": "Prof. Dr.-Ing. Falko Michael Kötter",
-        "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/1/4/csm_1684_83509e06af.jpg",
-        "info": "Professor für Informatik, Lerchenstraße 1, Raum: B3.11, 70174 Stuttgart, Tel.: 0711/1849-4650, Fax: 0711/1849-4510, falko.koetter@dhbw-stuttgart.de"
-    },
-    "Prof. Dr. Dirk Reichardt": {
-        "name": "Prof. Dr. Dirk Reichardt",
-        "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/6/7/csm_119_1a092c4fe6.jpg",
-        "info": "Studiendekan Informatik, Lerchenstraße 1, Raum: B3.01, 70174 Stuttgart, Tel.: 0711/1849-4538, Fax: 0711/1849-4510, dirk.reichardt@dhbw-stuttgart.de"
-    },
-    "Prof. Dr. Doris Nitsche-Ruhland": {
-        "name": "Prof. Dr. Doris Nitsche-Ruhland",
-        "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/5/c/csm_118_a6d801622e.jpg",
-        "info": "Studiengangsleiterin Informatik, Lerchenstraße 1, Raum: B3.14, 70174 Stuttgart, Tel.: 0711/1849-4523, Fax: 0711/1849-4510, doris.nitsche-ruhland@dhbw-stuttgart.de"
-    },
-    "Prof. Dr. rer. nat. Stephan Schulz":{
-        "name": "Prof. Dr. rer. nat. Stephan Schulz",
-        "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/3/5/csm_1064_2fc4ad3ff6.jpg",
-        "info": "Studiengangsleiter im Studiengang Informatik, Lerchenstraße 1, Raum: B3.14, 70174 Stuttgart, Tel.: 0711/1849-4519, Fax: 0711/1849-4510, stephan.schulz@dhbw-stuttgart.de"
-    },
-    "Prof. Dr. Bernd Schwinn": {
-        "name": "Prof. Dr. Bernd Schwinn",
-        "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/4/b/csm_123_4704cb3453.jpg",
-        "info": "Studiengangsleiter Informatik, Lerchenstraße 1, Raum: B3.09, 70174 Stuttgart, Tel.: 0711/1849-4505, Fax: 0711/1849-4510, bernd.schwinn@dhbw-stuttgart.de"
-    },
-    "Prof. Dr.-Ing. Alfred Strey": {
-        "name": "Prof. Dr.-Ing. Alfred Strey",
-        "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/d/5/csm_1041_52e0fb3912.jpg",
-        "info": "Professor für Informatik, Lerchenstraße 1, Raum: B3.15, 70174 Stuttgart, Tel.: 0711/1849-4543, Fax: 0711/1849-4510, alfred.strey@dhbw-stuttgart.de"
-    },
-    "Prof. Dr. Carmen Winter": {
-        "name": "Prof. Dr. Carmen Winter",
-        "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/f/c/csm_721_4919a831fb.jpg",
-        "info": "Studiengangsleitung Informatik, Lerchenstraße 1, Raum: B3.13, 70174 Stuttgart, Tel.: 0711/1849-4504, Fax: 0711/1849-4510, carmen.winter@dhbw-stuttgart.de"
-    },
-    "Prof. Dr. Zoltán Zomotor": {
-        "name": "Prof. Dr. Zoltán Zomotor",
-        "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/2/3/csm_623_5eadff8541.jpg",
-        "info": "Studiengangsleiter Informatik, Lerchenstraße 1, Raum: B3.03, 70174 Stuttgart, Tel.: 0711/1849-4582, Fax: 0711/1849-4510, zoltan.zomotor@dhbw-stuttgart.de"
-    },
-    "Carina Millow": {
-        "name": "Carina Millow",
-        "info": "Studiengangssekretariat Informatik, 1. Studienjahr, Lerchenstraße 1, Raum: B3.07, 70174 Stuttgart, Tel.: 0711/1849-4517, Fax: 0711/1849-4510, carina.millow@dhbw-stuttgart.de"
-    },
-    "Christine Rohne": {
-        "name": "Christine Rohne",
-        "info": "Studiengangssekretariat Informatik, 2. Studienjahr, Lerchenstraße 1, Raum: B3.06, 70174 Stuttgart, Tel.: 0711/1849-4513, Fax: 0711/1849-4510, christine.rohne@dhbw-stuttgart.de"
-    },
-    "Andrea Dölker": {
-        "name": "Andrea Dölker",
-        "info": "Studiengangssekretariat Informatik, Lerchenstraße 1, Raum: B3.05, 70174 Stuttgart, Tel.: 0711/1849-4516, Fax: 0711/1849-4510, andrea.doelker@dhbw-stuttgart.de"
-    }
-
-}
+// get json from personen.json
+let personen = {};
+fetch("personen.json")
+    .then(response => response.json())
+    .then(data => personen = data);
 
 /**
  * Wait for DOM to load before executing code.
@@ -286,21 +201,6 @@ function receiveMessage(message) {
  * @param {string} message - The message to be sent. If empty, the function will use the value of the user input field.
  * message parameter is necassary for recreating messages from the database.
  */
-function showIframe(srcForGame) {
-    document.getElementById("tag").innerHTML = "";
-    let frameHTML = document.createElement("iframe");
-    frameHTML.id = "frame";
-    let closeGame = document.createElement("button");
-    closeGame.id = "closegame";
-    closeGame.title = "Spiel schließen";
-    closeGame.textContent = "X";
-    closeGame.onclick = function() {
-        document.getElementById("tag").innerHTML = "";
-    };
-    document.getElementById("tag").appendChild(closeGame);
-    document.getElementById("tag").appendChild(frameHTML);
-    document.getElementById("frame").src = srcForGame;
-}
 function addUserMessage(message) {
     const userMessageContainer = document.createElement('div');
     userMessageContainer.className = 'user-message';
@@ -331,7 +231,7 @@ function addBotMessage(message, typewrite = true) {
     for (const key of keys) {
         if (text.includes(key)) {
             let person = personen[key];
-            let brief = new Steckbrief(person["name"], person["bild"], person["info"]);
+            let brief = new Steckbrief(person["name"], person["bild"], person["info"], person["data"]);
             showInfo(brief);
         }
     }
@@ -344,9 +244,21 @@ function addBotMessage(message, typewrite = true) {
 function sendMessage(message) {
     document.getElementById('user-input').value = '';
     disableSettings();
-    if (message.startsWith('!play')) {
-        let link = message.split(" ")[1];
-        showIframe(link);
+    if (message.startsWith('/play')) {
+        let gameName = message.split(" ")[1];
+        if (gameName in games) {
+            let link = games[gameName];
+            console.log(link);
+            let gameLink = new Game(link);
+            showInfo(gameLink);
+            addUserMessage(message);
+            if (username !== "") {
+                addBotMessage("Viel Spaß beim Spielen, " + username + "!");
+            } else {
+                addBotMessage("Viel Spaß beim Spielen!");
+            }
+            return;
+        }
     } else if (message == 'easterEggs') {
         addFunctionLinktoList("play Dungeons and Dragons",'#', function(){showIframe('egg/DD/dist/index.html')});
         addFunctionLinktoList("play Table Tennis",'#', function(){showIframe('egg/TT/dist/index.html')});
@@ -753,10 +665,11 @@ function showInfo(element){
 }
 
 class Steckbrief {
-    constructor(name, bild, info) {
+    constructor(name, bild, info, data) {
         this.name = name;
         this.bild = bild;
         this.info = info;
+        this.data = data;
     }
 
     // generate html code for the steckbrief
@@ -764,21 +677,72 @@ class Steckbrief {
         let steckbrief = document.createElement("div");
         steckbrief.className = "steckbrief";
 
+        let steckbriefTop = document.createElement("div");
+        steckbriefTop.className = "steckbriefTop";
+
         let steckbriefBild = document.createElement("img");
         steckbriefBild.className = "steckbriefBild";
         steckbriefBild.src = this.bild;
-        steckbrief.appendChild(steckbriefBild);
+        steckbriefTop.appendChild(steckbriefBild);
 
+        let steckbriefInfo = document.createElement("div");
+        steckbriefInfo.className = "steckbriefInfo";
         let steckbriefName = document.createElement("h2");
         steckbriefName.className = "steckbriefName";
         steckbriefName.textContent = this.name;
-        steckbrief.appendChild(steckbriefName);
+        steckbriefInfo.appendChild(steckbriefName);
+        let steckbriefKontakt = document.createElement("p");
+        steckbriefKontakt.className = "steckbriefKontakt";
+        // if "\\n" in this.info, split it and create a new paragraph for each element
+        if (this.info.includes("\\n")) {
+            let infoArray = this.info.split("\\n");
+            for (const element of infoArray) {
+                let p = document.createElement("p");
+                p.textContent = element;
+                steckbriefKontakt.appendChild(p);
+            }
+        } else {
+            steckbriefKontakt.textContent = this.info;
+        }
+        steckbriefInfo.appendChild(steckbriefKontakt);
+        steckbriefTop.appendChild(steckbriefInfo);
 
-        let steckbriefInfo = document.createElement("p");
-        steckbriefInfo.className = "steckbriefInfo";
-        steckbriefInfo.textContent = this.info;
-        steckbrief.appendChild(steckbriefInfo);
+        let steckbriefBottom = document.createElement("div");
+        steckbriefBottom.className = "steckbriefBottom";
+
+        let steckbriefData = document.createElement("p");
+        steckbriefData.className = "steckbriefData";
+        steckbriefData.textContent = this.data;
+        steckbriefBottom.appendChild(steckbriefData);
+        
+        steckbrief.appendChild(steckbriefTop);
+        steckbrief.appendChild(steckbriefBottom);
 
         return steckbrief;
+    }
+}
+
+class Game {
+    constructor(link) {
+        this.link = link;
+    }
+    
+    generateHTML() {
+        let div = document.createElement("div");
+        div.id = "gameDiv";
+        let frameHTML = document.createElement("iframe");
+        frameHTML.id = "frame";
+        let closeGame = document.createElement("button");
+        closeGame.id = "closegame";
+        closeGame.className = "button";
+        closeGame.title = "Spiel schließen";
+        closeGame.textContent = "X";
+        closeGame.onclick = function() {
+            document.getElementById("info").innerHTML = "";
+        };
+        frameHTML.src = this.link;
+        div.appendChild(closeGame);
+        div.appendChild(frameHTML);
+        return div;
     }
 }
