@@ -339,7 +339,7 @@ function lookForLinks(message) {
         return message;
     }
     const a = document.createElement('a');
-    a.style.fontSize = "12px";
+    a.className = 'messageLink';
     let url = message.match(urlRegex)[0];
     if (RegExp(/[^\d]$/).exec(url)) {
         url = url.slice(0, url.length - 1);
