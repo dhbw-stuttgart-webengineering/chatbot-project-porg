@@ -7,8 +7,8 @@ let jahrgang = getCookie("jahrgang");
 let username = getCookie("username");
 let semester = 1;
 let lehrjahr = 1;
-let endpoint = "https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app";
-// let endpoint = "http://127.0.0.1:8080";
+// let endpoint = "https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app";
+let endpoint = "http://127.0.0.1:8080";
 let cookieRefused = false;
 
 let games = {
@@ -252,7 +252,6 @@ function sendMessage(message) {
         let gameName = message.split(" ")[1];
         if (gameName in games) {
             let link = games[gameName];
-            console.log(link);
             let gameLink = new Game(link);
             showInfo(gameLink);
             addUserMessage(message);
@@ -313,7 +312,6 @@ function clearChat() {
     Http.onreadystatechange = (e) => {
         if (Http.readyState === 4 && Http.status === 200) {
             const response = JSON.parse(Http.responseText);
-            console.log(response);
         }
     }
     disableSettings();
@@ -411,7 +409,6 @@ function askGPT(message){
     Http.onreadystatechange = (e) => {
         if (Http.readyState === 4 && Http.status === 200) {
             const response = JSON.parse(Http.responseText);
-            console.log(response);
             receiveMessage(response.response);
         }
     }
@@ -450,7 +447,6 @@ function typeWriter(txt, messageNumber, quelle) {
         i++;
         setTimeout(typeWriter, speed, txtArray.join(""), messageNumber, quelle);
     } else {
-        document.getElementById("porg").setAttribute("src", src+"/Porg.png")
         document.getElementById('bot-message-' + messageNumber).innerHTML += quelle;
     }
 }
@@ -477,7 +473,6 @@ function sendMail(){
     Http.onreadystatechange = (e) => {
         if (Http.readyState === 4 && Http.status === 200) {
             const response = JSON.parse(Http.responseText);
-            console.log(response);
             addAlert();
         }
     }

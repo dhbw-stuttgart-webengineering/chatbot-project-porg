@@ -22,12 +22,15 @@ def embedding(query):
     metadata = [{"text": query}]
     return embeddings, metadata
 
-def search(query):
+def search(query, k=7, text=True):
     embeds, _ = embedding(query)
-    res = pinecone_index.query(vector=embeds, top_k=7, include_metadata=True)
-    messages = [f"{i+1}. {message['metadata']['text']}. Quelle: {message['metadata']['link']}\n" for i, message in enumerate(res["matches"])]
-    res = "".join(messages)
-    print(res)
+    res = pinecone_index.query(vector=embeds, top_k=k, include_metadata=True)
+    if text: 
+        messages = [f"{i+1}. {message['metadata']['text']}. Quelle: {message['metadata']['link']}\n" for i, message in enumerate(res["matches"])]
+        res = "".join(messages)
+    else:
+        messages = [message['metadata'] for message in res["matches"]]
+        res = messages
     return res
 
 def chat(chatbot, query, information, semanticquestion):
@@ -36,7 +39,7 @@ def chat(chatbot, query, information, semanticquestion):
     Du kannst nicht über andere Themen reden und beantwortest keine Fragen, die nichts mit der Hochschule zu tun haben.
     Bei Aufzählungen immer \n- verwenden.""")
     context = search(f"{semanticquestion}\n{information}")
-    res = chatbot.chat(f'Stelle wenn wirklich notwendig Rückfragen. Antworte im Format: <Antwort> Quelle: <Quellen>. Erfinde nichts dazu! Benutze für deine Antwort nur diese Daten:\n{context}\nInformationen zum mir:\n{information}\n########\n\n{query}')
+    res = chatbot.chat(f'Stelle wenn wirklich notwendig Rückfragen. Keine Quellenangabe! Erfinde nichts dazu! Benutze für deine Antwort nur diese Daten:\n{context}\nInformationen zum mir:\n{information}\n########\n\n{query}')
     check_for_old_chatbots()
     return res
 
@@ -77,7 +80,7 @@ def check_for_old_chatbots():
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 app = Flask(__name__)
-CORS(app, resources={r"/chat": {"origins": "*"}, r"/mail": {"origins": "*"}, r"/getData": {"origins": "*"}, r"/reset": {"origins": "*"}})
+CORS(app, resources={r"/chat": {"origins": "*"}, r"/mail": {"origins": "*"}, r"/getData": {"origins": "*"}, r"/reset": {"origins": "*"}, r"/semantic": {"origins": "*"}})
 
 @app.route("/chat", methods=["POST"])
 def chat_api():
@@ -88,6 +91,9 @@ def chat_api():
     chatbot, semanticbot = get_chatbot(uuid)
     semanticquestion = asksemanticbot(semanticbot, query, semanticbot.lastQuestion)
     result = chat(chatbot, query, information, semanticquestion)
+    link = search(result, k=1, text=False)[0]["link"]
+    result = result + f" Quelle: {link}"
+    chatbot.replaceLastAnswer(result)
     messages = chatbot.getMessages()
     if uuid != "":
         databaseManager.add_key(uuid, messages)

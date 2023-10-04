@@ -59,3 +59,6 @@ class ChatGPT:
     def removeContentFromMessage(self):
         indexOfFrage = self._messages[-2]["content"].find("########\n\n")
         self._messages[-2]["content"] = self._messages[-2]["content"][indexOfFrage+10:]
+
+    def replaceLastAnswer(self, message):
+        self._messages[-1]["content"] = message
