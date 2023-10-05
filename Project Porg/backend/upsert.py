@@ -18,11 +18,10 @@ def read_csv(path):
 def embedding(df):
     texts = []
     metadata = []
-    for column, row in df.iterrows():
-        #143 - 177 hat nicht geklappt. Rest ist drin
-        if column < 178 and column >= 177:
-            texts.append(row.text)
-            metadata.append({"text": row.text, "link": row.link})
+    for col, row in df.iterrows():
+        print(col, row.link)
+        texts.append(row.text)
+        metadata.append({"text": row.text, "link": row.link})
     res = openai.Embedding.create(input=texts, engine="text-embedding-ada-002")
     embeddings = [vec["embedding"] for vec in res["data"]]
     return embeddings, metadata
