@@ -235,6 +235,9 @@ function addBotMessage(message, typewrite = true) {
     for (const key of keys) {
         if (text.includes(key)) {
             let person = personen[key];
+            if (person["bild"] === undefined) {
+                person["bild"] = "files/anonym.png";
+            }
             let brief = new Steckbrief(person["name"], person["bild"], person["info"], person["data"]);
             showInfo(brief);
         }
@@ -341,9 +344,6 @@ function lookForLinks(message) {
     const a = document.createElement('a');
     a.className = 'messageLink';
     let url = message.match(urlRegex)[0];
-    if (RegExp(/[^\d]$/).exec(url)) {
-        url = url.slice(0, url.length - 1);
-    }
     a.href = url;
     a.target = '_blank';
     a.textContent = "Quelle zu diesen Informationen"

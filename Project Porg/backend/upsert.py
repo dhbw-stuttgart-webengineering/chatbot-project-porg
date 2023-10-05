@@ -19,7 +19,6 @@ def embedding(df):
     texts = []
     metadata = []
     for col, row in df.iterrows():
-        print(col, row.link)
         texts.append(row.text)
         metadata.append({"text": row.text, "link": row.link})
     res = openai.Embedding.create(input=texts, engine="text-embedding-ada-002")

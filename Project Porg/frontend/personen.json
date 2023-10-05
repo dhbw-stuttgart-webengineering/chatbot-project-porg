@@ -1,6 +1,6 @@
 {
-    "Prof. Dipl.-Ing. Friedemann Stockmeyer": {
-        "name": "Prof. Dipl.-Ing. Friedemann Stockmeyer",
+    "Prof. Dipl.-Ing. Friedemann Stockmayer": {
+        "name": "Prof. Dipl.-Ing. Friedemann Stockmayer",
         "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/1/6/csm_124_f88e0ee413.jpg",
         "info": "Lerchenstraße 1\\n Raum: B3.08\\n 70174 Stuttgart\\n Tel.: 0711/1849-4503\\n Fax: 0711/1849-4510\\n friedemann.stockmayer@dhbw-stuttgart.de",
         "data": "Studiengangsleiter Informatik"
@@ -124,3 +124,4 @@
         "info": "Labor Informatik\\n Lerchenstraße 1\\n Raum: B3.29\\n 70174 Stuttgart\\n Tel.: 0711/1849-4609\\n holger.szuesz@dhbw-stuttgart.de",
         "data": "Labor Informatik Lerchenstraße 1"
     }
+}
