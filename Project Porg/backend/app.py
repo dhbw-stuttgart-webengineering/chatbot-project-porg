@@ -28,6 +28,7 @@ def search(query, k=7, text=True):
     if text: 
         messages = [f"{i+1}. {message['metadata']['text']}. Quelle: {message['metadata']['link']}\n" for i, message in enumerate(res["matches"])]
         res = "".join(messages)
+        print(res)
     else:
         messages = [message['metadata'] for message in res["matches"]]
         res = messages
