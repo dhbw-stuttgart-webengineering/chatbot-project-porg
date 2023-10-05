@@ -11,16 +11,18 @@ openai.api_key = f"{os.getenv('OPENAI_API_KEY')}" + f"{os.getenv('OPENAI_API_KEY
 
 pinecone_index = pinecone.Index(os.getenv("PINECONE_INDEX") or "")
 
-def readCSV(path):
+def read_csv(path):
     df = pandas.read_csv(path, encoding="utf-8", sep=";", names=["text", "link"])
     return df
 
 def embedding(df):
     texts = []
     metadata = []
-    for _, row in df.iterrows():
-        texts.append(row.text)
-        metadata.append({"text": row.text, "link": row.link})
+    for column, row in df.iterrows():
+        #143 - 177 hat nicht geklappt. Rest ist drin
+        if column < 178 and column >= 177:
+            texts.append(row.text)
+            metadata.append({"text": row.text, "link": row.link})
     res = openai.Embedding.create(input=texts, engine="text-embedding-ada-002")
     embeddings = [vec["embedding"] for vec in res["data"]]
     return embeddings, metadata
@@ -37,5 +39,5 @@ def upsert(df):
         sys.exit(1)
 
 if __name__ == "__main__":
-    df = readCSV(os.path.join(os.path.dirname(__file__), "..", "..", "DataSet.csv"))
+    df = read_csv(os.path.join(os.path.dirname(__file__), "..", "..", "DataSet.csv"))
     upsert(df)

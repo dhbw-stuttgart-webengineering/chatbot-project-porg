@@ -722,10 +722,21 @@ class Steckbrief {
         let steckbriefBottom = document.createElement("div");
         steckbriefBottom.className = "steckbriefBottom";
 
-        let steckbriefData = document.createElement("p");
-        steckbriefData.className = "steckbriefData";
-        steckbriefData.textContent = this.data;
-        steckbriefBottom.appendChild(steckbriefData);
+        // if "\\n" in this.data, split it and create a new paragraph for each element
+        if (this.data.includes("\\n")) {
+            let dataArray = this.data.split("\\n");
+            for (const element of dataArray) {
+                let steckbriefData = document.createElement("p");
+                steckbriefData.className = "steckbriefData";
+                steckbriefData.textContent = element;
+                steckbriefBottom.appendChild(steckbriefData);
+            }
+        } else {
+            let steckbriefData = document.createElement("p");
+            steckbriefData.className = "steckbriefData";
+            steckbriefData.textContent = this.data;
+            steckbriefBottom.appendChild(steckbriefData);
+        }
         
         steckbrief.appendChild(steckbriefTop);
         steckbrief.appendChild(steckbriefBottom);
