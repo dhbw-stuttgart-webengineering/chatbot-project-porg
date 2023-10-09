@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+    <head>
+        <!--Icon Header-->
+        <link rel="icon" id="tabicon" href="">
+        <!--Stylesheets-->
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/settings.css">
+        <link rel="stylesheet" href="css/chat.css">
+        <link rel="stylesheet" href="css/overview.css">
+        <link rel="stylesheet" href="css/screen-smartphone.css">
+        <link rel="stylesheet" href="css/screen-tablet.css">
+        <!-- Custom font -->
+        <link href="https://db.onlinewebfonts.com/c/aa93cb662eed3dbceaf9144b30dbea90?family=Generis+Sans+W01+Regular" rel="stylesheet">
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dein DHBW Chatbot</title>
+    </head>
+    <body>
+        <!-- Loading Screen -->
+        <div id="loading">
+            <img src="files/loading.gif" alt="loading" id="loading-img">
+            <p id="loading-text">Einen Moment bitte ...</p>
+        </div>
+
+        <!-- Cookies -->
+        <div id="cookies">
+            <div id="headlineflex">
+                <h1>C</h1>
+                <div id="moon"></div>
+                <div id="earth"><img id="rocket" src="/Project Porg/frontend/files/cookies/rocket.gif" alt="hier sollte eine Rakete sein"></div>
+                <h1>OKIES</h1>  
+            </div>
+            <div>
+                <button class = "cookies", id = "accept", onclick="acceptCookies()">Akzeptieren</button>
+                <button class = "cookies", id = "refuse", onclick="refuseCookies()">Ablehnen</button>
+            </div>
+            <p>Diese Seite verwendet Cookies, um Ihnen das bestmögliche Erlebnis zu gewährleisten. So werden beispielsweise Ihr Chatverlauf und Ihre Einstellungen gespeichert. Für das bestmögliche Nutzererlebnis empfehlen wir Ihnen, die Cookies zu akzeptieren.</p>
+        </div>
+
+        <!-- Navbar Mobile -->
+        <div id="navbar">
+            <button id="switchtochat" onclick="openChat()">💬</button>
+            <button id="switchtosettings" onclick="openSettings()">⚙️</button>
+            <button id="switchtooverview" onclick="openOverview()">📋</button>
+        </div>
+
+        <!-- Content -->
+        <div class = "grid-container">
+            <div class="header">
+                <div class="logo">
+                    <!-- Open Link in new tab-->
+                    <a href="https://www.dhbw-stuttgart.de/" target="_blank"><img src="https://www.dhbw-stuttgart.de/typo3conf/ext/dhbw_sitepackage/Resources/Public/Images/logo.svg" alt="Logo"></a>
+                </div>
+                <!-- Setting Slider Light/Dark-Mode-->
+                <input type="checkbox" id="switch" onchange="switchTheme()">
+                    <div class="app">
+                        <div class="body">
+                            <div class="circlespace">
+                                <div class="circle">
+                                    <div class="crescent"></div>
+                                </div>
+                            </div>
+                                <div class="content">
+                                    
+                                    <label id="label" for="switch">
+                                    <div class="toggle"></div>
+                                    <div class="names">
+                                        <p class="light">Light</p>
+                                        <p class="dark">Dark</p>
+                                </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="settings-container">
+                <div id="flexstart">
+                    <h2>Einstellungen</h2>
+                    <input type="text" id="username" name="username" placeholder="Benutzername">
+                    <select name="jahrgang" id="jahrgang">
+                        <option value="2023" selected>Jahrgang 2023</option>
+                        <option value="2022">Jahrgang 2022</option>
+                        <option value="2021">Jahrgang 2021</option>
+                    </select>
+                    <input type="range" onChange="changeFontSize(this.value)" min="30" max="70" value="50" class="slider" id="fontSize">
+                </div>
+                <div id="flexend">
+                    <p id="settings-hinweis">Persönliche Angaben sind ausschließlich zu Beginn des Chats einzugeben. Bei Bedarf können Sie den Chatverlauf durch Anklicken des Mülltonnen-Symbols löschen.</p>
+                </div>
+            </div>
+            <div class="chat">
+                <div class="chat-container">
+                    <div class="messages">
+                        <div class="message" id="bot-message-1">
+                            <div class="text">
+                                Hallo, ich bin Porg! Wie kann ich dir heute helfen?
+                            </div>
+                            <div class="quelle-container">
+
+                            </div>
+                        </div>
+                        <div id="selector"></div>
+                    </div>
+                </div>
+                <button title="Chat melden" id="reportBug" class="button" onclick="sendMail()">!</button>
+                <div id="fog"></div>
+                <div id="porg-container">
+                    <img src="" alt="Porg" class="porg" id="porg" height="175px">
+                </div>
+                <div class="input-container">
+                    <button id="clearChat" title="Chat löschen" onclick="clearChat()">🗑️</button>
+                    <input type="text" id="user-input" placeholder="Bitte geben sie hier ihre Frage ein">
+                    <button id="sendMessage" title="Nachricht absenden"onclick="sendMessage(document.getElementById('user-input').value)">➡️</button>
+                </div>
+            </div>
+            <div id="info">
+                <ul id="father"></ul>
+            </div>
+        </div> 
+    </body>
+    <footer>
+        <script src="script.js"></script>
+    </footer>
+</html>
