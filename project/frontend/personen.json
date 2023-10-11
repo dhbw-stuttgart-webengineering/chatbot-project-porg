@@ -1,89 +1,89 @@
 {
-    "Prof. Dipl.-Ing. Friedemann Stockmayer": {
+    "Friedemann Stockmayer": {
         "name": "Prof. Dipl.-Ing. Friedemann Stockmayer",
         "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/1/6/csm_124_f88e0ee413.jpg",
         "info": "Lerchenstraße 1\\n Raum: B3.08\\n 70174 Stuttgart\\n Tel.: 0711/1849-4503\\n Fax: 0711/1849-4510\\n friedemann.stockmayer@dhbw-stuttgart.de",
-        "data": "Studiengangsleiter Informatik"
+        "data": "Studiengangsleiter Informatik\\nAnsprechperson Informatik"
     },
-    "Prof. Dr. Mario Babilon": {
+    "Mario Babilon": {
         "name": "Prof. Dr. Mario Babilon",
         "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/e/8/csm_545_0556d62775.jpg",
         "info": "Lerchenstraße 1\\n Raum: B3.28\\n 70174 Stuttgart\\n Tel.: 0711/1849-4536\\n Fax: 0711/1849-4510\\n mario.babilon@dhbw-stuttgart.de",
-        "data": "Studiengangsleiter Informatik"
+        "data": "Studiengangsleiter Informatik\\nAnsprechperson Informationstechnik und IT-Automotive"
     },
-    "Prof. Dr. Ivan Bogicevic": {
+    "Ivan Bogicevic": {
         "name": "Prof. Dr. Ivan Bogicevic",
         "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/e/6/csm_1793_30c9ef4f21.jpg",
         "info": "Lerchenstraße 1\\n Raum: B3.16\\n 70174 Stuttgart\\n Tel.: 0711/1849-4534\\n ivan.bogicevic@dhbw-stuttgart.de",
         "data": "Professor für Informatik"
     },
-    "Prof. Dr. Janko Dietzsch": {
+    "Janko Dietzsch": {
         "name": "Prof. Dr. Janko Dietzsch",
         "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/8/5/csm_1460_aa7df47972.jpg",
         "info": "Lerchenstraße 1\\n Raum: B3.02\\n 70174 Stuttgart\\n Tel.: 0711/1849-4615\\n Fax: 0711/1849-4510\\n janko.dietzsch@dhbw-stuttgart.de",
-        "data": "Professor für Informatik"
+        "data": "Professor für Informatik\\nAnsprechperson für Fragen zu Bachelorarbeiten"
     },
-    "Prof. Dr. rer. nat. Matthias Drüppel": {
+    "Matthias Drüppel": {
         "name": "Prof. Dr. rer. nat. Matthias Drüppel",
         "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/8/d/csm_1704_b57c8cac79.jpg",
         "info": "Lerchenstraße 1\\n Raum: B3.04\\n 70174 Stuttgart\\n Tel.: 0711/1849-4512\\n matthias.drueppel@dhbw-stuttgart.de",
         "data": "Professor für Informatik"
     },
-    "Prof. Dr. Jan Hladik": {
+    "Jan Hladik": {
         "name": "Prof. Dr. Jan Hladik",
         "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/5/3/csm_1086_5e8b81e1f4.jpg",
         "info": "Lerchenstraße 1\\n Raum: B3.12\\n 70174 Stuttgart\\n Tel.: 0711/1849-4501\\n Fax: 0711/1849-4510\\n Jan.Hladik@dhbw-stuttgart.de",
         "data": "Professor für Informatik"
     },
-    "Prof. Dr. Monika Kochanowski": {
+    "Monika Kochanowski": {
         "name": "Prof. Dr. Monika Kochanowski",
         "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/e/e/csm_1539_0af96d9e07.jpg",
         "info": "Lerchenstraße 1\\n Raum: B3.10\\n 70174 Stuttgart\\n Tel.: 0711/1849-4583\\n Fax: 0711/1849-4510\\n monika.kochanowski@dhbw-stuttgart.de",
         "data": "Professor für Informatik"
     },
-    "Prof. Dr.-Ing. Falko Michael Kötter": {
+    "Falko Michael Kötter": {
         "name": "Prof. Dr.-Ing. Falko Michael Kötter",
         "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/1/4/csm_1684_83509e06af.jpg",
         "info": "Lerchenstraße 1\\n Raum: B3.11\\n 70174 Stuttgart\\n Tel.: 0711/1849-4650\\n Fax: 0711/1849-4510\\n falko.koetter@dhbw-stuttgart.de",
         "data": "Professor für Informatik"
     },
-    "Prof. Dr. Dirk Reichardt": {
+    "Dirk Reichardt": {
         "name": "Prof. Dr. Dirk Reichardt",
         "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/6/7/csm_119_1a092c4fe6.jpg",
         "info": "Lerchenstraße 1\\n Raum: B3.01\\n 70174 Stuttgart\\n Tel.: 0711/1849-4538\\n Fax: 0711/1849-4510\\n dirk.reichardt@dhbw-stuttgart.de",
         "data": "Studiendekan Informatik\\nAnsprechpartner für Auslandsangelegenheiten"
     },
-    "Prof. Dr. Doris Nitsche-Ruhland": {
+    "Doris Nitsche-Ruhland": {
         "name": "Prof. Dr. Doris Nitsche-Ruhland",
         "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/5/c/csm_118_a6d801622e.jpg",
         "info": "Lerchenstraße 1\\n Raum: B3.14\\n 70174 Stuttgart\\n Tel.: 0711/1849-4523\\n Fax: 0711/1849-4510\\n doris.nitsche-ruhland@dhbw-stuttgart.de",
         "data": "Studiengangsleiterin Informatik"
     },
-    "Prof. Dr. rer. nat. Stephan Schulz":{
+    "Stephan Schulz":{
         "name": "Prof. Dr. rer. nat. Stephan Schulz",
         "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/3/5/csm_1064_2fc4ad3ff6.jpg",
         "info": "Lerchenstraße 1\\n Raum: B3.14\\n 70174 Stuttgart\\n Tel.: 0711/1849-4519\\n Fax: 0711/1849-4510\\n stephan.schulz@dhbw-stuttgart.de",
         "data": "Studiengangsleiter Informatik"
     },
-    "Prof. Dr. Bernd Schwinn": {
+    "Bernd Schwinn": {
         "name": "Prof. Dr. Bernd Schwinn",
         "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/4/b/csm_123_4704cb3453.jpg",
         "info": "Lerchenstraße 1\\n Raum: B3.09\\n 70174 Stuttgart\\n Tel.: 0711/1849-4505\\n Fax: 0711/1849-4510\\n bernd.schwinn@dhbw-stuttgart.de",
         "data": "Studiengangsleiter Informatik"
     },
-    "Prof. Dr.-Ing. Alfred Strey": {
+    "Alfred Strey": {
         "name": "Prof. Dr.-Ing. Alfred Strey",
         "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/d/5/csm_1041_52e0fb3912.jpg",
         "info": "Lerchenstraße 1\\n Raum: B3.15\\n 70174 Stuttgart\\n Tel.: 0711/1849-4543\\n Fax: 0711/1849-4510\\n alfred.strey@dhbw-stuttgart.de",
         "data": "Professor für Informatik"
     },
-    "Prof. Dr. Carmen Winter": {
+    "Carmen Winter": {
         "name": "Prof. Dr. Carmen Winter",
         "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/f/c/csm_721_4919a831fb.jpg",
         "info": "Lerchenstraße 1\\n Raum: B3.13\\n 70174 Stuttgart\\n Tel.: 0711/1849-4504\\n Fax: 0711/1849-4510\\n carmen.winter@dhbw-stuttgart.de",
         "data": "Studiengangsleiter Informatik"
     },
-    "Prof. Dr. Zoltán Zomotor": {
+    "Zoltán Zomotor": {
         "name": "Prof. Dr. Zoltán Zomotor",
         "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/2/3/csm_623_5eadff8541.jpg",
         "info": "Lerchenstraße 1\\n Raum: B3.03\\n 70174 Stuttgart\\n Tel.: 0711/1849-4582\\n Fax: 0711/1849-4510\\n zoltan.zomotor@dhbw-stuttgart.de",
@@ -101,27 +101,30 @@
     },
     "Andrea Dölker": {
         "name": "Andrea Dölker",
-        "info": "Raum: B3.05\\n 70174 Stuttgart\\n Tel.: 0711/1849-4516\\n Fax: 0711/1849-4510\\n andrea.doelker@dhbw-stuttgart.de",
-        "data": "Studiengangssekretariat Informatik Lerchenstraße 1"
+        "info": "Lerchenstraße 1\\n Raum: B3.05\\n 70174 Stuttgart\\n Tel.: 0711/1849-4516\\n Fax: 0711/1849-4510\\n andrea.doelker@dhbw-stuttgart.de",
+        "data": "Studiengangssekretariat Informatik 3. Studienjahr"
     },
     "Ayse Isik": {
-        "name": "Ayse Isik",
-        "info": "Labor Informatik\\n Lerchenstraße 1\\n Raum: B3.26 70174 Stuttgart\\n Tel.: 0711/1849-4563\\n Fax: 0711/1849-4510\\n ayse.isik@dhbw-stuttgart.de",
-        "data": "Labor Informatik Lerchenstraße 1"
+        "name": "Dipl.-Inform. (FH) Ayse Isik",
+        "info": "Lerchenstraße 1\\n Raum: B3.26\\n 70174 Stuttgart\\n Tel.: 0711/1849-4563\\n Fax: 0711/1849-4510\\n ayse.isik@dhbw-stuttgart.de",
+        "data": "Labor Informatik"
     },
     "Daniel Pesler": {
-        "name": "Daniel Pesler",
-        "info": "Labor Informatik\\n Lerchenstraße 1\\n Raum: B3.27\\n 70174 Stuttgart\\n Tel.: 0711/1849-\\n Fax: 0711/1849-4510\\n daniel.pesler@dhbw-stuttgart.de",
-        "data": "Labor Informatik Lerchenstraße 1"
+        "name": "Daniel Pesler M.Sc.",
+        "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/7/f/csm_1462_8ae2aaeea4.webp",
+        "info": "Lerchenstraße 1\\n Raum: B3.27\\n 70174 Stuttgart\\n Tel.: 0711/1849-\\n Fax: 0711/1849-4510\\n daniel.pesler@dhbw-stuttgart.de",
+        "data": "Labor Informatik"
     },
     "Günter Schneider": {
-        "name": "Günter Schneider",
-        "info": "Labor Informatik\\n Lerchenstraße 1\\n Raum: B3.31\\n 70174 Stuttgart\\n Tel.: 0711/1849-4570\\n Fax: 0711/1849-4510\\n guenter.schneider@dhbw-stuttgart.de",
-        "data": "Labor Informatik Lerchenstraße 1"
+        "name": "Dipl.-Ing. (FH) Günter Schneider",
+        "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/0/e/csm_122_9137fbc011.webp",
+        "info": "Lerchenstraße 1\\n Raum: B3.31\\n 70174 Stuttgart\\n Tel.: 0711/1849-4570\\n Fax: 0711/1849-4510\\n guenter.schneider@dhbw-stuttgart.de",
+        "data": "Labor Informatik"
     },
     "Holger Szüsz": {
-        "name": "Holger Szüsz",
-        "info": "Labor Informatik\\n Lerchenstraße 1\\n Raum: B3.29\\n 70174 Stuttgart\\n Tel.: 0711/1849-4609\\n holger.szuesz@dhbw-stuttgart.de",
-        "data": "Labor Informatik Lerchenstraße 1"
+        "name": "Holger Szüsz B.Sc.",
+        "bild": "https://www.dhbw-stuttgart.de/fileadmin/_processed_/0/7/csm_1424_91917e3002.webp",
+        "info": "Lerchenstraße 1\\n Raum: B3.29\\n 70174 Stuttgart\\n Tel.: 0711/1849-4609\\n holger.szuesz@dhbw-stuttgart.de",
+        "data": "Labor Informatik"
     }
 }

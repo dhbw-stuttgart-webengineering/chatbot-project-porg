@@ -47,7 +47,6 @@
     #navbar{
         /*dont effect other elements on the page*/
         position: absolute;
-        height: 100%;
         display: flex;
         flex-direction: column;
         top: 20%;
