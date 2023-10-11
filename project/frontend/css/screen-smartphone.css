@@ -1,8 +1,9 @@
 @media only screen and (max-width: 600px) {
     .grid-container{
         display: grid;
+        height: 100%;
         grid-template-columns: 1fr 1fr 1fr; 
-        grid-template-rows: 0.25fr 2fr; 
+        grid-template-rows: 0.1fr; 
         gap: 0 0;
         grid-template-areas: 
         ". . ."
@@ -13,11 +14,21 @@
         margin-left: auto;
         margin-right: auto;
         position: relative;
+        height: 100%;
         width: 80%;
         grid-column: 1 / 4;
         display: block;
     }
 
+    .chat-container{
+        height: 85vh;
+        max-height: none;
+        margin-top: 0;
+    }
+
+    body{
+        height: 98vh;
+    }
 
     .link-container {
         margin-top: 40px;
