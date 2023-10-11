@@ -337,14 +337,14 @@ color: white;
   box-shadow: inset 0 0 0 0.75vmin rgba(0, 0, 0, 0.1); 
 }
 #earth{
-  background-image: url("/Project Porg/frontend/files/cookies/earth.jpg");
+  background-image: url("/project/frontend/files/cookies/earth.jpg");
   background-size: 17vmin;
   width: 11vmin;
   height: 11vmin;
   position: relative;
 }
 #moon{
-  background-image: url("/Project Porg/frontend/files/cookies/moon.jpg");
+  background-image: url("/project/frontend/files/cookies/moon.jpg");
   background-size: 17vmin;
   width: 4vmin;
   height: 4vmin;
