@@ -625,7 +625,7 @@ function openChat() {
 
     document.getElementsByClassName("chat")[0].style.display = "block";
     document.getElementsByClassName("settings-container")[0].style.display = "none";
-    document.getElementsByClassName("link-container")[0].style.display = "none";
+    document.getElementById("info").style.display = "none";
 }
 
 function openSettings() {
@@ -635,7 +635,7 @@ function openSettings() {
 
     document.getElementsByClassName("chat")[0].style.display = "none";
     document.getElementsByClassName("settings-container")[0].style.display = "block";
-    document.getElementsByClassName("link-container")[0].style.display = "none";
+    document.getElementById("info").style.display = "none";
 }
 
 function openOverview() {
@@ -645,7 +645,7 @@ function openOverview() {
 
     document.getElementsByClassName("chat")[0].style.display = "none";
     document.getElementsByClassName("settings-container")[0].style.display = "none";
-    document.getElementsByClassName("link-container")[0].style.display = "block";
+    document.getElementById("info").style.display = "block";
 }
 
 
