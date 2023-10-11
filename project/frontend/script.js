@@ -15,7 +15,7 @@ let games = {
     "D&D": "egg/DD/dist/index.html",
     "TT": "egg/TT/dist/index.html",
     "Wordle": "https://wordle.at/",
-    "MS": "egg/MS/dist/index.html"
+    "MS": "https://minesweeper.one/spielen/"
 }
 
 // get json from personen.json
