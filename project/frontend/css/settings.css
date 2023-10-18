@@ -16,11 +16,16 @@
     margin-left: 10%;
     list-style: none;
 }
+#beispielText{
+    font-size: 0.5em;
+    color: var(--font-color1);
+    text-decoration: none;
+}
 
 /* Dropdown Auswahl */
 select{
     border: 1px solid #7d878d;
-    margin: auto;
+    margin-top: 2vh;
     border-radius: 5px;
     padding: 10px;
     overflow: auto;
@@ -31,7 +36,21 @@ select{
     background-color: var(--bg-color);
     color: var(--font-color1);
 }
-
+#username {
+    border: 1px solid #7d878d;
+    margin-top: 2vh;
+    padding: 10px;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    border-radius: 5px;
+    font-size: 0.75em;
+    appearance: none;
+    background-color: var(--bg-color);
+}
+::placeholder{
+    color: var(--font-color1);
+}
 /* Slider */
 .slider::-webkit-slider-thumb {
     appearance: none;
@@ -51,6 +70,7 @@ select{
     cursor: pointer;
 }
 .slider{
+    margin-top: 5vh;
     appearance: none;
     justify-self: center;
     width: 100%;
@@ -68,6 +88,7 @@ select{
     opacity: 0.75;
 }
 label{
+    margin-left: 5vh;
     color: var(--font-color1);
 }
 

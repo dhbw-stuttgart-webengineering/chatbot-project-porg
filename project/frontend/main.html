@@ -79,12 +79,14 @@
                 <div id="flexstart">
                     <h2>Einstellungen</h2>
                     <input type="text" id="username" name="username" placeholder="Benutzername">
+                    <br/>
                     <select name="jahrgang" id="jahrgang">
                         <option value="2023" selected>Jahrgang 2023</option>
                         <option value="2022">Jahrgang 2022</option>
                         <option value="2021">Jahrgang 2021</option>
                     </select>
                     <input type="range" onChange="changeFontSize(this.value)" min="30" max="70" value="50" class="slider" id="fontSize">
+                    <p id="beispielText">Deine aktuelle Schriftgröße</p>
                 </div>
                 <div id="flexend">
                     <p id="settings-hinweis">Persönliche Angaben sind ausschließlich zu Beginn des Chats einzugeben. Bei Bedarf können Sie den Chatverlauf durch Anklicken des Mülltonnen-Symbols löschen.</p>
