@@ -11,19 +11,21 @@
     }
     
     .chat{
+        margin-top: 40px;
         margin-left: auto;
         margin-right: auto;
         position: relative;
         height: 100%;
-        width: 80%;
+        width: 85%;
         grid-column: 1 / 4;
         display: block;
     }
 
     .chat-container{
-        height: 85vh;
+        height: 80%;
         max-height: none;
         margin-top: 0;
+        width: 100%;
     }
 
     body{
