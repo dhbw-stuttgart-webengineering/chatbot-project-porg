@@ -656,7 +656,7 @@ function backToDesktop(){
         //clear all element.style properties
         document.getElementsByClassName("chat")[0].style.display = "";
         document.getElementsByClassName("settings-container")[0].style.display = "";
-        document.getElementsByClassName("link-container")[0].style.display = "";
+        document.getElementsByID("info").style.display = "";
         document.getElementById("switchtochat").style.backgroundColor = "#5e6061";
         document.getElementById("switchtosettings").style.backgroundColor = "#7d878d";
         document.getElementById("switchtooverview").style.backgroundColor = "#7d878d";
