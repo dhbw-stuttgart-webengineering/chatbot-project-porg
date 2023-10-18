@@ -642,6 +642,7 @@ function openOverview() {
     document.getElementById("switchtochat").style.backgroundColor = "#7d878d";
     document.getElementById("switchtosettings").style.backgroundColor = "#7d878d";
     document.getElementById("switchtooverview").style.backgroundColor = "#5e6061";
+    document.getElementById("switchtooverview").style.animation = "none";
 
     document.getElementsByClassName("chat")[0].style.display = "none";
     document.getElementsByClassName("settings-container")[0].style.display = "none";
@@ -679,6 +680,7 @@ class Steckbrief {
 
     // generate html code for the steckbrief
     generateHTML() {
+        notification();
         let steckbrief = document.createElement("div");
         steckbrief.className = "steckbrief";
 
@@ -744,6 +746,7 @@ class Game {
     }
     
     generateHTML() {
+        notification();
         let div = document.createElement("div");
         div.id = "gameDiv";
         let frameHTML = document.createElement("iframe");
@@ -761,4 +764,9 @@ class Game {
         div.appendChild(frameHTML);
         return div;
     }
+}
+
+function notification() {
+    let notification = document.getElementById("switchtooverview");
+    notification.style.animation = "notification 1s infinite";
 }
