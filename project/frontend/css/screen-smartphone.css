@@ -1,4 +1,4 @@
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 821px) {
     .grid-container{
         display: grid;
         height: 90%;
@@ -26,6 +26,7 @@
         max-height: none;
         margin-top: 0;
         width: 100%;
+        max-width: none;
     }
 
     body{
