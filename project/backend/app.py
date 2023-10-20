@@ -1,5 +1,4 @@
 import openai
-from dotenv import load_dotenv
 import os
 import chatgpt
 import pinecone
@@ -7,7 +6,6 @@ import mail
 import databaseManager
 import datetime
 
-load_dotenv()
 openai.api_key = f"{os.getenv('OPENAI_API_KEY')}" + f"{os.getenv('OPENAI_API_KEY_2')}"
 pinecone.init(api_key=os.getenv("PINECONE_API_KEY") or "", environment=os.getenv("PINECONE_ENV") or "")
 
