@@ -349,6 +349,8 @@ function lookForLinks(message) {
  */
 function changeFontSize(amount) {
     let nachrichten = document.getElementsByClassName("chat-container");
+    let beispielText = document.getElementById("beispielText");
+    beispielText.style.fontSize = amount/50 + "em";
     for (const element of nachrichten) {
         element.style.fontSize = amount/50 + "em";
     }
