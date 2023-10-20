@@ -249,6 +249,7 @@ function addBotMessage(message, typewrite = true) {
 }
 
 function sendMessage(message) {
+    if (message.trim() === '') return;
     document.getElementById('user-input').value = '';
     disableSettings();
     if (message.startsWith('/play')) {
