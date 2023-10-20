@@ -7,8 +7,8 @@ let jahrgang = getCookie("jahrgang");
 let username = getCookie("username");
 let semester = 1;
 let lehrjahr = 1;
-// let endpoint = "https://programmentwurf-project-porg-oa69-main-i26p7quipa-ew.a.run.app";
-let endpoint = "http://127.0.0.1:8080";
+let endpoint = "https://porg-n9hc.onrender.com/";
+// let endpoint = "http://127.0.0.1:8080";
 let cookieRefused = false;
 
 let games = {
