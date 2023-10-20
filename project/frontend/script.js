@@ -7,7 +7,7 @@ let jahrgang = getCookie("jahrgang");
 let username = getCookie("username");
 let semester = 1;
 let lehrjahr = 1;
-let endpoint = "https://demirerkagan0808-61acc352-89b7-4364-b07d-9ecc93cefd98.socketxp.com";
+let endpoint = "https://porg-n9hc.onrender.com/";
 // let endpoint = "http://127.0.0.1:8080";
 let cookieRefused = false;
 
