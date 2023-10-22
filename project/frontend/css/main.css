@@ -170,6 +170,8 @@ h2{
   position: relative;
   border-radius: 100%;
   width: 7.5vmin;
+  min-width: 37.5px;
+  min-height: 37.5px;
   height: 7.5vmin;
   background: linear-gradient(40deg, #FF0080,#FF8C00 70%);
   margin-left: 1.5vmin;
@@ -200,6 +202,8 @@ font-size: 90%;
   width:  17vmin;
   height: 4vmin;
   min-width: 75px;
+  min-height: 25px;
+  margin-right: 2vmin;
 }
 .toggle {
   position: absolute;
@@ -207,9 +211,11 @@ font-size: 90%;
   background-color: var(--primary-color);
   box-shadow: 0 2px 15px rgba(0,0,0,.15);
   transition: transform .3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  min-width: 37.5px;
+  min-height: 25px;
 }
 .names {
-  font-size: 0.5em;
+  font-size: 0.5rem;
   font-weight: bolder;
   width: 65%;
   margin-left: 17.5%;
