@@ -70,11 +70,10 @@ select{
     cursor: pointer;
 }
 .slider{
-    
     margin-top: 5vh;
     appearance: none;
     justify-self: center;
-    width: 55vh;
+    width: 100%;
     height: 1vh;
     border-radius: 5px;
     color: var(--secondary-color);
@@ -95,6 +94,7 @@ label{
 
 #flexstart{
     height: 100%;
+    width: 100%;
     align-self: flex-start;
 }
 
