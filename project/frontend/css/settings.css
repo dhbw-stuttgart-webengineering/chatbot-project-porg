@@ -94,6 +94,7 @@ label{
 
 #flexstart{
     height: 100%;
+    width: 100%;
     align-self: flex-start;
 }
 
