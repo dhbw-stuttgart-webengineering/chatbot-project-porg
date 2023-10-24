@@ -13,8 +13,6 @@
     position: relative;
     height: 70vh;
     max-height: 70vh;
-    overflow-y: scroll;
-    overflow-x: hidden;
     border-radius: 5px;
     border: 1px solid #7d878d;
     margin-top: 40px;
@@ -46,9 +44,6 @@
     color: var(--font-color1);
     text-decoration: none;
 }
-.chat-container::-webkit-scrollbar {
-    display: none;
-}
 .button{
     border-radius: 5px;
     position: absolute;
@@ -76,6 +71,21 @@
     max-width: 80%;
     height:fit-content;
     margin: 10px;
+}
+
+.messages {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-height: 100%;
+    
+}
+
+.messages::-webkit-scrollbar {
+    display: none;
+}
+.messages {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 

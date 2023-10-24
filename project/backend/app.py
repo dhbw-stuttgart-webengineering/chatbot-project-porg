@@ -5,7 +5,9 @@ import pinecone
 import mail
 import databaseManager
 import datetime
+from dotenv import load_dotenv
 
+load_dotenv()
 openai.api_key = f"{os.getenv('OPENAI_API_KEY')}" + f"{os.getenv('OPENAI_API_KEY_2')}"
 pinecone.init(api_key=os.getenv("PINECONE_API_KEY") or "", environment=os.getenv("PINECONE_ENV") or "")
 
@@ -26,9 +28,11 @@ def search(query, k=7, text=True):
     if text: 
         messages = [f"{i+1}. {message['metadata']['text']}. Quelle: {message['metadata']['link']}\n" for i, message in enumerate(res["matches"])]
         res = "".join(messages)
-        print(res)
     else:
-        messages = [message['metadata'] for message in res["matches"]]
+        score = res["matches"][0]["score"]
+        if float(score) < 0.88:
+            return None
+        messages = res["matches"][0]["metadata"]
         res = messages
     return res
 
@@ -36,9 +40,13 @@ def chat(chatbot, query, information, semanticquestion):
     chatbot.system("""
     Du bist ein Chatbot der Dualen Hochschule Baden-Württemberg (DHBW). Dein Name ist Porg. 
     Du kannst nicht über andere Themen reden und beantwortest keine Fragen, die nichts mit der Hochschule zu tun haben.
+    Keine Quellenangabe!
     Bei Aufzählungen immer \n- verwenden.   """)
     context = search(f"{semanticquestion}\n{information}")
-    res = chatbot.chat(f'Stelle wenn wirklich notwendig Rückfragen. Keine Quellenangabe! Erfinde nichts dazu! Benutze für deine Antwort nur diese Daten:\n{context}\nInformationen zum mir:\n{information}\n########\n\n{query}')
+    try:
+        res = chatbot.chat(f'Keine Quellenangabe! Stelle wenn wirklich notwendig Rückfragen. Erfinde nichts dazu! Benutze für deine Antwort nur diese Daten:\n{context}\nInformationen zum mir:\n{information}\n########\n\n{query}')
+    except:
+        res = "Es ist ein Fehler aufgetreten. Bitte versuche es erneut."
     check_for_old_chatbots()
     return res
 
@@ -90,9 +98,11 @@ def chat_api():
     chatbot, semanticbot = get_chatbot(uuid)
     semanticquestion = asksemanticbot(semanticbot, query, semanticbot.lastQuestion)
     result = chat(chatbot, query, information, semanticquestion)
-    link = search(result, k=1, text=False)[0]["link"]
-    result = result + f" Quelle: {link}"
-    chatbot.replaceLastAnswer(result)
+    link = search(result, k=1, text=False)
+    if link != None:
+        link = link["link"]
+        result = result + f" Quelle: {link}"
+        chatbot.replaceLastAnswer(result)
     messages = chatbot.getMessages()
     if uuid != "":
         databaseManager.add_key(uuid, messages)

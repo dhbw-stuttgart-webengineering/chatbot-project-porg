@@ -61,4 +61,6 @@ class ChatGPT:
         self._messages[-2]["content"] = self._messages[-2]["content"][indexOfFrage+10:]
 
     def replaceLastAnswer(self, message):
-        self._messages[-1]["content"] = message
+        messages = self._messages
+        messages[-1]["content"] = message
+        self._messages = messages
