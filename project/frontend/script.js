@@ -7,7 +7,7 @@ let jahrgang = getCookie("jahrgang");
 let username = getCookie("username");
 let semester = 1;
 let lehrjahr = 1;
-let endpoint = "https://porg-n9hc.onrender.com/";
+let endpoint = "https://porg-n9hc.onrender.com";
 // let endpoint = "http://127.0.0.1:8080";
 let cookieRefused = false;
 
@@ -298,18 +298,6 @@ function clearChat() {
     while (messages[0].firstChild) {
         messages[0].removeChild(messages[0].firstChild);
     }
-    const Http = new XMLHttpRequest();
-    const url=endpoint + '/reset';
-    Http.open("POST", url);
-    Http.setRequestHeader("Content-Type", "application/json");
-    Http.setRequestHeader("Access-Control-Allow-Origin", "*");
-    Http.send(JSON.stringify({"uuid": uuid}));
-    Http.onreadystatechange = (e) => {
-        if (Http.readyState === 4 && Http.status === 200) {
-            const response = JSON.parse(Http.responseText);
-            console.log(response);
-        }
-    }
     disableSettings();
     const botMessage = document.createElement('div');
     botMessage.className = 'message';
@@ -320,6 +308,19 @@ function clearChat() {
     document.querySelector('.messages').append(selector);
     botMessage.scrollIntoView();
     document.getElementById('reportBug').style.display = 'none';
+    
+    $.ajax({
+        type: "POST",
+        url: endpoint + '/reset',
+        data: JSON.stringify({"uuid": uuid}),
+        contentType: "application/json",
+        headers: {
+            "Access-Control-Allow-Origin": "*"
+        },
+        success: function(response) {
+            console.log(response);
+        }
+    });
 }
 
 
@@ -395,18 +396,16 @@ function removeLinksfromList() {
  * @param {string} message - The message to send to the chatbot.
  */
 function askGPT(message){
-    const Http = new XMLHttpRequest();
-    const url= endpoint + '/chat';
-    Http.open("POST", url);
-    Http.setRequestHeader("Content-Type", "application/json");
-    Http.setRequestHeader("Access-Control-Allow-Origin", "*");
-    Http.send(JSON.stringify({"query": message, "uuid": uuid, "information": {"jahrgang": "Jahrgang " + jahrgang.toString(), "username": username, "semester": "Semester " + semester.toString(), "lehrjahr": "Lehrjahr " + lehrjahr.toString(), "Heutiges Datum": new Date().toLocaleDateString()}}));
-    Http.onreadystatechange = (e) => {
-        if (Http.readyState === 4 && Http.status === 200) {
-            const response = JSON.parse(Http.responseText);
+    $.ajax({
+        url: endpoint + '/chat',
+        type: 'POST',
+        data: JSON.stringify({"query": message, "uuid": uuid, "information": {"jahrgang": "Jahrgang " + jahrgang.toString(), "username": username, "semester": "Semester " + semester.toString(), "lehrjahr": "Lehrjahr " + lehrjahr.toString(), "Heutiges Datum": new Date().toLocaleDateString()}}),
+        contentType: 'application/json',
+        crossDomain: true,
+        success: function(response) {
             receiveMessage(response.response);
         }
-    }
+    });
 }
 
 /**
@@ -450,11 +449,6 @@ function typeWriter(txt, messageNumber, quelle) {
  * Sends an HTTP POST request to a mail server with the chat history as the request body.
  */
 function sendMail(){
-    const Http = new XMLHttpRequest();
-    const url=endpoint + '/mail';
-    Http.open("POST", url);
-    Http.setRequestHeader("Content-Type", "application/json");
-    Http.setRequestHeader("Access-Control-Allow-Origin", "*");
     const messages = document.getElementsByClassName('message');
     let text = "";
     for(const element of messages){
@@ -464,15 +458,18 @@ function sendMail(){
             text += "User: " + element.textContent.trim() + "\n\n";
         }
     }
-    Http.send(JSON.stringify({"query": text}));
-    Http.onreadystatechange = (e) => {
-        if (Http.readyState === 4 && Http.status === 200) {
-            const response = JSON.parse(Http.responseText);
+    $.ajax({
+        url: endpoint + '/mail',
+        type: 'POST',
+        data: JSON.stringify({"query": text}),
+        contentType: 'application/json',
+        success: function(response) {
             console.log(response);
             addAlert();
         }
-    }
+    });
 }
+
 
 /**
  * Creates and displays an alert message for the report with a close button.
@@ -537,7 +534,8 @@ function getCookie(cname) {
  */
 function setCookie(name, value) {
     if (cookieRefused) return;
-    document.cookie = name + "=" + value + "; expires=Thu, 31 Dec 2100 12:00:00 UTC; path=/";
+    document.cookie = name + "=" + value + "; expires=Thu, 31 Dec 2100 12:00:00 UTC; path=/" + "; SameSite=Strict";
+
 }
 
 
