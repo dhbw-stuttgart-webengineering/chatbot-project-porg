@@ -46,6 +46,7 @@ def chat(chatbot, query, information, semanticquestion):
     try:
         res = chatbot.chat(f'Keine Quellenangabe! Stelle wenn wirklich notwendig Rückfragen. Erfinde nichts dazu! Benutze für deine Antwort nur diese Daten:\n{context}\nInformationen zum mir:\n{information}\n########\n\n{query}')
     except:
+        chatbot._messages = chatbot._messages[:-1]
         res = "Es ist ein Fehler aufgetreten. Bitte versuche es erneut."
     check_for_old_chatbots()
     return res
