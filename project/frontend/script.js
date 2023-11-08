@@ -5,6 +5,7 @@ let talking = false;
 let uuid = getCookie("uuid");
 let jahrgang = getCookie("jahrgang");
 let username = getCookie("username");
+let openai_api_key = getCookie("openai_api_key");
 let semester = 1;
 let lehrjahr = 1;
 let endpoint = "https://porg-n9hc.onrender.com";
@@ -61,6 +62,11 @@ function setCookies(){
         username = getCookie("username");
         document.getElementById("username").value = username;
     }
+    // Check if Open API Key is set
+    if (checkCookie("openai_api_key")) {
+        openai_api_key = getCookie("openai_api_key");
+        document.getElementById("openai_api_key").value = openai_api_key;
+    }
 }
 function settingsFromCookies(){
     if (checkCookie("systemmode")) {
@@ -74,7 +80,7 @@ function settingsFromCookies(){
     }
 }
 function setEventListener(){
-        // Add event listener to jahrgang input
+    // Add event listener to jahrgang input
     document.getElementById("jahrgang").addEventListener("change", function() {
         jahrgang = document.getElementById("jahrgang").value;
         set_lehrjahr_and_semester();
@@ -90,6 +96,12 @@ function setEventListener(){
         if (event.key === 'Enter' && !talking) {
             sendMessage(document.getElementById('user-input').value);
         }
+    });
+    // Add event listener for openai_api_key input
+    document.getElementById("openai_api_key").addEventListener("change", function() {
+        key = document.getElementById("openai_api_key").value;
+        setCookie("openai_api_key", key);
+        openai_api_key = key;
     });
     // Add event listener to check if resized display all elements again
     window.addEventListener('resize', backToDesktop);
@@ -266,11 +278,6 @@ function sendMessage(message) {
             }
             return;
         }
-    } else if (message == 'easterEggs') {
-        addFunctionLinktoList("play Dungeons and Dragons",'#', function(){showIframe('egg/DD/dist/index.html')});
-        addFunctionLinktoList("play Table Tennis",'#', function(){showIframe('egg/TT/dist/index.html')});
-        addFunctionLinktoList("play Wordle",'#', function(){showIframe('https://wordle.at/')});
-        addFunctionLinktoList("play Minesweeper",'#', function(){showIframe('egg/MS/dist/index.html')});
     } else {
         talking = true;
         addUserMessage(message);
@@ -399,7 +406,7 @@ function askGPT(message){
     $.ajax({
         url: endpoint + '/chat',
         type: 'POST',
-        data: JSON.stringify({"query": message, "uuid": uuid, "information": {"jahrgang": "Jahrgang " + jahrgang.toString(), "username": username, "semester": "Semester " + semester.toString(), "lehrjahr": "Lehrjahr " + lehrjahr.toString(), "Heutiges Datum": new Date().toLocaleDateString()}}),
+        data: JSON.stringify({"query": message, "uuid": uuid, "openai_api_key": openai_api_key , "information": {"jahrgang": "Jahrgang " + jahrgang.toString(), "username": username, "semester": "Semester " + semester.toString(), "lehrjahr": "Lehrjahr " + lehrjahr.toString(), "Heutiges Datum": new Date().toLocaleDateString()}}),
         contentType: 'application/json',
         crossDomain: true,
         success: function(response) {
