@@ -46,10 +46,26 @@ select{
     border-radius: 5px;
     font-size: 0.75em;
     appearance: none;
+    color: var(--font-color1);
     background-color: var(--bg-color);
 }
-::placeholder{
+::placeholder {
+    font-style: italic;
+}
+#openai_api_key {
+    border: 1px solid #7d878d;
+    padding: 10px;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    border-radius: 5px;
+    font-size: 0.75em;
+    appearance: none;
     color: var(--font-color1);
+    background-color: var(--bg-color);
+}
+::placeholder {
+    font-style: italic;
 }
 /* Slider */
 .slider::-webkit-slider-thumb {

@@ -41,7 +41,9 @@ class ChatGPT:
         completion = self._make_completion(self.messages)
         return completion["choices"][0]["message"]["content"].strip()
     
-    def chat(self, message, replace_last=False):
+    def chat(self, message, replace_last=False, openai_api_key=None):
+        openai.api_key = openai_api_key
+        print(openai.api_key)
         if replace_last:
             self._messages = self._messages[:-2]
         self.user(message)

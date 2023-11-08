@@ -8,7 +8,6 @@ import datetime
 from dotenv import load_dotenv
 
 load_dotenv()
-openai.api_key = f"{os.getenv('OPENAI_API_KEY')}" + f"{os.getenv('OPENAI_API_KEY_2')}"
 pinecone.init(api_key=os.getenv("PINECONE_API_KEY") or "", environment=os.getenv("PINECONE_ENV") or "")
 
 chatbots = {}
@@ -36,24 +35,20 @@ def search(query, k=7, text=True):
         res = messages
     return res
 
-def chat(chatbot, query, information, semanticquestion):
+def chat(chatbot, query, information, semanticquestion, openai_api_key):
     chatbot.system("""
     Du bist ein Chatbot der Dualen Hochschule Baden-Württemberg (DHBW). Dein Name ist Porg. 
     Du kannst nicht über andere Themen reden und beantwortest keine Fragen, die nichts mit der Hochschule zu tun haben.
     Keine Quellenangabe!
     Bei Aufzählungen immer \n- verwenden.   """)
     context = search(f"{semanticquestion}\n{information}")
-    try:
-        res = chatbot.chat(f'Keine Quellenangabe! Stelle wenn wirklich notwendig Rückfragen. Erfinde nichts dazu! Benutze für deine Antwort nur diese Daten:\n{context}\nInformationen zum mir:\n{information}\n########\n\n{query}')
-    except:
-        chatbot._messages = chatbot._messages[:-1]
-        res = "Es ist ein Fehler aufgetreten. Bitte versuche es erneut."
+    res = chatbot.chat(f'Keine Quellenangabe! Stelle wenn wirklich notwendig Rückfragen. Erfinde nichts dazu! Benutze für deine Antwort nur diese Daten:\n{context}\nInformationen zum mir:\n{information}\n########\n\n{query}', openai_api_key=openai_api_key)
     check_for_old_chatbots()
     return res
 
-def asksemanticbot(chatbot, query, lastquestion):
+def asksemanticbot(chatbot, query, lastquestion, openai_api_key):
     chatbot.system("")
-    res = chatbot.chat(f"Wenn die neue Frage keine vollständige Frage ist, schaue, ob es eine Ergänzung der alten Frage ist. Wenn ja, fasse diese zusammen und gebe die Frage zurück. Wenn die nichts damit zu tun hat, gebe einfach die neue Frage zurück. Schreibe nichts anderes als die Frage! \n\nAlte Frage: {lastquestion}\nNeue Frage: {query}", replace_last=True)
+    res = chatbot.chat(f"Wenn die neue Frage keine vollständige Frage ist, schaue, ob es eine Ergänzung der alten Frage ist. Wenn ja, fasse diese zusammen und gebe die Frage zurück. Wenn die nichts damit zu tun hat, gebe einfach die neue Frage zurück. Schreibe nichts anderes als die Frage! \n\nAlte Frage: {lastquestion}\nNeue Frage: {query}", replace_last=True, openai_api_key=openai_api_key)
     chatbot.lastQuestion = res
     return res
 
@@ -65,7 +60,7 @@ def get_chatbot(uuid):
     semanticbot = chatgpt.ChatGPT(uuid + "semantic")
     result = databaseManager.get_key(uuid)
     if result == None:
-        databaseManager.add_key(uuid, "") 
+        databaseManager.add_key(uuid, "", None)
         result = databaseManager.get_key(uuid)
         if result[0][1] == None:
             messages = eval(result[0][1])
@@ -95,10 +90,28 @@ def chat_api():
     data = request.json
     query = data["query"]
     uuid = data["uuid"]
+    openai_api_key = data["openai_api_key"]
     information = data["information"]
+    if openai_api_key.strip() == "":
+        openai_api_key = f"{os.getenv('OPENAI_API_KEY')}" + f"{os.getenv('OPENAI_API_KEY_2')}"
+        trial_count = databaseManager.get_trial(uuid)
+        if trial_count >= 3:
+            return jsonify({"response": "Du hast dein Kontingent an Anfragen für die gratis Version erreicht. Bitte trage im Einstellungsfenster einen OpenAI API Key ein, um weiterhin den Chatbot zu nutzen. Eine Anleitung findest du hier: https://www.howtogeek.com/885918/how-to-get-an-openai-api-key/. "})
+        trial = True
+    else:
+        trial = False
+    print(openai.api_key)
     chatbot, semanticbot = get_chatbot(uuid)
-    semanticquestion = asksemanticbot(semanticbot, query, semanticbot.lastQuestion)
-    result = chat(chatbot, query, information, semanticquestion)
+    try:
+        semanticquestion = asksemanticbot(semanticbot, query, semanticbot.lastQuestion, openai_api_key)
+        result = chat(chatbot, query, information, semanticquestion, openai_api_key)
+    except openai.error.AuthenticationError:
+        return jsonify({"response": "Der OpenAI API Key ist ungültig. Bitte überprüfe ihn und versuche es erneut."})
+    except openai.error.ServiceUnavailableError:
+        return jsonify({"response": "Der OpenAI Server ist nicht erreichbar. Bitte versuche es später erneut."})
+    except:
+        chatbot._messages = chatbot._messages[:-1]
+        return jsonify({"response": "Es ist ein Fehler aufgetreten. Bitte versuche es erneut."})
     link = search(result, k=1, text=False)
     if link != None:
         link = link["link"]
@@ -106,7 +119,7 @@ def chat_api():
         chatbot.replaceLastAnswer(result)
     messages = chatbot.getMessages()
     if uuid != "":
-        databaseManager.add_key(uuid, messages)
+        databaseManager.add_key(uuid, messages, trial)
     response = jsonify({"response": result})
     response.headers.add('Access-Control-Allow-Origin', '*')
     return response
@@ -156,4 +169,4 @@ def mail_api():
     return response
 
 if __name__ == "__main__":
-    app.run(port=int(os.environ.get("PORT", 8080)),host='0.0.0.0',debug=True)
+    app.run(port=int(os.environ.get("PORT", 8080)),host='localhost',debug=True)
