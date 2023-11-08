@@ -104,8 +104,7 @@ label{
 }
 
 #settings-hinweis {
-    margin-top: -10vh;
-    align-self: flex-end;
+    margin-top: -3vh;
     font-size: 10px;
     color: var(--font-color1);
 }
