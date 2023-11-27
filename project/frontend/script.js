@@ -500,6 +500,7 @@ function addAlert(){
     alert.appendChild(span);
     document.querySelector('body').appendChild(alert);
     alert.scrollIntoView();
+    document.getElementById('reportBug').style.display = 'none';
 }
 
 /**
